@@ -1,0 +1,499 @@
+[
+  {
+    "objectID": "topics/ollama.html",
+    "href": "topics/ollama.html",
+    "title": "Installing and Running a Local LLM with Ollama",
+    "section": "",
+    "text": "Session 2 · June 24, 2026 · 3:20 – 4:30 pm"
+  },
+  {
+    "objectID": "topics/ollama.html#what-youre-teaching",
+    "href": "topics/ollama.html#what-youre-teaching",
+    "title": "Installing and Running a Local LLM with Ollama",
+    "section": "What You’re Teaching",
+    "text": "What You’re Teaching\nOllama is a tool that lets you download and run large language models on your own computer (no API keys, no per-token costs, no data leaving your machine). Your peers will leave this session able to install Ollama, pull a model, and have their first conversation with it from the command line and from a script.\nThis matters for behavioral data scientists because some research data (interview transcripts, clinical notes, identifiable survey responses) cannot be sent to a third-party API for ethical or regulatory reasons. Local models are how you do LLM-assisted analysis on that kind of data."
+  },
+  {
+    "objectID": "topics/ollama.html#mini-quick-start",
+    "href": "topics/ollama.html#mini-quick-start",
+    "title": "Installing and Running a Local LLM with Ollama",
+    "section": "Mini Quick-Start",
+    "text": "Mini Quick-Start\n\n1. Check Your Hardware\nOllama runs models locally, which means your machine’s RAM and (for some models) GPU determine what you can actually run. A laptop with 16 GB of RAM can comfortably run small-to-mid-size models; 8 GB is workable but tight.\n\nCheck your RAM before you install (this affects which models you should recommend in the demo).\nMacs with Apple Silicon are particularly well-suited. Windows and Linux also work.\n\n\n\n2. Install Ollama\nDownload from the official site and run the installer for your OS.\n\nOfficial site: https://ollama.com/\nConfirm install: open a terminal and run ollama --version.\n\n\n\n3. Pull Your First Model\nModels are pulled by name. Start small.\nollama pull llama3.2:1b\nollama run llama3.2:1b\nThe first command downloads the model (this can take several minutes on classroom Wi-Fi — plan accordingly). The second drops you into an interactive chat.\nReminder: To interact in the terminal with the model first use the command ollama run &lt;model_name&gt;. Then at the &gt;&gt;&gt; prompt, type your message and press Enter. To exit use /bye.\n\n\n4. Try a Larger Model\nOnce the small model works, try a mid-size one to feel the difference in both quality and speed.\nollama pull llama3.2:3b\nollama run llama3.2:3b\nReminder: To interact in the terminal with the model first use the command ollama run &lt;model_name&gt;. Then at the &gt;&gt;&gt; prompt, type your message and press Enter. To exit use /bye.\n\n\n5. Call Ollama From a Script\nOllama exposes a local HTTP API on port 11434. Call it from Python or R to show your peers how to integrate a local model into a real analysis script. In a Jupyter notebook demonstrate the following.\nimport requests\n\nresponse = requests.post(\n    \"http://localhost:11434/api/generate\",\n    json={\"model\": \"llama3.2:3b\", \"prompt\": \"Summarize this transcript: ...\", \"stream\": False}\n)\nprint(response.json()[\"response\"])"
+  },
+  {
+    "objectID": "topics/ollama.html#suggested-resources",
+    "href": "topics/ollama.html#suggested-resources",
+    "title": "Installing and Running a Local LLM with Ollama",
+    "section": "Suggested Resources",
+    "text": "Suggested Resources\n\nOfficial docs: https://github.com/ollama/ollama/blob/main/README.md\nModel library: https://ollama.com/library\nAPI reference: https://github.com/ollama/ollama/blob/main/docs/api.md"
+  },
+  {
+    "objectID": "topics/ollama.html#suggested-70-minute-lesson-outline",
+    "href": "topics/ollama.html#suggested-70-minute-lesson-outline",
+    "title": "Installing and Running a Local LLM with Ollama",
+    "section": "Suggested 70-Minute Lesson Outline",
+    "text": "Suggested 70-Minute Lesson Outline\n\n\n0 – 10 min — Intro. Why this tool matters for behavioral data science, what your peers will be able to do by the end of the session, and a 60-second preview of the demo.\n10 – 25 min — Live demo. You at the front, narrating clicks and commands. Show one complete success path from a clean state. Don’t try to cover edge cases yet.\n25 – 55 min — Hands-on. Peers do the demo themselves on their own machines. You and your group circulate to help. This is where most of the real learning happens — protect this time.\n55 – 65 min — Troubleshooting and gotchas. Surface the things that tripped you up during your own learning. What error messages should peers expect, and what do they actually mean? OS-specific differences? Auth problems?\n65 – 70 min — Wrap. Where to go next, one or two stretch challenges, pointers to the official documentation, and a Q&A buffer.\n\n\n\n\n\n\n\n\nRehearse the timing\n\n\n\nRun through the lesson with your group at least once before the real session. Most first-time presenters underestimate the live-demo portion and overestimate how much hands-on time they actually have. Cut content rather than rush."
+  },
+  {
+    "objectID": "topics/ollama.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "href": "topics/ollama.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "title": "Installing and Running a Local LLM with Ollama",
+    "section": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor",
+    "text": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor\nFor this assignment, treat the tool creator’s official documentation as your primary teacher. There is a strong temptation to ask Claude, ChatGPT, or another generative AI to “just explain it to me.”\nRelying on GenAI in this way during the earliest stages of adopting a new tool is a mistake. Learn from the documentation first, and then use GenAI to help you understand specific parts of the documentation or to clarify confusing concepts.\nHere is why:\n\nDocs are the authoritative source. GenAI tools paraphrase, summarize, and occasionally hallucinate. The official documentation is what the tool’s authors actually wrote about how the tool actually behaves.\nReading docs is the skill we’re teaching. The whole premise of this conference is that successful long-term scientists are the ones who can pick up a new tool from its documentation. If you outsource that to an AI, you miss the practice rep.\nYou’ll be a better teacher. When you’ve read the source material carefully, you can answer the questions your peers ask in the hands-on portion. When you’ve only skimmed an AI summary, you can’t.\n\nSuggestion: When getting started out, use GenAI as a sidekick (to debug a specific error, to explain a single unfamiliar term). Do not use it as your tutor of first resort."
+  },
+  {
+    "objectID": "topics/ollama.html#topic-specific-demo-tips",
+    "href": "topics/ollama.html#topic-specific-demo-tips",
+    "title": "Installing and Running a Local LLM with Ollama",
+    "section": "Topic-Specific Demo Tips",
+    "text": "Topic-Specific Demo Tips\n\nAs you set Ollama up for yourself keep track of common mistakes, errors, misunderstandings, and points of friction. Desingate a member of your team to centrally collect common mistakes, errors, misunderstandings, and points of friction and then also write them up into a one page “trouble shooting guide” that you can share with the others in class on the day of via the course chat platforms.\nUse a “team teaching” approach. To make this lesson successful every single member of your team will need to be confident installing, setting up, running, testing, and exeucting LLM calls using Ollama. The members of your team will need to circlate through the room helping other students. There will be many stumbling blocks.\nDownload your model the day before class. Models are big files. Doing this ahead of time means you won’t be stuck waiting on a slow internet connection while everyone watches.\nHave one good question ready to ask the model. Something simple like “Summarize this paragraph” or “What are three reasons people might skip a survey question?” A prepared example beats freestyling.\nIt’s okay if the model is slow. Local models run on your laptop, not a giant server. A short pause before the answer is normal — narrate what’s happening so peers aren’t confused."
+  },
+  {
+    "objectID": "topics/quarto.html",
+    "href": "topics/quarto.html",
+    "title": "Using Quarto to Create a Simple Document (Resume) + Publishing to GitHub Pages",
+    "section": "",
+    "text": "Session 5 · July 1, 2026 · 2:00 – 3:10 pm"
+  },
+  {
+    "objectID": "topics/quarto.html#what-youre-teaching",
+    "href": "topics/quarto.html#what-youre-teaching",
+    "title": "Using Quarto to Create a Simple Document (Resume) + Publishing to GitHub Pages",
+    "section": "What You’re Teaching",
+    "text": "What You’re Teaching\nQuarto is a scientific publishing system that compiles plain-text source files into HTML, PDF, Word, slides, websites, and more all from one source. Your peers will leave this session having authored a personal resume in Quarto and published it to a free, public URL using GitHub Pages.\nFor your presentation topic you have a meaningful deliverable. Every student leaves with something they can actually use on the job market. That makes this one of the more intrinsically motivating sessions in the conference."
+  },
+  {
+    "objectID": "topics/quarto.html#mini-quick-start",
+    "href": "topics/quarto.html#mini-quick-start",
+    "title": "Using Quarto to Create a Simple Document (Resume) + Publishing to GitHub Pages",
+    "section": "Mini Quick-Start",
+    "text": "Mini Quick-Start\n\n1. Install Quarto\n\nOfficial install: https://quarto.org/docs/get-started/\nConfirm install: Open a terminal and run quarto --version.\n\nYou’ll also want a Quarto-aware editor. This is an opportunity to build on ealier sessions in the mini conference sequence. As you get started with Quarto yourself and as you plan your presentation to others, reference the Installing Windsurf and Getting Started with Agentic Coding session.\n\n\n2. Author a Simple Resume\nCreate a new file resume.qmd:\n---\ntitle: \"Your Name\"\nsubtitle: \"Behavioral Data Scientist\"\nformat: html\n---\n\n## Contact\n\n- Email: you@example.com\n- LinkedIn: linkedin.com/in/yourname\n\n## Education\n\n**M.S. Psychology: Data Science in Human Behavior**\nUniversity of Wisconsin–Madison, 2026\n\n## Experience\n\n...\nRender with quarto render resume.qmd.\n\n\n3. Make It a Quarto Website\nA single-page resume is fine for a demo, but the GitHub Pages step is cleanest when the project is set up as a Quarto website:\nquarto create-project my-resume --type website\ncd my-resume\nThis gives you a _quarto.yml, an index.qmd, and a structure ready to publish.\n\n\n4. Publish to GitHub Pages\nThis is the magic step. From inside the project directory, after pushing to a GitHub repo:\nquarto publish gh-pages\nThat single command builds the site, pushes the rendered output to the gh-pages branch of the repo, and configures GitHub Pages to serve it. The URL will be https://yourusername.github.io/repo-name/.\nYou’ll need to have authenticated to GitHub already (the GitHub session on June 25 covered this).\n\n\n5. Iterate\nDemonstrate how the agentic IDE can create a website from an existing resume (PDF or Word document). Demonstrate this workflow which in gist starts a new folder in a save non-cloud location, then uses the agentic IDE to create the website, while the user on their own tests locally before publishing to GitHub Pages.\n\nCreate a new folder in a save non-cloud location, place a resume (PDF or Word document) in that folder (use the CLI to move the file there).\nUse the agentic IDE to create the website (Hint: In your group I’ll want to devise a model prompt that the class can use on their own site and don’t forget to discuss this model prompt with your instructor during the instructor consultations)\nTests locally before publishing to GitHub Pages"
+  },
+  {
+    "objectID": "topics/quarto.html#suggested-resources",
+    "href": "topics/quarto.html#suggested-resources",
+    "title": "Using Quarto to Create a Simple Document (Resume) + Publishing to GitHub Pages",
+    "section": "Suggested Resources",
+    "text": "Suggested Resources\n\nQuarto getting started: https://quarto.org/docs/get-started/.html\nUsing A Test Editor: https://quarto.org/docs/get-started/hello/text-editor.html\nQuarto template gallery: Several published as a starting point — https://quarto.org/docs/gallery/\nGitHub Pages publishing: https://quarto.org/docs/publishing/github-pages.html\nMarkdown reference: https://quarto.org/docs/authoring/markdown-basics.html"
+  },
+  {
+    "objectID": "topics/quarto.html#suggested-70-minute-lesson-outline",
+    "href": "topics/quarto.html#suggested-70-minute-lesson-outline",
+    "title": "Using Quarto to Create a Simple Document (Resume) + Publishing to GitHub Pages",
+    "section": "Suggested 70-Minute Lesson Outline",
+    "text": "Suggested 70-Minute Lesson Outline\n\n\n0 – 10 min — Intro. Why this tool matters for behavioral data science, what your peers will be able to do by the end of the session, and a 60-second preview of the demo.\n10 – 25 min — Live demo. You at the front, narrating clicks and commands. Show one complete success path from a clean state. Don’t try to cover edge cases yet.\n25 – 55 min — Hands-on. Peers do the demo themselves on their own machines. You and your group circulate to help. This is where most of the real learning happens — protect this time.\n55 – 65 min — Troubleshooting and gotchas. Surface the things that tripped you up during your own learning. What error messages should peers expect, and what do they actually mean? OS-specific differences? Auth problems?\n65 – 70 min — Wrap. Where to go next, one or two stretch challenges, pointers to the official documentation, and a Q&A buffer.\n\n\n\n\n\n\n\n\nRehearse the timing\n\n\n\nRun through the lesson with your group at least once before the real session. Most first-time presenters underestimate the live-demo portion and overestimate how much hands-on time they actually have. Cut content rather than rush."
+  },
+  {
+    "objectID": "topics/quarto.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "href": "topics/quarto.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "title": "Using Quarto to Create a Simple Document (Resume) + Publishing to GitHub Pages",
+    "section": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor",
+    "text": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor\nFor this assignment, treat the tool creator’s official documentation as your primary teacher. There is a strong temptation to ask Claude, ChatGPT, or another generative AI to “just explain it to me.”\nRelying on GenAI in this way during the earliest stages of adopting a new tool is a mistake. Learn from the documentation first, and then use GenAI to help you understand specific parts of the documentation or to clarify confusing concepts.\nHere is why:\n\nDocs are the authoritative source. GenAI tools paraphrase, summarize, and occasionally hallucinate. The official documentation is what the tool’s authors actually wrote about how the tool actually behaves.\nReading docs is the skill we’re teaching. The whole premise of this conference is that successful long-term scientists are the ones who can pick up a new tool from its documentation. If you outsource that to an AI, you miss the practice rep.\nYou’ll be a better teacher. When you’ve read the source material carefully, you can answer the questions your peers ask in the hands-on portion. When you’ve only skimmed an AI summary, you can’t.\n\nSuggestion: When getting started out, use GenAI as a sidekick (to debug a specific error, to explain a single unfamiliar term). Do not use it as your tutor of first resort."
+  },
+  {
+    "objectID": "topics/quarto.html#topic-specific-demo-tips",
+    "href": "topics/quarto.html#topic-specific-demo-tips",
+    "title": "Using Quarto to Create a Simple Document (Resume) + Publishing to GitHub Pages",
+    "section": "Topic-Specific Demo Tips",
+    "text": "Topic-Specific Demo Tips\n\nAs you set Quarto up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction. Designate a member of your team to centrally collect installation issues across Mac and Windows, YAML indentation errors, TinyTeX/LaTeX hiccups for PDF rendering, and quarto publish gh-pages authentication problems. Then write them up into a one-page “troubleshooting guide” you can share with the others in class on the day of via the course chat platforms.\nUse a “team teaching” approach. To make this lesson successful, every single member of your team will need to be confident installing Quarto, rendering a .qmd to both HTML and PDF, editing a YAML header without breaking it, and publishing a site with quarto publish gh-pages. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.\nRefer back to previous lessons on Git and GitHub. Start with Refresher on Branching, Cloning, Editing, Committing, Pushing, and Submitting a Pull Request on GitHub and also consdier The GitHub Confident Quizes Sandbox that has helpful references.\nHave a finished resume to show. Start the presentatino with the end in mind. . . Don’t try to author one live from scratch. Show your finished, polished resume up top so peers know what they’re aiming for, then walk back to the source.\nPre-create the GitHub repo step. Repo creation, the first commit, and the first push are all things peers can do during the hands-on portion. Save your demo time for the Quarto authoring and the quarto publish gh-pages magic.\nShow two output formats. Quarto’s superpower is one-source-many- outputs. Render the same resume.qmd to both HTML and PDF in the demo. This is the “wow” moment.\nPeers may not finish in 30 minutes. Authoring a real resume takes longer than the hands-on slot. Frame the goal as “get a one-page draft rendering and published” (they can polish content on their own time)."
+  },
+  {
+    "objectID": "topics/qualtrics.html",
+    "href": "topics/qualtrics.html",
+    "title": "Creating a Qualtrics Account and Setting Up Your First Survey",
+    "section": "",
+    "text": "Session 6 · July 1, 2026 · 3:20 – 4:30 pm"
+  },
+  {
+    "objectID": "topics/qualtrics.html#what-youre-teaching",
+    "href": "topics/qualtrics.html#what-youre-teaching",
+    "title": "Creating a Qualtrics Account and Setting Up Your First Survey",
+    "section": "What You’re Teaching",
+    "text": "What You’re Teaching\nQualtrics is a survey platform that behavioral scientists are likely to encounter in academic research, in industry user-research teams, and in many capstone partner organizations. Your peers will leave this session having created a Qualtrics account, built a short survey covering the major question types, and previewed the participant-facing experience.\nTo create your own account visit: UW-Madison’s Qualtrics Instance.\nRead more about how and why UW–Madison provides Qualtrics access to students through the campus license at the above link. Be sure to read over the rules associated with using Qualtrics. Have peers sign in through the institutional path, not the public Qualtrics sign-up."
+  },
+  {
+    "objectID": "topics/qualtrics.html#mini-quick-start",
+    "href": "topics/qualtrics.html#mini-quick-start",
+    "title": "Creating a Qualtrics Account and Setting Up Your First Survey",
+    "section": "Mini Quick-Start",
+    "text": "Mini Quick-Start\nUse this mini quick start to get yourself started. You can also use this mini quick start as a reference as you plan out your own presentation.\n\n1. Account Setup\nUW–Madison campus access:\n\nSign in at https://survey.wisc.edu/\nUse your NetID and password.\nThe first sign-in provisions an account; this can take a minute.\n\nIf anyone hits an error during sign-in, the campus IT page for Qualtrics is the right escalation path: https://kb.wisc.edu/70075\n\n\n2. Create a Blank Survey\nFrom the Qualtrics dashboard:\n\nClick Create new project.\nChoose Survey → From scratch → Blank survey project.\nGive it a name like “DSHB Demo Survey.”\n\n\n\n3. Tour of Question Types\nAim for your demonstration to use each of the following question types:\n\nMultiple Choice — single-answer and multi-answer.\nText Entry — short text and essay-length text.\nMatrix Table — Likert-style scales, the workhorse of attitude research.\nSlider — for continuous responses.\nRank Order — for preference data.\nConstant Sum — for budget-allocation tasks.\n\nFor each, show:\n\nHow to create it.\nThe most common formatting options.\nA common pitfall (e.g., forgetting to force a response on a critical item, or letting a Likert scale default to “1–5” when “Strongly disagree to Strongly agree” labels are clearer).\n\n\n\n4. Survey Flow Basics (Optional Add-On If Time Allows)\nBriefly demonstrate:\n\nAdding a second block.\nRandomizing question order within a block.\nAdding a simple branch (“if participant answers X, show Y”).\n\n\n\n5. Preview the Survey\nThe Preview button shows what a participant sees. This is the moment peers realize that the editor view and the participant view look very different. The takeaway is you have to test, test, test, and re-test, and then test each survey some more before deploying it.\n\n\n6. Distribute\nShow how to generate an anonymous link under Distributions. Give that response like to others in the class via the class chat platform. Have everyone respond to the survey. And also show how to download the data as a CSV file and open it in a spreadsheet program."
+  },
+  {
+    "objectID": "topics/qualtrics.html#suggested-resources",
+    "href": "topics/qualtrics.html#suggested-resources",
+    "title": "Creating a Qualtrics Account and Setting Up Your First Survey",
+    "section": "Suggested Resources",
+    "text": "Suggested Resources\n\nQualtrics Support — Survey Basics: https://www.qualtrics.com/support/survey-platform/survey-module/survey-module-overview/\nUW–Madison KB Qualtrics article: https://kb.wisc.edu/70075"
+  },
+  {
+    "objectID": "topics/qualtrics.html#suggested-70-minute-lesson-outline",
+    "href": "topics/qualtrics.html#suggested-70-minute-lesson-outline",
+    "title": "Creating a Qualtrics Account and Setting Up Your First Survey",
+    "section": "Suggested 70-Minute Lesson Outline",
+    "text": "Suggested 70-Minute Lesson Outline\n\n\n0 – 10 min — Intro. Why this tool matters for behavioral data science, what your peers will be able to do by the end of the session, and a 60-second preview of the demo.\n10 – 25 min — Live demo. You at the front, narrating clicks and commands. Show one complete success path from a clean state. Don’t try to cover edge cases yet.\n25 – 55 min — Hands-on. Peers do the demo themselves on their own machines. You and your group circulate to help. This is where most of the real learning happens — protect this time.\n55 – 65 min — Troubleshooting and gotchas. Surface the things that tripped you up during your own learning. What error messages should peers expect, and what do they actually mean? OS-specific differences? Auth problems?\n65 – 70 min — Wrap. Where to go next, one or two stretch challenges, pointers to the official documentation, and a Q&A buffer.\n\n\n\n\n\n\n\n\nRehearse the timing\n\n\n\nRun through the lesson with your group at least once before the real session. Most first-time presenters underestimate the live-demo portion and overestimate how much hands-on time they actually have. Cut content rather than rush."
+  },
+  {
+    "objectID": "topics/qualtrics.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "href": "topics/qualtrics.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "title": "Creating a Qualtrics Account and Setting Up Your First Survey",
+    "section": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor",
+    "text": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor\nFor this assignment, treat the tool creator’s official documentation as your primary teacher. There is a strong temptation to ask Claude, ChatGPT, or another generative AI to “just explain it to me.”\nRelying on GenAI in this way during the earliest stages of adopting a new tool is a mistake. Learn from the documentation first, and then use GenAI to help you understand specific parts of the documentation or to clarify confusing concepts.\nHere is why:\n\nDocs are the authoritative source. GenAI tools paraphrase, summarize, and occasionally hallucinate. The official documentation is what the tool’s authors actually wrote about how the tool actually behaves.\nReading docs is the skill we’re teaching. The whole premise of this conference is that successful long-term scientists are the ones who can pick up a new tool from its documentation. If you outsource that to an AI, you miss the practice rep.\nYou’ll be a better teacher. When you’ve read the source material carefully, you can answer the questions your peers ask in the hands-on portion. When you’ve only skimmed an AI summary, you can’t.\n\nSuggestion: When getting started out, use GenAI as a sidekick (to debug a specific error, to explain a single unfamiliar term). Do not use it as your tutor of first resort."
+  },
+  {
+    "objectID": "topics/qualtrics.html#topic-specific-demo-tips",
+    "href": "topics/qualtrics.html#topic-specific-demo-tips",
+    "title": "Creating a Qualtrics Account and Setting Up Your First Survey",
+    "section": "Topic-Specific Demo Tips",
+    "text": "Topic-Specific Demo Tips\n\nAs you set Qualtrics up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction. Designate a member of your team to centrally collect campus sign-in failures, “where is X in the menu?” questions, mix-ups between question types, and confusion between the Survey Flow editor and the question editor. Then write them up into a one-page “troubleshooting guide” you can share with the others in class on the day of via the course chat platforms.\nUse a “team teaching” approach. To make this lesson successful, every single member of your team will need to be confident signing in to the campus Qualtrics, building a question of each major type (multiple choice, matrix, text entry), setting simple display logic, previewing the survey, and finding the distribution settings. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.\nConfirm everyone can sign in before the live demo. If three peers can’t sign in to the campus Qualtrics, you’ll lose them for the whole session. Send a “please sign in to https://uwmadison.qualtrics.com/ by the start of class” email or Slack message the day before.\nBuild a half-finished demo survey in advance. Walk peers through adding to a partially built survey, rather than starting from a blank one. They see the destination clearly that way.\nPick a behaviorally interesting topic for the demo survey. “What factors influence your morning coffee choice?” is more engaging than “Demo Survey #1.”\nAddress ethics briefly. Qualtrics is a tool that produces participant-facing research instruments. Even in a demo, modeling good practices around consent language and data minimization is worth the 60 seconds."
+  },
+  {
+    "objectID": "topics/github.html",
+    "href": "topics/github.html",
+    "title": "Refresher on Branching, Cloning, Editing, Committing, Pushing, and Submitting a Pull Request on GitHub",
+    "section": "",
+    "text": "Session 4 · June 25, 2026 · 3:20 – 4:30 pm"
+  },
+  {
+    "objectID": "topics/github.html#what-youre-teaching",
+    "href": "topics/github.html#what-youre-teaching",
+    "title": "Refresher on Branching, Cloning, Editing, Committing, Pushing, and Submitting a Pull Request on GitHub",
+    "section": "What You’re Teaching",
+    "text": "What You’re Teaching\nAs you may already know Git is the version-control system; GitHub is the collaboration platform built around it. You and your peers have probably touched both before, but for many this session is a chance to fill in the gaps that come from learning Git piecemeal. This session can help reinforce and solidify the previous lessons and exposure to Git and GitHub.\nFor this lesson you can refer back to previous lessons on Git and GitHub. Specifically The GitHub Confident Quizes Sandbox has helpful references. By the end of the session, your peers should be able to branch a repo, clone the branch, make changes, commit the changes, push the branch, and open a pull request against the main branch."
+  },
+  {
+    "objectID": "topics/github.html#mini-quick-start",
+    "href": "topics/github.html#mini-quick-start",
+    "title": "Refresher on Branching, Cloning, Editing, Committing, Pushing, and Submitting a Pull Request on GitHub",
+    "section": "Mini Quick-Start",
+    "text": "Mini Quick-Start\n\n0. Make sure Git is installed, GitHub CLI is installed, and that gh auth login works\nSort this out before the session starts. Windows users recommended running in Git Bash so they match what macOS peers will run.\nCheck Git and gh installation:\ngit --version\ngh --version\nIf Not Installed, Install Git and gh:\n\nmacOS (via Homebrew): brew install git gh\nWindows (via winget): winget install --id Git.Git -e and winget install --id GitHub.cli\n\nVerify and authenticate:\ngh auth login    # choose GitHub.com → HTTPS → login with web browser\ngh auth status   # should show a green check and your username\nIf gh auth status errors, fix it before moving on because nothing below will work without it.\n\n\n1. Decide on Your Demo Repo\nDon’t demo against a class repo with real history. Instead use a sandbox repo your group creates specifically for this purpose. It should have:\n\nA simple README.md.\nOne or two text or code files peers can edit.\nAn open invitation for peers to contribute (e.g., “Add your name and a favorite tool to this list”).\n\nHint: Consider asking an angentic IDE to help you create your sandbox repository.\n\n\n2. The Core Workflow\nYour demo should walk through this complete loop:\nFirst, on GitHub, fork the demo repo:\n\nNavigate to the demo repo in your browser.\nClick “Fork” (top right) to create a copy of the repository under your own GitHub account.\n\nThen, in your terminal, clone your fork and make your changes:\n# Clone your fork (replace yourusername with your GitHub username)\ngit clone https://github.com/yourusername/demo-repo.git\ncd demo-repo\n\n# Create a branch for your work\ngit checkout -b add-my-name\n\n# Make your edit (open a file in any editor)\n# ... edit ...\n\n# Stage and commit your changes\ngit add favorite-tools.md\ngit commit -m \"Add favorite tool from Maya\"\n\n# Push the branch to your fork\ngit push -u origin add-my-name\nFinally, back on GitHub, open the pull request:\n\nOpen your fork in the browser.\nClick “Compare & pull request.”\nWrite a short PR description.\nSubmit the pull request against the original repo.\n\n\n\n3. The Conceptual Pieces Worth Pausing On\nMost students can copy the commands. The conceptual pieces that actually matter:\n\nWhat a branch is. A pointer to a commit, not a “copy of the code.”\nThe three-stage model. Working directory → staging area → commit. Show git status after each step.\nWhat a pull request is for. It’s a request for review and discussion before code joins the main branch — not just a way to push code to GitHub.\nWhat a merge conflict looks like. Demonstrate one on purpose and show how to resolve it.\n\n\n\n4. Authentication\nThis is where most demos die. GitHub no longer accepts password authentication for git push. Your peers will need one of the following:\n\ngh CLI configured with gh auth login (Recommended)\nA personal access token (PAT), or\nSSH keys configured.\n\nHave them set this up before the hands-on portion. A 30-minute SSH-key detour kills the lesson."
+  },
+  {
+    "objectID": "topics/github.html#suggested-resources",
+    "href": "topics/github.html#suggested-resources",
+    "title": "Refresher on Branching, Cloning, Editing, Committing, Pushing, and Submitting a Pull Request on GitHub",
+    "section": "Suggested Resources",
+    "text": "Suggested Resources\n\nCreating GitHub accounts: https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github\nGitHub’s Video Sequence: https://www.youtube.com/watch?v=r8jQ9hVA2qs&list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f\nA visual flow chart (simplified): https://github.com/adamrossnelson/confident/blob/main/images/gitworkflowexample.png\nAn example sandbox repository: https://github.com/adamrossnelson/confident_quizes\nGitHub’s own quickstart: https://docs.github.com/en/get-started\nPro Git book (free, the canonical reference): https://git-scm.com/book/en/v2\n\n\n\n\nInfographic titled “How To Make Maintainers Happy” showing a seven-step Git contribution workflow: (1) fork the main project repository on GitHub.com; (2) clone the forked repository to your local workspace; (3) make incremental, self-contained edits locally; (4) add, commit, and push the edits to the forked repository; (5) submit a pull request on GitHub.com; (6) the project manager or repo maintainer reviews the code and either sends feedback or, (7) if ready, merges the pull request. The left side shows a student named Ken (wearing a University of Wisconsin Madison shirt) thinking “My Turn To Submit The Pull Request!” and a brief background paragraph. The lower-right corner shows a smiling colleague saying “Great Work, Ken! Stay On It!”\n\n\n\n\n\n\n\n\nDetailed figure description (Additional accessibility)\n\n\n\n\n\nThe figure is an infographic titled “How To Make Maintainers Happy” with a companion panel on the right titled “Related Workflow.” It illustrates the end-to-end process a contributor follows when submitting a pull request to a project they do not own.\nLeft panel — narrative setup:\nA photograph shows a young man wearing glasses and a red “University of Wisconsin Madison” T-shirt, holding a laptop. A hand-drawn thought bubble next to him reads, “My Turn To Submit The Pull Request!” Beneath the photo, a short background paragraph explains: “Ken’s project manager has assigned him the role of submitting the next pull request. Here is the workflow he will follow.”\nRight panel — the workflow flowchart:\nSeven connected boxes describe the steps in order. Arrows trace the flow down the left column, across the bottom, and back up the right column:\n\nOn GitHub.com, fork the main project repository. A screenshot-style “Fork 18.7k” button is shown.\nIn your local workspace, clone the forked repository. Sub-text notes: “Use Git CLI for this, or use an IDE’s tools. Do NOT clone the main repo — clone your fork.”\nMake edits in the local workspace. Sub-text notes: “Incremental and self-contained edits. One feature, or one self-contained edit, per pull request.”\nAdd, commit, and push the edits to the forked repository. Sub-text notes: “Ask a trusted colleague or advisor to review code and suggest edits.”\nOn GitHub.com, submit a pull request. A “Pull requests 85” button is shown.\nThe project manager or repo maintainer reviews the code. Sub-text notes: “If not ready, the manager or maintainer sends feedback” — and the contributor loops back to step 3 to revise.\nIf ready for merge, the manager or maintainer merges the pull request. A green “Merge pull request” button is shown.\n\nBottom-right corner:\nA second photograph shows a smiling colleague with curly hair, holding a tablet, with the encouraging caption: “Great Work, Ken! Stay On It!”\nKey takeaways from the figure:\n\nThe contributor never pushes directly to the main project repository; everything goes through their personal fork.\nPull requests are a review and discussion mechanism, not just a delivery mechanism — feedback loops back into more local edits.\nOnly the maintainer merges; the contributor’s job ends at “submit the pull request.”"
+  },
+  {
+    "objectID": "topics/github.html#suggested-70-minute-lesson-outline",
+    "href": "topics/github.html#suggested-70-minute-lesson-outline",
+    "title": "Refresher on Branching, Cloning, Editing, Committing, Pushing, and Submitting a Pull Request on GitHub",
+    "section": "Suggested 70-Minute Lesson Outline",
+    "text": "Suggested 70-Minute Lesson Outline\n\n\n0 – 10 min — Intro. Why this tool matters for behavioral data science, what your peers will be able to do by the end of the session, and a 60-second preview of the demo.\n10 – 25 min — Live demo. You at the front, narrating clicks and commands. Show one complete success path from a clean state. Don’t try to cover edge cases yet.\n25 – 55 min — Hands-on. Peers do the demo themselves on their own machines. You and your group circulate to help. This is where most of the real learning happens — protect this time.\n55 – 65 min — Troubleshooting and gotchas. Surface the things that tripped you up during your own learning. What error messages should peers expect, and what do they actually mean? OS-specific differences? Auth problems?\n65 – 70 min — Wrap. Where to go next, one or two stretch challenges, pointers to the official documentation, and a Q&A buffer.\n\n\n\n\n\n\n\n\nRehearse the timing\n\n\n\nRun through the lesson with your group at least once before the real session. Most first-time presenters underestimate the live-demo portion and overestimate how much hands-on time they actually have. Cut content rather than rush."
+  },
+  {
+    "objectID": "topics/github.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "href": "topics/github.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "title": "Refresher on Branching, Cloning, Editing, Committing, Pushing, and Submitting a Pull Request on GitHub",
+    "section": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor",
+    "text": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor\nFor this assignment, treat the tool creator’s official documentation as your primary teacher. There is a strong temptation to ask Claude, ChatGPT, or another generative AI to “just explain it to me.”\nRelying on GenAI in this way during the earliest stages of adopting a new tool is a mistake. Learn from the documentation first, and then use GenAI to help you understand specific parts of the documentation or to clarify confusing concepts.\nHere is why:\n\nDocs are the authoritative source. GenAI tools paraphrase, summarize, and occasionally hallucinate. The official documentation is what the tool’s authors actually wrote about how the tool actually behaves.\nReading docs is the skill we’re teaching. The whole premise of this conference is that successful long-term scientists are the ones who can pick up a new tool from its documentation. If you outsource that to an AI, you miss the practice rep.\nYou’ll be a better teacher. When you’ve read the source material carefully, you can answer the questions your peers ask in the hands-on portion. When you’ve only skimmed an AI summary, you can’t.\n\nSuggestion: When getting started out, use GenAI as a sidekick (to debug a specific error, to explain a single unfamiliar term). Do not use it as your tutor of first resort."
+  },
+  {
+    "objectID": "topics/github.html#topic-specific-demo-tips",
+    "href": "topics/github.html#topic-specific-demo-tips",
+    "title": "Refresher on Branching, Cloning, Editing, Committing, Pushing, and Submitting a Pull Request on GitHub",
+    "section": "Topic-Specific Demo Tips",
+    "text": "Topic-Specific Demo Tips\n\nAs you set Git and GitHub up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction. Designate a member of your team to centrally collect authentication errors, merge-conflict messages, “I’m stuck in vim” moments, and any Mac vs. Windows differences. Then write them up into a one-page “troubleshooting guide” you can share with the others in class on the day of via the course chat platforms.\nUse a “team teaching” approach. To make this lesson successful, every single member of your team will need to be confident running gh auth login, cloning a repo, branching, committing, pushing, opening a pull request, and resolving a basic merge conflict. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.\nAudit auth setup at the start. Spend the first 5 minutes of hands-on time checking that everyone can git push a trivial change. If three people can’t, the rest of the session is downhill.\nLean into the code-review angle. This session naturally folds in reading other people’s code and code review — when you walk through opening a PR, talk about how to review one. What does a useful review comment look like?\nShow the GitHub web UI alongside the command line. Some peers will prefer the GUI; others will prefer the CLI. Both are valid; both will keep showing up in their careers."
+  },
+  {
+    "objectID": "provenance.html",
+    "href": "provenance.html",
+    "title": "Site Provenance",
+    "section": "",
+    "text": "This site the DSHB Professional Development Conference micro site was co-created with extensive assistance from generative AI. The two tools used were Claude Co-Work (Anthropic’s chat-based collaboration interface) and Windsurf IDE (an AI-native code editor with an embedded agent). The site is small, short-lived, and intended both as a reference for students in the Tools for Large Scale Data Science course at UW–Madison and as a demonstration artifact for students learning Quarto."
+  },
+  {
+    "objectID": "provenance.html#how-ai-contributed",
+    "href": "provenance.html#how-ai-contributed",
+    "title": "Site Provenance",
+    "section": "How AI Contributed",
+    "text": "How AI Contributed\nThe collaboration is best described using the nine-level framework introduced in Who Wrote That: Describing Gen AI Writing Contributions.\n\nHighly Repetative Components - Level 3: AI as Simulated Interpreter\nSeveral highly repetative components, once drafted, were then duplicated across pages of the site. Generative AI’s agentic capabilities for example simplified the process of ensuring each page followed a standard set of headings and sub-headings. Also simplified by Gen AI’s agentic abilities were the process of copying specific dates and times from a human written schedle to each page of the site. The site’s navigation structure, the topic-page templates, and the overall layout of the supporting pages were also generated primarily through AI prompting and agentic work. The human author provided prompts, reviewed outputs, and made adjustments, but the AI handled the bulk of the structural and formatting work.\n\n\nMuch of the Site — Level 5: Simulated Colleague\nMost of this site sits at Level 5 (Simulated Colleague) on that scale. The human author and the AI worked side by side, with both contributing ideas and substantial passages of text. The human set intent, voice, scope, examples, and pedagogical framing. The AI proposed structures, drafted variations, surfaced patterns across pages, and helped reshape rough ideas into prose. By the end of an editing session, individual sentences often bear the fingerprints of both sides.\nThis describes the bulk of the topic-page content, the per-page framing sections, the Topic-Specific Demo Tips lists, and the rewrites of supporting pages such as Accessibility Features and the Maintainer Guide.\n\n\nSome Components — Level 6: Simulated Expert\nSelect components also sit at Level 6 (Simulated Expert). At this level the AI produced an early draft drawing on knowledge encoded during model training, and the human’s job was to verify, edit for accuracy, and adapt for fit-for-purpose.\nFor example the Accessibility Features page, and the structured long alt-text on fuguers were primarily drafted by GenAI. For these components the human author read the AI’s draft against authoritative sources, removed material that conflicted with professional judgment, and takes responsibility for further updates that may be required later."
+  },
+  {
+    "objectID": "provenance.html#what-is-not-ai-generated",
+    "href": "provenance.html#what-is-not-ai-generated",
+    "title": "Site Provenance",
+    "section": "What Is Not AI-Generated",
+    "text": "What Is Not AI-Generated\nPortions of the site is purely human-authored:\n\nThe course schedule, the topic selection, and the in-class consultation assignments.\nThe pedagogical framing and the mocked hypothetical “conference” itself."
+  },
+  {
+    "objectID": "provenance.html#why-this-page-exists",
+    "href": "provenance.html#why-this-page-exists",
+    "title": "Site Provenance",
+    "section": "Why This Page Exists",
+    "text": "Why This Page Exists\nGenerative AI tools are a core part of this course’s subject matter (for example, the topic pages on Windsurf and on Ollama). It would be inconsistent to teach with these tools while obscuring the role they played in producing the teaching materials themselves. This page makes the provenance explicit."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DSHB Professional Development Conference Micro Site Summer 2026",
+    "section": "",
+    "text": "Tools come and go. Scientists who will be successful long term in their career are those who can learn tools quickly and independently on their own. Over five days (about 2.5 weeks of this course) students will first work in small groups to learn a new tool and also plan a mini-crash lesson on that tool for peers in class. The first two days of class will be devoted mostly to work time where students can collaborate on learning their assigned tool and plan a 70-minute mini-crash lesson on the dates and times indicated below.\nSuccessful completion of this assignment will likely involve out-of-class meetings in your assigned groups by Google Meet, Zoom, MS Teams, or in person. Each student will individually need to complete one or more multi-hour tutorials. Most of these tool creators have published “Quick Start” guides or video tutorials. A component of this assignment is also learning to navigate those Quick Start guides and video tutorials on your own and to evaluate which are worth your while and which are not.\nAdditionally, each group will meet with the instructor at least once during class to discuss the tool and the mini-crash course lesson planning approach. After that, each group will meet at least once outside of class with the instructor to further refine, develop, focus, simplify, organize, or rehearse the mini-crash course lesson."
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "DSHB Professional Development Conference Micro Site Summer 2026",
+    "section": "",
+    "text": "Tools come and go. Scientists who will be successful long term in their career are those who can learn tools quickly and independently on their own. Over five days (about 2.5 weeks of this course) students will first work in small groups to learn a new tool and also plan a mini-crash lesson on that tool for peers in class. The first two days of class will be devoted mostly to work time where students can collaborate on learning their assigned tool and plan a 70-minute mini-crash lesson on the dates and times indicated below.\nSuccessful completion of this assignment will likely involve out-of-class meetings in your assigned groups by Google Meet, Zoom, MS Teams, or in person. Each student will individually need to complete one or more multi-hour tutorials. Most of these tool creators have published “Quick Start” guides or video tutorials. A component of this assignment is also learning to navigate those Quick Start guides and video tutorials on your own and to evaluate which are worth your while and which are not.\nAdditionally, each group will meet with the instructor at least once during class to discuss the tool and the mini-crash course lesson planning approach. After that, each group will meet at least once outside of class with the instructor to further refine, develop, focus, simplify, organize, or rehearse the mini-crash course lesson."
+  },
+  {
+    "objectID": "index.html#conference-schedule",
+    "href": "index.html#conference-schedule",
+    "title": "DSHB Professional Development Conference Micro Site Summer 2026",
+    "section": "Conference Schedule",
+    "text": "Conference Schedule\n\n\n\nTime\nJune 24, 2026\nJune 25, 2026\nJuly 1, 2026\n\n\n\n\n2:00 – 3:10 pm\nInstalling Windsurf and getting started with agentic coding\nSimple exploratory data analysis with SQL\nUsing Quarto to create a simple document (resume) + publishing to GitHub Pages\n\n\n3:10 – 3:20 pm\nBreak\nBreak\nBreak\n\n\n3:20 – 4:30 pm\nInstalling and running a local LLM with Ollama\nRefresher on branching, cloning, editing, committing, pushing, and submitting a pull request on GitHub\nCreating a Qualtrics account and setting up your first survey + tour of question types\n\n\n4:30 – 4:40 pm\nBreak\nBreak\nBreak\n\n\n4:40 – 5:00 pm\nLarge group wrap-up\nLarge group wrap-up\nLarge group wrap-up\n\n\n\nGroup members for each session: see class handouts."
+  },
+  {
+    "objectID": "index.html#in-class-instructor-consultation-schedule",
+    "href": "index.html#in-class-instructor-consultation-schedule",
+    "title": "DSHB Professional Development Conference Micro Site Summer 2026",
+    "section": "In-Class Instructor Consultation Schedule",
+    "text": "In-Class Instructor Consultation Schedule\n\nJune 17, 2026 — Welcome + Course Orientation\n\n2:00 – 2:50 pm — Re-introductions. Course overview. Explanation of the professional development conference format for the first 2.5 weeks of the course. An activity designed to help students identify their own strengths in presenting to or educating others about complex topics.\n2:50 – 3:00 pm — Break\n3:00 – 3:50 pm — Demonstration mini-crash lesson on the Command Line Interface + File System As a Tool\n4:00 – 4:20 pm — Detailed discussion of the six topics, group assignments, and presentation schedule ahead.\n4:20 – 5:00 pm — Instructor consultation with the Installing Windsurf group. Other groups work together. Stay together in classroom.\n\n\n\nJune 18, 2026 — Continued Instructor Consultations + Small Group Planning Time\n\n2:00 – 2:40 pm — Instructor consultation with the Installing and running a local LLM with Ollama group.\n2:40 – 3:20 pm — Instructor consultation with the Simple exploratory data analysis with SQL group.\n3:20 – 4:00 pm — Instructor consultation with the Branching, cloning, editing, committing, pushing, and submitting a pull request on GitHub group.\n4:00 – 4:40 pm — Instructor consultation with the Quarto + GitHub Pages group.\n4:40 – 5:20 pm — Instructor consultation with the Qualtrics account, first survey, plus a tour of question types group.*\n\n* Students in this last group are welcome to arrive at 2:40 pm to compensate for staying later.\nOther groups work together during their non-consultation slots. Stay together in the classroom."
+  },
+  {
+    "objectID": "index.html#quick-links",
+    "href": "index.html#quick-links",
+    "title": "DSHB Professional Development Conference Micro Site Summer 2026",
+    "section": "Quick Links",
+    "text": "Quick Links\n\nAbout this microsite\nSite provenance\nMaintainer guide\nAccessibility features"
+  },
+  {
+    "objectID": "maintainer-guide.html",
+    "href": "maintainer-guide.html",
+    "title": "Maintainer Guide",
+    "section": "",
+    "text": "This site is a small Quarto website (a micro site). Its development philosophy is intentionally simple, and it is captured in two principles. It’s lifespan is short (possibly only a few months)."
+  },
+  {
+    "objectID": "maintainer-guide.html#principle-1-quarto-native-first",
+    "href": "maintainer-guide.html#principle-1-quarto-native-first",
+    "title": "Maintainer Guide",
+    "section": "Principle 1 — Quarto Native First",
+    "text": "Principle 1 — Quarto Native First\nReach for Quarto’s built-in features before reaching for a customization.\n\nUse native callouts (.callout-note, .callout-tip, .callout-warning, .callout-important) rather than hand-styled &lt;div&gt; blocks.\nUse Markdown for tables, lists, headings, and links rather than HTML or custom classes.\nUse the cosmo theme’s defaults for navigation, the right-side table of contents, the back-to-top control, and the page footer rather than overriding them.\nUse front-matter YAML (title:, subtitle:, author:) for page metadata rather than rendering it inline in the page body.\nUse Quarto’s include shortcode to share content across pages rather than duplicating it.\n\nEvery time the site uses a Quarto built-in, the maintainer inherits the work of the Quarto team — accessibility, browser compatibility, theme handling, and version-to-version consistency."
+  },
+  {
+    "objectID": "maintainer-guide.html#principle-2-customize-only-when-justified",
+    "href": "maintainer-guide.html#principle-2-customize-only-when-justified",
+    "title": "Maintainer Guide",
+    "section": "Principle 2 — Customize Only When Justified",
+    "text": "Principle 2 — Customize Only When Justified\nCustom CSS, SCSS, and HTML add features. They also add risk. Each custom rule is a thing that might break on a future Quarto release, behave unexpectedly with assistive technology, or confuse the next person who reads the source.\nThe customizations that remain in this site are limited to:\n\nUW–Madison brand colors expressed as Bootstrap variable overrides in theme.scss.\nDecorative borders (red headings, gold navbar accent, footer line, code-block accent) layered on top of native Quarto components.\nTwo small content-level classes — .session-meta for the metadata line at the top of each topic page, and .outline-block for the lesson outlines.\n\nAnything beyond this list should be reconsidered before it is added, and should be removed if it stops earning its keep."
+  },
+  {
+    "objectID": "maintainer-guide.html#why-this-matters",
+    "href": "maintainer-guide.html#why-this-matters",
+    "title": "Maintainer Guide",
+    "section": "Why This Matters",
+    "text": "Why This Matters\nThere are two reasons the site is built this way.\nPredictability and reduced testing burden. When the site uses Quarto defaults, the site’s behavior is Quarto’s behavior. The Quarto team has already tested it across browsers, screen readers, zoom levels, and operating systems. Customizations replace that pre-tested behavior with behavior that is the maintainer’s responsibility to test. Fewer customizations means fewer surprises and a smaller test surface.\nThis site is itself a teaching artifact. Students in the course read this source to learn how a real Quarto website is put together. If the source were full of clever overrides and bespoke shortcodes, students would learn clever overrides and bespoke shortcodes. Because the source is plain and idiomatic, students learn plain and idiomatic Quarto — which is exactly what we are trying to teach."
+  },
+  {
+    "objectID": "maintainer-guide.html#a-useful-default-question",
+    "href": "maintainer-guide.html#a-useful-default-question",
+    "title": "Maintainer Guide",
+    "section": "A Useful Default Question",
+    "text": "A Useful Default Question\nWhen considering any change, ask:\n\nIs there already a Quarto feature that does this?\n\nIf yes, use it. If no, ask:\n\nWill future maintainers (and students reading the source) understand this customization at a glance?\n\nIf not, reconsider."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About This Microsite",
+    "section": "",
+    "text": "The DSHB Professional Development Conference micro site is a small Quarto website built by Dr. Adam Ross Nelson for the summer 2026 Tools for Large Scale Data Science course in the UW–Madison Master of Science in Psychology: Data Science in Human Behavior program.\nIt serves two purposes:\n\nA reference site for students participating in the mock conference — the schedule, the topic pages, and the presentation guidance for each session.\nA demonstration artifact for students learning Quarto, GitHub Pages, and the practice of building small public sites.\n\nFor more detail, see the Site Provenance, Maintainer Guide, and Accessibility Features pages.\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "accessibility.html",
+    "href": "accessibility.html",
+    "title": "Accessibility Features",
+    "section": "",
+    "text": "This page documents what is in place to support assistive technology and accessible reading. This site aims to be usable by everyone, including people who use screen readers, keyboard navigation, voice input, screen magnification, captions, or other assistive technologies."
+  },
+  {
+    "objectID": "accessibility.html#configured-site-wide-features",
+    "href": "accessibility.html#configured-site-wide-features",
+    "title": "Accessibility Features",
+    "section": "Configured Site-Wide Features",
+    "text": "Configured Site-Wide Features\nThe following features are turned on in _quarto.yml and apply to every page on the site. They are observable in the rendered HTML.\n\nExternal link indicators. External links are flagged with a visible icon and open in a new window (link-external-icon: true, link-external-newwindow: true). This gives sighted and screen-reader users advance notice that a link will leave the site.\nSection anchors. Every heading exposes a permalink anchor (anchor-sections: true). Useful for sharing precise pointers and for keyboard users navigating long pages.\nRight-side table of contents. Each page renders a navigable table of contents to depth 3 (toc: true, toc-location: right, toc-depth: 3). Screen readers and keyboard users can jump directly to any section.\nPage navigation and back-to-top. Previous/next links and a back-to-top control are enabled (page-navigation: true, back-to-top-navigation: true).\nAccessible code blocks. Code blocks include a copy button and wrap rather than horizontally scroll (code-copy: true, code-overflow: wrap). Wrapping helps low-vision users at high zoom levels and reduces the need for horizontal scrolling.\nBuilt on the cosmo Bootstrap theme. Quarto’s cosmo theme provides semantic landmarks (&lt;nav&gt;, &lt;main&gt;, &lt;footer&gt;), keyboard-operable navbar dropdowns, and standard Bootstrap focus rings out of the box."
+  },
+  {
+    "objectID": "accessibility.html#color-and-contrast",
+    "href": "accessibility.html#color-and-contrast",
+    "title": "Accessibility Features",
+    "section": "Color and Contrast",
+    "text": "Color and Contrast\nThe custom theme is layered on top of cosmo in theme.scss using UW–Madison brand colors. Contrast ratios for the primary combinations:\n\nBody text is #282728 (near-black) on #FFFFFF white. Contrast ratio is roughly 16:1 — well above WCAG AAA for normal text.\nHeadings (H1, H2) are also rendered in #282728 on white. Same ratio as body text.\nSubheadings (H3) are #9B0000 (dark Badger Red) on white. Contrast ratio is roughly 7.4:1 — meets WCAG AAA for normal text.\nNavbar is white text on #C5050C (Badger Red). Contrast ratio is roughly 5.4:1 — meets WCAG AA for normal text.\nBody links are #0479A8 (UW anchor blue) on white. Contrast ratio is roughly 5.0:1 — meets WCAG AA for normal text.\nInline code is #9B0000 on a #F4F4F4 light-grey background. Contrast ratio is roughly 6.9:1 — meets WCAG AA for normal text and large text."
+  },
+  {
+    "objectID": "accessibility.html#authoring-conventions",
+    "href": "accessibility.html#authoring-conventions",
+    "title": "Accessibility Features",
+    "section": "Authoring Conventions",
+    "text": "Authoring Conventions\nThe following conventions are applied consistently across the topic pages and the landing page. They are part of the site, not just guidance for future authors.\n\nSingle H1 per page. Each page’s H1 is set in YAML front matter (title:); H2 and H3 headings are nested below, never skipping levels.\nReal lists, real tables. Bulleted lists use Markdown -/* syntax (rendered as &lt;ul&gt;&lt;li&gt;), and the conference schedule on the landing page is a real Markdown table (rendered as a semantic &lt;table&gt;). Custom ▸ bullets in the lesson outlines are CSS pseudo-elements layered on top of an underlying &lt;ul&gt;, so screen readers still announce them as a list.\nNative Quarto callouts. Every callout on the site uses one of Quarto’s built-in classes: .callout-note, .callout-tip, .callout-warning, or .callout-important. Quarto renders these with appropriate ARIA roles, icons, and visible labels. The site does not define custom callout classes.\nLong alt text on images. Images include descriptive Markdown alt text and a fig-alt attribute. See topics/github.qmd for an example: a workflow infographic carries a multi-sentence alt text plus a fig-alt= summary.\nLong-description pattern for complex figures. When an image is too information-dense for an alt attribute alone, it is followed by a collapsible ::: {.callout-note collapse=\"true\"} containing a structured long description. This pattern keeps the visual layout uncluttered while making the figure’s content available to screen readers and to anyone who wants the detail. The Git workflow figure on topics/github.qmd is the reference implementation.\nDescriptive link text. Links use the visible link text to describe the destination (for example, [Site Provenance](provenance.qmd)) rather than bare URLs or click here phrasing.\nPlain-text math in code blocks. Code blocks are tagged with their language (bash, sql, python, r) so that syntax highlighting carries through the accessibility tree as plain text."
+  },
+  {
+    "objectID": "accessibility.html#reporting-issues",
+    "href": "accessibility.html#reporting-issues",
+    "title": "Accessibility Features",
+    "section": "Reporting Issues",
+    "text": "Reporting Issues\nIf you encounter an accessibility barrier on this site, please submit an issue via GitHub (or contact the site creator, Dr. Adam Ross Nelson).\nWhen reporting, the most useful information is:\n\nThe page URL where you encountered the barrier.\nYour browser, operating system, and assistive technology (and versions, if you have them).\nA short description of what you expected to happen versus what actually happened."
+  },
+  {
+    "objectID": "accessibility.html#resources",
+    "href": "accessibility.html#resources",
+    "title": "Accessibility Features",
+    "section": "Resources",
+    "text": "Resources\n\nUW–Madison Center for User Experience — Accessibility: https://cue.wisc.edu/accessibility/\nWebAIM (Web Accessibility In Mind): https://webaim.org/\nWCAG 2.1 quick reference: https://www.w3.org/WAI/WCAG21/quickref/"
+  },
+  {
+    "objectID": "topics/sql.html",
+    "href": "topics/sql.html",
+    "title": "Simple Exploratory Data Analysis with SQL",
+    "section": "",
+    "text": "Session 3 · June 25, 2026 · 2:00 – 3:10 pm"
+  },
+  {
+    "objectID": "topics/sql.html#what-youre-teaching",
+    "href": "topics/sql.html#what-youre-teaching",
+    "title": "Simple Exploratory Data Analysis with SQL",
+    "section": "What You’re Teaching",
+    "text": "What You’re Teaching\nSQL is the language of databases. Many capstone partners this program places students with will have data in SQL somewhere such as a Postgres warehouse, a Snowflake instance, or a SQLite file embedded in an app. Your peers will leave this session able to connect to a database, write SELECT queries with filters and aggregates, and use SQL for the kind of exploratory work they’d normally do in dplyr or pandas.\nThe angle for this session is exploratory data analysis, not database administration. Focus on questions a behavioral data scientist would actually ask of a dataset (counts, distributions, group comparisons, simple summaries).\n\n\n\n\n\n\nSuggestion: Use Existing Resources\n\n\n\nYou do not need to invent a demo from scratch. You can build your sandbox and session around adamrossnelson/sql-sandbox which is a ready-made SQLite learning environment with curated lessons. You and your peers can literally clone the repo, run a single Python script, and start working through the same exercises live in class. Every code block in the sections below maps to a lesson file in that repository."
+  },
+  {
+    "objectID": "topics/sql.html#mini-quick-start",
+    "href": "topics/sql.html#mini-quick-start",
+    "title": "Simple Exploratory Data Analysis with SQL",
+    "section": "Mini Quick-Start",
+    "text": "Mini Quick-Start\n\n1. Clone and Build the Sandbox\nThe sandbox is a SQLite database (sandbox.db) populated by a Python script. There is no server to run, no cloud account to set up. Anyone with Python and Git can be querying in minutes.\n# Clone the repo\ngit clone https://github.com/adamrossnelson/sql-sandbox.git\ncd sql-sandbox\n\n# Build the SQLite database from the included Python script\npython build-sandbox.py\n\n# Drop into the SQLite CLI\nsqlite3 sandbox.db\nOnce inside SQLite, turn on column headers and aligned output before you start querying — the default output is much harder to read:\n.headers on\n.mode column\n.tables       -- list available tables\n.schema mpg   -- inspect a table's columns\n.quit         -- exit back to the terminal\nIf anything ever gets messy, python reset-sandbox.py puts the database back to its original state.\n\n\n2. Know the Three Datasets\nThe sandbox ships with three classic Seaborn datasets — small enough to reason about, rich enough for real EDA practice:\n\nmpg — car fuel efficiency (1970–1982). Columns include name, mpg, cylinders, displacement, horsepower, weight, model_year, origin. Good for trends, group-bys, and string work on the name column.\ntips — restaurant tipping behavior. Columns include total_bill, tip, sex, smoker, day, time, size. Good for ratios, day-of-week effects, and group comparisons.\npenguins — Palmer Station penguin measurements. Columns include species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex. Good for cross-tabs and species-level summaries.\n\n\n\n3. Core Demo Part 1 — Aggregate Functions\nWalk peers through 10100-AggFunctions-Base.md. This lesson introduces the five aggregate functions every analyst needs — SUM, COUNT, AVG, MIN, MAX — and shows each one both on its own and combined with GROUP BY.\nFrame each example as the same question students would ask in pandas or dplyr, then show the SQL. For example:\n-- pandas: df['total_bill'].sum()\nSELECT SUM(total_bill) FROM tips;\n\n-- pandas: df.groupby('species').size()\nSELECT species, COUNT(*) FROM penguins GROUP BY species;\n\n-- pandas: df.groupby('day')['total_bill'].mean()\nSELECT day, AVG(total_bill) AS avg_bill FROM tips GROUP BY day;\nIf peers get stuck, the matching 10100-AggFunctions-Solution.md has worked answers for every prompt.\n\n\n4. Core Demo Part 2 — Exploratory Data Analysis\nThen move to 10100-EDALessons-Base.md. This lesson is structured exactly the way a behavioral data scientist actually works: each task is described first as a Pandas snippet (the analysis your peers already know how to do) and then asks them to translate it into SQL.\nThe eight exercises walk through:\n\nOverall vehicle statistics across the mpg table.\nStatistics broken down by origin (USA, Europe, Japan).\nYearly trends in weight, horsepower, and MPG.\nYear-by-origin cross-tabulations.\nTips as a proportion of the total bill.\nPenguin species × sex cross-tabulation.\nPenguin island × sex cross-tabulation.\nThree-way species × island × sex cross-tabulation.\n\nThis is the heart of the session. The cross-tabulation exercises in particular reinforce that GROUP BY plus COUNT(*) is SQL’s answer to pd.crosstab.\nThe companion 10100-EDALessons-Solution.md is the safety net — keep it open in another tab while you demo.\n\n\n5. Connect From Python or R\nOnce peers have the SQL working in the CLI, show them the bridge most analysts will actually use day-to-day: running the same SQL from inside a Python or R script against the very same sandbox.db file.\nimport sqlite3\ncon = sqlite3.connect(\"sandbox.db\")\ndf = con.execute(\n    \"SELECT species, COUNT(*) AS n FROM penguins GROUP BY species\"\n).fetchall()\ncon.close()\nlibrary(DBI)\nlibrary(RSQLite)\ncon &lt;- dbConnect(SQLite(), \"sandbox.db\")\ndf  &lt;- dbGetQuery(con, \"SELECT species, COUNT(*) AS n FROM penguins GROUP BY species\")\ndbDisconnect(con)\nThe point: the SQL you just learned is portable. The same SELECT statement runs in the CLI, in Python, in R, and (with minor dialect tweaks) in Postgres or Snowflake at a future job."
+  },
+  {
+    "objectID": "topics/sql.html#independent-practice-string-lessons",
+    "href": "topics/sql.html#independent-practice-string-lessons",
+    "title": "Simple Exploratory Data Analysis with SQL",
+    "section": "Independent Practice: String Lessons",
+    "text": "Independent Practice: String Lessons\n\n\n\n\n\n\nStrongly Encouraged: Work Through the String Lessons On Your Own\n\n\n\nReal-world data is messy text more often than it is clean numbers. Before your capstone you should also work through 10200-StringLessons-Base.md in the sandbox. It covers the string-handling skills you will definitely need:\n\nExtracting parts of a string (e.g., the manufacturer from a car name) with SUBSTR and INSTR.\nCase standardization with UPPER, LOWER, and title-case patterns.\nPattern matching with LIKE (case-insensitive in SQLite) and GLOB.\nFinding numeric tokens inside text fields.\nConcatenation with || to build composite descriptions.\nCleaning whitespace and standardizing formats with TRIM and REPLACE.\nLength-based bucketing using CASE and LENGTH.\n\nThe companion 10200-StringLessons-Solution.md has the worked answers. We will not cover this material in class, but it is fair game for your capstone work and for any analytics interview."
+  },
+  {
+    "objectID": "topics/sql.html#suggested-resources",
+    "href": "topics/sql.html#suggested-resources",
+    "title": "Simple Exploratory Data Analysis with SQL",
+    "section": "Suggested Resources",
+    "text": "Suggested Resources\n\nThe sandbox itself: https://github.com/adamrossnelson/sql-sandbox\nSandbox glossary: https://github.com/adamrossnelson/sql-sandbox/blob/main/glossary.md\nSQLite documentation (the dialect the sandbox uses): https://sqlite.org/docs.html\nMode SQL tutorial (still excellent for EDA framing): https://mode.com/sql-tutorial\nSQLBolt interactive lessons: https://sqlbolt.com/"
+  },
+  {
+    "objectID": "topics/sql.html#suggested-70-minute-lesson-outline",
+    "href": "topics/sql.html#suggested-70-minute-lesson-outline",
+    "title": "Simple Exploratory Data Analysis with SQL",
+    "section": "Suggested 70-Minute Lesson Outline",
+    "text": "Suggested 70-Minute Lesson Outline\n\n\n0 – 10 min — Intro. Why this tool matters for behavioral data science, what your peers will be able to do by the end of the session, and a 60-second preview of the demo.\n10 – 25 min — Live demo. You at the front, narrating clicks and commands. Show one complete success path from a clean state. Don’t try to cover edge cases yet.\n25 – 55 min — Hands-on. Peers do the demo themselves on their own machines. You and your group circulate to help. This is where most of the real learning happens — protect this time.\n55 – 65 min — Troubleshooting and gotchas. Surface the things that tripped you up during your own learning. What error messages should peers expect, and what do they actually mean? OS-specific differences? Auth problems?\n65 – 70 min — Wrap. Where to go next, one or two stretch challenges, pointers to the official documentation, and a Q&A buffer.\n\n\n\n\n\n\n\n\nRehearse the timing\n\n\n\nRun through the lesson with your group at least once before the real session. Most first-time presenters underestimate the live-demo portion and overestimate how much hands-on time they actually have. Cut content rather than rush."
+  },
+  {
+    "objectID": "topics/sql.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "href": "topics/sql.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "title": "Simple Exploratory Data Analysis with SQL",
+    "section": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor",
+    "text": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor\nFor this assignment, treat the tool creator’s official documentation as your primary teacher. There is a strong temptation to ask Claude, ChatGPT, or another generative AI to “just explain it to me.”\nRelying on GenAI in this way during the earliest stages of adopting a new tool is a mistake. Learn from the documentation first, and then use GenAI to help you understand specific parts of the documentation or to clarify confusing concepts.\nHere is why:\n\nDocs are the authoritative source. GenAI tools paraphrase, summarize, and occasionally hallucinate. The official documentation is what the tool’s authors actually wrote about how the tool actually behaves.\nReading docs is the skill we’re teaching. The whole premise of this conference is that successful long-term scientists are the ones who can pick up a new tool from its documentation. If you outsource that to an AI, you miss the practice rep.\nYou’ll be a better teacher. When you’ve read the source material carefully, you can answer the questions your peers ask in the hands-on portion. When you’ve only skimmed an AI summary, you can’t.\n\nSuggestion: When getting started out, use GenAI as a sidekick (to debug a specific error, to explain a single unfamiliar term). Do not use it as your tutor of first resort."
+  },
+  {
+    "objectID": "topics/sql.html#topic-specific-demo-tips",
+    "href": "topics/sql.html#topic-specific-demo-tips",
+    "title": "Simple Exploratory Data Analysis with SQL",
+    "section": "Topic-Specific Demo Tips",
+    "text": "Topic-Specific Demo Tips\n\nAs you set the SQL Sandbox up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction. Designate a member of your team to centrally collect Git/Python install issues, sqlite3 not found errors (especially on Windows), forgotten .headers on confusion, and the common SQL errors peers will hit (missing GROUP BY, typo’d table or column names). Then write them up into a one-page “troubleshooting guide” you can share with the others in class on the day of via the course chat platforms.\nUse a “team teaching” approach. To make this lesson successful, every single member of your team will need to be confident cloning the sandbox, running python build-sandbox.py, opening sqlite3 sandbox.db, listing tables, and writing the basic aggregate queries from 10100-AggFunctions-Base.md. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.\nHave peers clone and build the sandbox before class. The whole setup is git clone … && cd sql-sandbox && python build-sandbox.py. Send the link the day before so classroom Wi-Fi isn’t the bottleneck. The first 10 minutes of session time should be a quick check that everyone has sandbox.db and can run .tables.\nPick four or five questions in advance. The Base lessons already give you a curated sequence. Don’t free-style SQL live; pace through specific exercises from 10100-AggFunctions-Base.md and 10100-EDALessons-Base.md and let peers race ahead between prompts.\nShow one query that fails. Real SQL involves typos, missing tables, ambiguous column names. Forget a GROUP BY, misspell penguins as pengiun, or query a column that doesn’t exist — then walk peers through reading the error message. This is one of the most useful five minutes of the session.\nPair the SQL with the pandas equivalent. The lesson files already do this. Lean into it: peers who already know pandas pick up SQL much faster when you say “this is just groupby with different syntax.”\nDon’t peek at the Solution files until peers have tried. Resist the urge to flip to *-Solution.md immediately. The struggle of writing GROUP BY for the first time is the lesson."
+  },
+  {
+    "objectID": "topics/cli.html",
+    "href": "topics/cli.html",
+    "title": "Command Line Interface + File System As a Tool",
+    "section": "",
+    "text": "Mini-crash lesson · ~20–30 minutes · Drop in wherever a foundational primer is needed"
+  },
+  {
+    "objectID": "topics/cli.html#what-youre-teaching",
+    "href": "topics/cli.html#what-youre-teaching",
+    "title": "Command Line Interface + File System As a Tool",
+    "section": "What You’re Teaching",
+    "text": "What You’re Teaching\nThe command line interface (CLI) and the file system are not “extra” topics for behavioral data scientists. They are the foundation that almost every other tool in this conference sits on top of. Git is run from the CLI. Quarto is run from the CLI. The SQL sandbox is built and entered from the CLI. Ollama is pulled and run from the CLI. If your peers are uncomfortable in a terminal, every other lesson gets harder.\nYour peers will leave this mini-crash lesson able to open a terminal on their own machine, understand where they “are” in the file system, navigate to a folder, list and inspect its contents, create and remove files and folders, view and search file contents, and chain commands together with pipes and redirection. That is enough to unblock every other tool in the program.\nThis lesson is not a full Unix course. It is a deliberate, small set of commands chosen because they are the ones your peers will actually need this summer.\n\n\n\n\n\n\nWhy a “mini-crash” lesson?\n\n\n\nUnlike the other topic sessions in this conference, this one is short. The goal is not mastery — it is removing the fear of the black window with the blinking cursor. If peers leave able to cd into a folder, list its contents, and read an error message, you have succeeded."
+  },
+  {
+    "objectID": "topics/cli.html#mini-quick-start",
+    "href": "topics/cli.html#mini-quick-start",
+    "title": "Command Line Interface + File System As a Tool",
+    "section": "Mini Quick-Start",
+    "text": "Mini Quick-Start\n\n1. Open a Terminal\nThe terminal is just an application. Every modern OS ships with one.\n\nmacOS: open Terminal.app (Spotlight → “Terminal”). The default shell is zsh.\nWindows: the recommended option for this program is Git Bash (installed alongside Git in the GitHub session). PowerShell also works, but commands diverge from what your Mac peers will see. Stick to Git Bash so the lesson is portable.\nLinux: open the Terminal application your distribution provides. The default shell is usually bash.\n\nConfirm everyone has something open with a prompt before moving on. The prompt typically ends in $ (Mac/Linux/Git Bash) or &gt; (PowerShell).\n\n\n2. Where Am I? pwd and ls\nThe two questions every CLI session starts with: where am I? and what is here?\npwd          # print working directory (the absolute path you are currently in)\nls           # list files and folders in the current directory\nls -l        # long listing — shows size, modification date, permissions\nls -la       # long listing including hidden files (those that start with .)\nDemo this in a folder that has a few visible files and a hidden file (e.g., a .gitignore). Peers should see that hidden files exist and that ls does not show them by default.\n\n\n3. Move Around with cd\ncd (“change directory”) is how you move through the file system.\ncd Documents          # move into the Documents folder (relative path)\ncd ..                 # go up one level\ncd ~                  # go to your home directory\ncd /                  # go to the root of the file system\ncd -                  # go back to the previous directory\ncd /full/path/here    # absolute path — works from anywhere\nTake a moment here to explain absolute vs. relative paths:\n\nAn absolute path starts at the root (/ on Mac/Linux, e.g., C:/Users/... on Windows). It works no matter where you are.\nA relative path is interpreted from your current directory. Documents only means something if you are in your home folder.\n\nThis is the single most common source of “file not found” errors peers will hit in every other session this summer.\n\n\n4. Make, Move, Copy, and Remove Files\nmkdir my-project           # make a new directory\ncd my-project\ntouch notes.txt            # create an empty file\ncp notes.txt notes-copy.txt  # copy\nmv notes-copy.txt backup.txt # rename / move\nrm backup.txt              # remove a file\ncd ..\nrm -r my-project           # remove a directory and everything in it\n\n\n\n\n\n\nrm is permanent\n\n\n\nThere is no Trash / Recycle Bin for files removed with rm. They are gone. Demonstrate this honestly so peers respect the command. Especially warn against rm -rf / and rm -rf ~ — these are the canonical “do not paste random commands from the internet” examples.\n\n\n\n\n5. Read and Search File Content\nOften you do not want to open a file in an editor — you just want to glance at it from the CLI.\ncat notes.txt          # print the whole file to the screen\nhead notes.txt         # first 10 lines\nhead -n 3 notes.txt    # first 3 lines\ntail notes.txt         # last 10 lines\ntail -f notes.txt      # follow a file as it grows (great for log files)\nless notes.txt         # scrollable pager — press q to quit\nwc -l notes.txt        # count lines in the file\nFor finding things inside files:\ngrep \"TODO\" notes.txt           # find lines containing \"TODO\"\ngrep -i \"todo\" notes.txt        # case-insensitive\ngrep -r \"TODO\" .                # search recursively from the current directory\n\n\n\n\n\n\nStuck in less or vim?\n\n\n\nIf a peer accidentally lands in less, the exit key is q. If they accidentally land in vim, the exit sequence is Esc then :q! then Enter. Write these on the board before the demo. Every cohort produces at least one “I can’t get out” moment.\n\n\n\n\n6. Pipes and Redirection\nThis is the moment the CLI starts to feel like a tool rather than a chore. Pipes (|) send the output of one command into the input of the next. Redirection (&gt; and &gt;&gt;) sends output to a file.\nls -l | wc -l                       # how many things are in this folder?\nls -la | grep \"^d\"                  # only directories (lines starting with d)\ncat notes.txt | grep \"TODO\" | wc -l # how many TODOs are in notes.txt?\n\necho \"Hello\" &gt; greeting.txt         # write Hello to greeting.txt (overwrite)\necho \"Again\" &gt;&gt; greeting.txt        # append \"Again\" to greeting.txt\nShow one composed example end-to-end. The “aha” moment is realizing you just built a tiny analysis pipeline with three commands and a pipe.\n\n\n7. Quality-of-Life Shortcuts\nThese are not technically about the file system, but they are what makes the CLI bearable. Demo them explicitly.\n\nTab completion. Start typing cd Doc and press Tab — the shell completes to Documents/. This alone makes the CLI feel friendlier.\nArrow-up. Recall previous commands. Most CLI work is editing the previous command, not typing a new one.\nCtrl+C. Cancel a running command. Critical when something hangs.\nCtrl+L or clear. Clear the screen.\nhistory. See your recent commands."
+  },
+  {
+    "objectID": "topics/cli.html#suggested-resources",
+    "href": "topics/cli.html#suggested-resources",
+    "title": "Command Line Interface + File System As a Tool",
+    "section": "Suggested Resources",
+    "text": "Suggested Resources\n\nSoftware Carpentry — The Unix Shell (the canonical free tutorial): https://swcarpentry.github.io/shell-novice/\nExplainShell (paste any command, get a plain-English breakdown): https://explainshell.com/\nApple’s Terminal User Guide: https://support.apple.com/guide/terminal/welcome/mac\nGit Bash for Windows (download with Git): https://gitforwindows.org/\nMDN — Introduction to the command line: https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
+  },
+  {
+    "objectID": "topics/cli.html#suggested-mini-crash-outline",
+    "href": "topics/cli.html#suggested-mini-crash-outline",
+    "title": "Command Line Interface + File System As a Tool",
+    "section": "Suggested Mini-Crash Outline",
+    "text": "Suggested Mini-Crash Outline\n\n\n0 – 3 min — Why this matters. Show one thing peers already wanted to do (clone a repo, run quarto render, build the SQL sandbox) and point out that all of it happens at this prompt. The CLI is not optional.\n3 – 13 min — Live demo. Walk through steps 1 through 6 above on your own machine, projected. Move briskly. Do not stop for edge cases. The goal is exposure, not depth.\n13 – 23 min — Hands-on. Peers replicate the same sequence on their own laptops. Have a small starter folder ready (a couple of text files, a hidden .gitignore) so they have something to ls, cat, and grep on. Your team circulates.\n23 – 28 min — Pipes and the “aha” moment. Walk through one composed pipe end-to-end (e.g., ls -la | grep \".txt\" | wc -l). This is the part peers will remember.\n28 – 30 min — Wrap. One stretch challenge (“count how many .md files are in this repo”), the resources list above, and a Q&A buffer.\n\n\n\n\n\n\n\n\nRehearse on both Mac and Windows\n\n\n\nIf your team has a mix of OSes, rehearse the demo on each. The vast majority of commands behave identically in zsh (Mac) and Git Bash (Windows), but a few subtleties (path separators, clear vs cls) will surface only when you are typing live in front of an audience."
+  },
+  {
+    "objectID": "topics/cli.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "href": "topics/cli.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "title": "Command Line Interface + File System As a Tool",
+    "section": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor",
+    "text": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor\nFor this lesson, treat the manual pages (man ls, man grep, man cd) and the Software Carpentry shell tutorial as your primary teachers. There is a strong temptation to ask Claude or ChatGPT to “just explain grep to me.” Resist it for the first pass.\nHere is why:\n\nman pages are authoritative. They are written by the people who wrote the tools. GenAI tools paraphrase them, sometimes incorrectly.\nReading docs is the skill we’re teaching. A behavioral data scientist who can read a man page can teach themselves any new CLI tool for the rest of their career.\nYou will be a better teacher. When you have read man ls carefully, you can answer the questions peers will ask in the hands-on portion.\n\nSuggestion: when getting started, use GenAI as a sidekick (to debug a specific error, to explain a single confusing flag). Do not use it as your tutor of first resort."
+  },
+  {
+    "objectID": "topics/cli.html#topic-specific-demo-tips",
+    "href": "topics/cli.html#topic-specific-demo-tips",
+    "title": "Command Line Interface + File System As a Tool",
+    "section": "Topic-Specific Demo Tips",
+    "text": "Topic-Specific Demo Tips\n\nAs you set the CLI up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction. Designate a member of your team to centrally collect things like wrong-directory “file not found” errors, peers getting stuck in less or vim, accidental rm regrets, Mac vs. Windows divergences, and confusion between absolute and relative paths. Then write them up into a one-page “troubleshooting guide” you can share with the others in class on the day of via the course chat platforms.\nUse a “team teaching” approach. To make this lesson successful, every single member of your team will need to be confident with pwd, ls, cd, mkdir, touch, cp, mv, rm, cat, head, tail, grep, and at least one composed pipe. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.\nPrepare a sandbox folder in advance. Have peers download (or have you distribute) a small starter folder with a handful of text files, a subdirectory, and a hidden file. Trying to demo ls, grep, and wc -l on an empty home directory is dispiriting.\nType slowly and narrate every keystroke. Many peers have never watched someone use a CLI in real time. What feels obvious to you (the $ prompt, pressing Enter, the cursor moving) is genuinely new for some. Slow down.\nShow one command that fails, on purpose. Try to cd into a folder that does not exist, or cat a file you misspelled. Then read the error message together. “No such file or directory” is the most common error in the CLI, and recognizing it is half the battle.\nResist the urge to teach more. Peers do not need awk, sed, xargs, chmod, or shell scripting today. They need to feel that the terminal is no longer scary. Stop when they are not scared."
+  },
+  {
+    "objectID": "topics/windsurf.html",
+    "href": "topics/windsurf.html",
+    "title": "Installing Windsurf and Getting Started with Agentic Coding",
+    "section": "",
+    "text": "Session 1 · June 24, 2026 · 2:00 – 3:10 pm"
+  },
+  {
+    "objectID": "topics/windsurf.html#what-youre-teaching",
+    "href": "topics/windsurf.html#what-youre-teaching",
+    "title": "Installing Windsurf and Getting Started with Agentic Coding",
+    "section": "What You’re Teaching",
+    "text": "What You’re Teaching\nWindsurf is an agentic IDE built on top of VS Code. “Agentic” means the editor can take multi-step actions on your behalf — reading files, running commands, editing code across a project — based on natural-language instructions, and then return the result for you to review. Your peers will leave this session able to install Windsurf, configure it for a real project, and run their first agentic task."
+  },
+  {
+    "objectID": "topics/windsurf.html#mini-quick-start",
+    "href": "topics/windsurf.html#mini-quick-start",
+    "title": "Installing Windsurf and Getting Started with Agentic Coding",
+    "section": "Mini Quick-Start",
+    "text": "Mini Quick-Start\nYour group’s job is to walk through this entire flow yourselves before you teach it. Plan on at least one multi-hour solo session per group member, plus a group rehearsal.\n\n1. Install Windsurf\nDownload Windsurf from the official site and install it on your operating system. Pay attention to the system requirements — older machines may need the lighter-weight build.\n\nOfficial site: https://windsurf.com/\nConfirm your install by opening Windsurf, signing in, and creating an empty project.\n\n\n\n2. Open a Real Project\nClone a small public repository (one of your own from earlier coursework works well) and open it in Windsurf. The agentic features feel abstract on a blank project — they shine when there’s actual code to reason about.\n\n\n3. Run Your First Agentic Task\nTry one of these as your first prompt:\n\n“Read the README and tell me what this project does.”\n“Add a docstring to every function in analysis.R (or analysis.py).”\n“Find any places where I’m hard-coding file paths and refactor them to use a config variable.”\n\nWatch what the agent proposes before accepting any changes. The ability to inspect, accept, or reject diffs is the core skill.\n\n\n4. Tour the Three Modes\nWindsurf has more than one way to invoke the agent (chat, in-line edits, multi-file actions). Get comfortable switching between them. Your demo should show at least two."
+  },
+  {
+    "objectID": "topics/windsurf.html#suggested-resources",
+    "href": "topics/windsurf.html#suggested-resources",
+    "title": "Installing Windsurf and Getting Started with Agentic Coding",
+    "section": "Suggested Resources",
+    "text": "Suggested Resources\n\nOfficial docs: https://docs.windsurf.com/\nQuick-start tutorial: linked from the Windsurf homepage; the “First-time user” walkthrough is the best place to start.\nAnthropic / Claude resources: Windsurf integrates with Claude models; some peers may already have API keys from earlier in the program."
+  },
+  {
+    "objectID": "topics/windsurf.html#suggested-70-minute-lesson-outline",
+    "href": "topics/windsurf.html#suggested-70-minute-lesson-outline",
+    "title": "Installing Windsurf and Getting Started with Agentic Coding",
+    "section": "Suggested 70-Minute Lesson Outline",
+    "text": "Suggested 70-Minute Lesson Outline\n\n\n0 – 10 min — Intro. Why this tool matters for behavioral data science, what your peers will be able to do by the end of the session, and a 60-second preview of the demo.\n10 – 25 min — Live demo. You at the front, narrating clicks and commands. Show one complete success path from a clean state. Don’t try to cover edge cases yet.\n25 – 55 min — Hands-on. Peers do the demo themselves on their own machines. You and your group circulate to help. This is where most of the real learning happens — protect this time.\n55 – 65 min — Troubleshooting and gotchas. Surface the things that tripped you up during your own learning. What error messages should peers expect, and what do they actually mean? OS-specific differences? Auth problems?\n65 – 70 min — Wrap. Where to go next, one or two stretch challenges, pointers to the official documentation, and a Q&A buffer.\n\n\n\n\n\n\n\n\nRehearse the timing\n\n\n\nRun through the lesson with your group at least once before the real session. Most first-time presenters underestimate the live-demo portion and overestimate how much hands-on time they actually have. Cut content rather than rush."
+  },
+  {
+    "objectID": "topics/windsurf.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "href": "topics/windsurf.html#on-using-the-official-documentation-not-genai-as-your-primary-tutor",
+    "title": "Installing Windsurf and Getting Started with Agentic Coding",
+    "section": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor",
+    "text": "On Using the Official Documentation (Not GenAI) as Your Primary Tutor\nFor this assignment, treat the tool creator’s official documentation as your primary teacher. There is a strong temptation to ask Claude, ChatGPT, or another generative AI to “just explain it to me.”\nRelying on GenAI in this way during the earliest stages of adopting a new tool is a mistake. Learn from the documentation first, and then use GenAI to help you understand specific parts of the documentation or to clarify confusing concepts.\nHere is why:\n\nDocs are the authoritative source. GenAI tools paraphrase, summarize, and occasionally hallucinate. The official documentation is what the tool’s authors actually wrote about how the tool actually behaves.\nReading docs is the skill we’re teaching. The whole premise of this conference is that successful long-term scientists are the ones who can pick up a new tool from its documentation. If you outsource that to an AI, you miss the practice rep.\nYou’ll be a better teacher. When you’ve read the source material carefully, you can answer the questions your peers ask in the hands-on portion. When you’ve only skimmed an AI summary, you can’t.\n\nSuggestion: When getting started out, use GenAI as a sidekick (to debug a specific error, to explain a single unfamiliar term). Do not use it as your tutor of first resort."
+  },
+  {
+    "objectID": "topics/windsurf.html#topic-specific-demo-tips",
+    "href": "topics/windsurf.html#topic-specific-demo-tips",
+    "title": "Installing Windsurf and Getting Started with Agentic Coding",
+    "section": "Topic-Specific Demo Tips",
+    "text": "Topic-Specific Demo Tips\n\nAs you set Windsurf up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction. Designate a member of your team to centrally collect sign-up issues, model-selection confusion, prompts that didn’t go where peers expected, and any IDE-specific quirks across Mac and Windows. Then write them up into a one-page “troubleshooting guide” you can share with the others in class on the day of via the course chat platforms.\nUse a “team teaching” approach. To make this lesson successful, every single member of your team will need to be confident installing Windsurf, signing in, opening a project, writing a basic prompt, reading the proposed diff, and accepting or rejecting the agent’s suggestion. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.\nHave a fallback project ready. If the demo project has issues on the classroom Wi-Fi, you want a small local project you can pivot to without losing momentum.\nPre-stage your prompts. Live-typing prompts during a demo invites typos and dead air. Write your three or four demo prompts in advance and paste them in.\nShow a rejection. Don’t just show prompts that work. Show one where the agent proposes something wrong, and demonstrate how you push back. This is one of the most valuable things peers can learn."
+  }
+]

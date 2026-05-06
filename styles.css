@@ -1,0 +1,24 @@
+/* Small layout polish on top of the SCSS theme */
+
+.session-meta {
+  color: #646569;
+  font-size: 0.95em;
+  font-style: italic;
+  margin-bottom: 1em;
+}
+
+.outline-block ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.outline-block li {
+  padding: 0.4em 0;
+  border-bottom: 1px dotted #DADFE1;
+}
+
+.outline-block li::before {
+  content: "▸ ";
+  color: #C5050C;
+  font-weight: bold;
+}

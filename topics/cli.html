@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Adam Ross Nelson">
+
+<title>Command Line Interface + File System As a Tool – DSHB Pro Dev Conference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-525c7c8bb0bfc85560ce7a833b1a6dbb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">DSHB Pro Dev Conference</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-june-24" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">June 24</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-june-24">    
+        <li>
+    <a class="dropdown-item" href="../topics/windsurf.html">
+ <span class="dropdown-text">Installing Windsurf and Getting Started with Agentic Coding</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../topics/ollama.html">
+ <span class="dropdown-text">Installing and Running a Local LLM with Ollama</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-june-25" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">June 25</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-june-25">    
+        <li>
+    <a class="dropdown-item" href="../topics/sql.html">
+ <span class="dropdown-text">Simple Exploratory Data Analysis with SQL</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../topics/github.html">
+ <span class="dropdown-text">GitHub Refresher (Branching, Pull Requests, and More)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-july-1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">July 1</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-july-1">    
+        <li>
+    <a class="dropdown-item" href="../topics/quarto.html">
+ <span class="dropdown-text">Using Quarto to Create a Simple Document</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../topics/qualtrics.html">
+ <span class="dropdown-text">Creating a Qualtrics Account and First Survey</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../about.html">
+ <span class="dropdown-text">About This Microsite</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../provenance.html">
+ <span class="dropdown-text">Site Provenance</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../maintainer-guide.html">
+ <span class="dropdown-text">Maintainer Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../accessibility.html">
+ <span class="dropdown-text">Accessibility Features</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-youre-teaching" id="toc-what-youre-teaching" class="nav-link active" data-scroll-target="#what-youre-teaching">What You’re Teaching</a></li>
+  <li><a href="#mini-quick-start" id="toc-mini-quick-start" class="nav-link" data-scroll-target="#mini-quick-start">Mini Quick-Start</a>
+  <ul class="collapse">
+  <li><a href="#open-a-terminal" id="toc-open-a-terminal" class="nav-link" data-scroll-target="#open-a-terminal">1. Open a Terminal</a></li>
+  <li><a href="#where-am-i-pwd-and-ls" id="toc-where-am-i-pwd-and-ls" class="nav-link" data-scroll-target="#where-am-i-pwd-and-ls">2. Where Am I? <code>pwd</code> and <code>ls</code></a></li>
+  <li><a href="#move-around-with-cd" id="toc-move-around-with-cd" class="nav-link" data-scroll-target="#move-around-with-cd">3. Move Around with <code>cd</code></a></li>
+  <li><a href="#make-move-copy-and-remove-files" id="toc-make-move-copy-and-remove-files" class="nav-link" data-scroll-target="#make-move-copy-and-remove-files">4. Make, Move, Copy, and Remove Files</a></li>
+  <li><a href="#read-and-search-file-content" id="toc-read-and-search-file-content" class="nav-link" data-scroll-target="#read-and-search-file-content">5. Read and Search File Content</a></li>
+  <li><a href="#pipes-and-redirection" id="toc-pipes-and-redirection" class="nav-link" data-scroll-target="#pipes-and-redirection">6. Pipes and Redirection</a></li>
+  <li><a href="#quality-of-life-shortcuts" id="toc-quality-of-life-shortcuts" class="nav-link" data-scroll-target="#quality-of-life-shortcuts">7. Quality-of-Life Shortcuts</a></li>
+  </ul></li>
+  <li><a href="#suggested-resources" id="toc-suggested-resources" class="nav-link" data-scroll-target="#suggested-resources">Suggested Resources</a></li>
+  <li><a href="#suggested-mini-crash-outline" id="toc-suggested-mini-crash-outline" class="nav-link" data-scroll-target="#suggested-mini-crash-outline">Suggested Mini-Crash Outline</a></li>
+  <li><a href="#on-using-the-official-documentation-not-genai-as-your-primary-tutor" id="toc-on-using-the-official-documentation-not-genai-as-your-primary-tutor" class="nav-link" data-scroll-target="#on-using-the-official-documentation-not-genai-as-your-primary-tutor">On Using the Official Documentation (Not GenAI) as Your Primary Tutor</a></li>
+  <li><a href="#topic-specific-demo-tips" id="toc-topic-specific-demo-tips" class="nav-link" data-scroll-target="#topic-specific-demo-tips">Topic-Specific Demo Tips</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Command Line Interface + File System As a Tool</h1>
+<p class="subtitle lead">DSHB Professional Development Conference — Mini-Crash Lesson Notes</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Adam Ross Nelson </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="session-meta">
+<p>Mini-crash lesson · ~20–30 minutes · Drop in wherever a foundational primer is needed</p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step One: Read, Re-read, and Read Again
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you do anything else, read the starter instructions on this page in their entirety. Then read them again. Then a third time. The single most common failure mode for groups in this assignment is skimming the starter material once, getting stuck at minute 20, and then having to backtrack. Twenty minutes of careful reading at the start saves an hour of frustration later.</p>
+</div>
+</div>
+<section id="what-youre-teaching" class="level2">
+<h2 class="anchored" data-anchor-id="what-youre-teaching">What You’re Teaching</h2>
+<p>The command line interface (CLI) and the file system are not “extra” topics for behavioral data scientists. They are the foundation that almost every other tool in this conference sits on top of. Git is run from the CLI. Quarto is run from the CLI. The SQL sandbox is built and entered from the CLI. Ollama is pulled and run from the CLI. If your peers are uncomfortable in a terminal, every other lesson gets harder.</p>
+<p>Your peers will leave this mini-crash lesson able to open a terminal on their own machine, understand where they “are” in the file system, navigate to a folder, list and inspect its contents, create and remove files and folders, view and search file contents, and chain commands together with pipes and redirection. That is enough to unblock every other tool in the program.</p>
+<p>This lesson is <em>not</em> a full Unix course. It is a deliberate, small set of commands chosen because they are the ones your peers will actually need this summer.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why a “mini-crash” lesson?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Unlike the other topic sessions in this conference, this one is short. The goal is not mastery — it is removing the fear of the black window with the blinking cursor. If peers leave able to <code>cd</code> into a folder, list its contents, and read an error message, you have succeeded.</p>
+</div>
+</div>
+</section>
+<section id="mini-quick-start" class="level2">
+<h2 class="anchored" data-anchor-id="mini-quick-start">Mini Quick-Start</h2>
+<section id="open-a-terminal" class="level3">
+<h3 class="anchored" data-anchor-id="open-a-terminal">1. Open a Terminal</h3>
+<p>The terminal is just an application. Every modern OS ships with one.</p>
+<ul>
+<li><strong>macOS:</strong> open <em>Terminal.app</em> (Spotlight → “Terminal”). The default shell is <code>zsh</code>.</li>
+<li><strong>Windows:</strong> the recommended option for this program is <strong>Git Bash</strong> (installed alongside Git in the GitHub session). PowerShell also works, but commands diverge from what your Mac peers will see. Stick to Git Bash so the lesson is portable.</li>
+<li><strong>Linux:</strong> open the <em>Terminal</em> application your distribution provides. The default shell is usually <code>bash</code>.</li>
+</ul>
+<p>Confirm everyone has <em>something</em> open with a prompt before moving on. The prompt typically ends in <code>$</code> (Mac/Linux/Git Bash) or <code>&gt;</code> (PowerShell).</p>
+</section>
+<section id="where-am-i-pwd-and-ls" class="level3">
+<h3 class="anchored" data-anchor-id="where-am-i-pwd-and-ls">2. Where Am I? <code>pwd</code> and <code>ls</code></h3>
+<p>The two questions every CLI session starts with: <em>where am I?</em> and <em>what is here?</em></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span>          <span class="co"># print working directory (the absolute path you are currently in)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>           <span class="co"># list files and folders in the current directory</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span>        <span class="co"># long listing — shows size, modification date, permissions</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span>       <span class="co"># long listing including hidden files (those that start with .)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Demo this in a folder that has a few visible files <em>and</em> a hidden file (e.g., a <code>.gitignore</code>). Peers should see that hidden files exist and that <code>ls</code> does not show them by default.</p>
+</section>
+<section id="move-around-with-cd" class="level3">
+<h3 class="anchored" data-anchor-id="move-around-with-cd">3. Move Around with <code>cd</code></h3>
+<p><code>cd</code> (“change directory”) is how you move through the file system.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Documents          <span class="co"># move into the Documents folder (relative path)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..                 <span class="co"># go up one level</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~                  <span class="co"># go to your home directory</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /                  <span class="co"># go to the root of the file system</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="at">-</span>                  <span class="co"># go back to the previous directory</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /full/path/here    <span class="co"># absolute path — works from anywhere</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Take a moment here to explain <strong>absolute vs.&nbsp;relative paths</strong>:</p>
+<ul>
+<li>An <em>absolute</em> path starts at the root (<code>/</code> on Mac/Linux, e.g., <code>C:/Users/...</code> on Windows). It works no matter where you are.</li>
+<li>A <em>relative</em> path is interpreted from your current directory. <code>Documents</code> only means something if you are in your home folder.</li>
+</ul>
+<p>This is the single most common source of “file not found” errors peers will hit in every other session this summer.</p>
+</section>
+<section id="make-move-copy-and-remove-files" class="level3">
+<h3 class="anchored" data-anchor-id="make-move-copy-and-remove-files">4. Make, Move, Copy, and Remove Files</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> my-project           <span class="co"># make a new directory</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-project</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> notes.txt            <span class="co"># create an empty file</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> notes.txt notes-copy.txt  <span class="co"># copy</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> notes-copy.txt backup.txt <span class="co"># rename / move</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> backup.txt              <span class="co"># remove a file</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> my-project           <span class="co"># remove a directory and everything in it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>rm</code> is permanent
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is no Trash / Recycle Bin for files removed with <code>rm</code>. They are gone. Demonstrate this honestly so peers respect the command. Especially warn against <code>rm -rf /</code> and <code>rm -rf ~</code> — these are the canonical “do not paste random commands from the internet” examples.</p>
+</div>
+</div>
+</section>
+<section id="read-and-search-file-content" class="level3">
+<h3 class="anchored" data-anchor-id="read-and-search-file-content">5. Read and Search File Content</h3>
+<p>Often you do not want to open a file in an editor — you just want to glance at it from the CLI.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> notes.txt          <span class="co"># print the whole file to the screen</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> notes.txt         <span class="co"># first 10 lines</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 3 notes.txt    <span class="co"># first 3 lines</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> notes.txt         <span class="co"># last 10 lines</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-f</span> notes.txt      <span class="co"># follow a file as it grows (great for log files)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> notes.txt         <span class="co"># scrollable pager — press q to quit</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> notes.txt        <span class="co"># count lines in the file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For finding things inside files:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"TODO"</span> notes.txt           <span class="co"># find lines containing "TODO"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-i</span> <span class="st">"todo"</span> notes.txt        <span class="co"># case-insensitive</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-r</span> <span class="st">"TODO"</span> .                <span class="co"># search recursively from the current directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Stuck in <code>less</code> or <code>vim</code>?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If a peer accidentally lands in <code>less</code>, the exit key is <code>q</code>. If they accidentally land in <code>vim</code>, the exit sequence is <code>Esc</code> then <code>:q!</code> then <code>Enter</code>. Write these on the board before the demo. Every cohort produces at least one “I can’t get out” moment.</p>
+</div>
+</div>
+</section>
+<section id="pipes-and-redirection" class="level3">
+<h3 class="anchored" data-anchor-id="pipes-and-redirection">6. Pipes and Redirection</h3>
+<p>This is the moment the CLI starts to feel like a <em>tool</em> rather than a chore. Pipes (<code>|</code>) send the output of one command into the input of the next. Redirection (<code>&gt;</code> and <code>&gt;&gt;</code>) sends output to a file.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span>                       <span class="co"># how many things are in this folder?</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"^d"</span>                  <span class="co"># only directories (lines starting with d)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> notes.txt <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"TODO"</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span> <span class="co"># how many TODOs are in notes.txt?</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Hello"</span> <span class="op">&gt;</span> greeting.txt         <span class="co"># write Hello to greeting.txt (overwrite)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Again"</span> <span class="op">&gt;&gt;</span> greeting.txt        <span class="co"># append "Again" to greeting.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Show one composed example end-to-end. The “aha” moment is realizing you just built a tiny analysis pipeline with three commands and a pipe.</p>
+</section>
+<section id="quality-of-life-shortcuts" class="level3">
+<h3 class="anchored" data-anchor-id="quality-of-life-shortcuts">7. Quality-of-Life Shortcuts</h3>
+<p>These are not technically about the file system, but they are what makes the CLI bearable. Demo them explicitly.</p>
+<ul>
+<li><strong>Tab completion.</strong> Start typing <code>cd Doc</code> and press <code>Tab</code> — the shell completes to <code>Documents/</code>. This alone makes the CLI feel friendlier.</li>
+<li><strong>Arrow-up.</strong> Recall previous commands. Most CLI work is editing the previous command, not typing a new one.</li>
+<li><strong><code>Ctrl+C</code>.</strong> Cancel a running command. Critical when something hangs.</li>
+<li><strong><code>Ctrl+L</code> or <code>clear</code>.</strong> Clear the screen.</li>
+<li><strong><code>history</code>.</strong> See your recent commands.</li>
+</ul>
+</section>
+</section>
+<section id="suggested-resources" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-resources">Suggested Resources</h2>
+<ul>
+<li><strong>Software Carpentry — The Unix Shell (the canonical free tutorial):</strong> <a href="https://swcarpentry.github.io/shell-novice/" class="uri">https://swcarpentry.github.io/shell-novice/</a></li>
+<li><strong>ExplainShell (paste any command, get a plain-English breakdown):</strong> <a href="https://explainshell.com/" class="uri">https://explainshell.com/</a></li>
+<li><strong>Apple’s Terminal User Guide:</strong> <a href="https://support.apple.com/guide/terminal/welcome/mac" class="uri">https://support.apple.com/guide/terminal/welcome/mac</a></li>
+<li><strong>Git Bash for Windows (download with Git):</strong> <a href="https://gitforwindows.org/" class="uri">https://gitforwindows.org/</a></li>
+<li><strong>MDN — Introduction to the command line:</strong> <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line" class="uri">https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line</a></li>
+</ul>
+</section>
+<section id="suggested-mini-crash-outline" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-mini-crash-outline">Suggested Mini-Crash Outline</h2>
+<div class="outline-block">
+<ul>
+<li><strong>0 – 3 min — Why this matters.</strong> Show one thing peers already wanted to do (clone a repo, run <code>quarto render</code>, build the SQL sandbox) and point out that all of it happens at this prompt. The CLI is not optional.</li>
+<li><strong>3 – 13 min — Live demo.</strong> Walk through steps 1 through 6 above on your own machine, projected. Move briskly. Do not stop for edge cases. The goal is exposure, not depth.</li>
+<li><strong>13 – 23 min — Hands-on.</strong> Peers replicate the same sequence on their own laptops. Have a small starter folder ready (a couple of text files, a hidden <code>.gitignore</code>) so they have something to <code>ls</code>, <code>cat</code>, and <code>grep</code> on. Your team circulates.</li>
+<li><strong>23 – 28 min — Pipes and the “aha” moment.</strong> Walk through one composed pipe end-to-end (e.g., <code>ls -la | grep ".txt" | wc -l</code>). This is the part peers will remember.</li>
+<li><strong>28 – 30 min — Wrap.</strong> One stretch challenge (“count how many <code>.md</code> files are in this repo”), the resources list above, and a Q&amp;A buffer.</li>
+</ul>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Rehearse on both Mac and Windows
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If your team has a mix of OSes, rehearse the demo on each. The vast majority of commands behave identically in <code>zsh</code> (Mac) and Git Bash (Windows), but a few subtleties (path separators, <code>clear</code> vs <code>cls</code>) will surface only when you are typing live in front of an audience.</p>
+</div>
+</div>
+</section>
+<section id="on-using-the-official-documentation-not-genai-as-your-primary-tutor" class="level2">
+<h2 class="anchored" data-anchor-id="on-using-the-official-documentation-not-genai-as-your-primary-tutor">On Using the Official Documentation (Not GenAI) as Your Primary Tutor</h2>
+<p>For this lesson, treat the manual pages (<code>man ls</code>, <code>man grep</code>, <code>man cd</code>) and the Software Carpentry shell tutorial as your primary teachers. There is a strong temptation to ask Claude or ChatGPT to “just explain <code>grep</code> to me.” Resist it for the first pass.</p>
+<p>Here is why:</p>
+<ul>
+<li><strong><code>man</code> pages are authoritative.</strong> They are written by the people who wrote the tools. GenAI tools paraphrase them, sometimes incorrectly.</li>
+<li><strong>Reading docs <em>is</em> the skill we’re teaching.</strong> A behavioral data scientist who can read a <code>man</code> page can teach themselves any new CLI tool for the rest of their career.</li>
+<li><strong>You will be a better teacher.</strong> When you have read <code>man ls</code> carefully, you can answer the questions peers will ask in the hands-on portion.</li>
+</ul>
+<p>Suggestion: when getting started, use GenAI as a sidekick (to debug a specific error, to explain a single confusing flag). Do not use it as your tutor of first resort.</p>
+</section>
+<section id="topic-specific-demo-tips" class="level2">
+<h2 class="anchored" data-anchor-id="topic-specific-demo-tips">Topic-Specific Demo Tips</h2>
+<ul>
+<li><strong>As you set the CLI up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction.</strong> Designate a member of your team to centrally collect things like wrong-directory “file not found” errors, peers getting stuck in <code>less</code> or <code>vim</code>, accidental <code>rm</code> regrets, Mac vs.&nbsp;Windows divergences, and confusion between absolute and relative paths. Then write them up into a one-page “troubleshooting guide” you can share with the others in class on the day of via the course chat platforms.</li>
+<li><strong>Use a “team teaching” approach.</strong> To make this lesson successful, every single member of your team will need to be confident with <code>pwd</code>, <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>touch</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>cat</code>, <code>head</code>, <code>tail</code>, <code>grep</code>, and at least one composed pipe. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.</li>
+<li><strong>Prepare a sandbox folder in advance.</strong> Have peers download (or have you distribute) a small starter folder with a handful of text files, a subdirectory, and a hidden file. Trying to demo <code>ls</code>, <code>grep</code>, and <code>wc -l</code> on an empty home directory is dispiriting.</li>
+<li><strong>Type slowly and narrate every keystroke.</strong> Many peers have never watched someone use a CLI in real time. What feels obvious to you (the <code>$</code> prompt, pressing Enter, the cursor moving) is genuinely new for some. Slow down.</li>
+<li><strong>Show one command that fails, on purpose.</strong> Try to <code>cd</code> into a folder that does not exist, or <code>cat</code> a file you misspelled. Then read the error message together. “No such file or directory” is the most common error in the CLI, and recognizing it is half the battle.</li>
+<li><strong>Resist the urge to teach more.</strong> Peers do not need <code>awk</code>, <code>sed</code>, <code>xargs</code>, <code>chmod</code>, or shell scripting today. They need to feel that the terminal is no longer scary. Stop when they are not scared.</li>
+</ul>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/adamrossnelson\.github\.io\/dshb-mock-micro\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Dr.&nbsp;Adam Ross Nelson · DSHB Professional Development Conference</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Adam Ross Nelson">
+
+<title>Accessibility Features – DSHB Pro Dev Conference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-525c7c8bb0bfc85560ce7a833b1a6dbb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">DSHB Pro Dev Conference</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-june-24" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">June 24</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-june-24">    
+        <li>
+    <a class="dropdown-item" href="./topics/windsurf.html">
+ <span class="dropdown-text">Installing Windsurf and Getting Started with Agentic Coding</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./topics/ollama.html">
+ <span class="dropdown-text">Installing and Running a Local LLM with Ollama</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-june-25" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">June 25</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-june-25">    
+        <li>
+    <a class="dropdown-item" href="./topics/sql.html">
+ <span class="dropdown-text">Simple Exploratory Data Analysis with SQL</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./topics/github.html">
+ <span class="dropdown-text">GitHub Refresher (Branching, Pull Requests, and More)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-july-1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">July 1</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-july-1">    
+        <li>
+    <a class="dropdown-item" href="./topics/quarto.html">
+ <span class="dropdown-text">Using Quarto to Create a Simple Document</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./topics/qualtrics.html">
+ <span class="dropdown-text">Creating a Qualtrics Account and First Survey</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="./about.html">
+ <span class="dropdown-text">About This Microsite</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./provenance.html">
+ <span class="dropdown-text">Site Provenance</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./maintainer-guide.html">
+ <span class="dropdown-text">Maintainer Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./accessibility.html">
+ <span class="dropdown-text">Accessibility Features</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#configured-site-wide-features" id="toc-configured-site-wide-features" class="nav-link active" data-scroll-target="#configured-site-wide-features">Configured Site-Wide Features</a></li>
+  <li><a href="#color-and-contrast" id="toc-color-and-contrast" class="nav-link" data-scroll-target="#color-and-contrast">Color and Contrast</a></li>
+  <li><a href="#authoring-conventions" id="toc-authoring-conventions" class="nav-link" data-scroll-target="#authoring-conventions">Authoring Conventions</a></li>
+  <li><a href="#reporting-issues" id="toc-reporting-issues" class="nav-link" data-scroll-target="#reporting-issues">Reporting Issues</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Accessibility Features</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Adam Ross Nelson </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This page documents what is in place to support assistive technology and accessible reading. This site aims to be usable by everyone, including people who use screen readers, keyboard navigation, voice input, screen magnification, captions, or other assistive technologies.</p>
+<section id="configured-site-wide-features" class="level2">
+<h2 class="anchored" data-anchor-id="configured-site-wide-features">Configured Site-Wide Features</h2>
+<p>The following features are turned on in <code>_quarto.yml</code> and apply to every page on the site. They are observable in the rendered HTML.</p>
+<ul>
+<li><strong>External link indicators.</strong> External links are flagged with a visible icon and open in a new window (<code>link-external-icon: true</code>, <code>link-external-newwindow: true</code>). This gives sighted and screen-reader users advance notice that a link will leave the site.</li>
+<li><strong>Section anchors.</strong> Every heading exposes a permalink anchor (<code>anchor-sections: true</code>). Useful for sharing precise pointers and for keyboard users navigating long pages.</li>
+<li><strong>Right-side table of contents.</strong> Each page renders a navigable table of contents to depth 3 (<code>toc: true</code>, <code>toc-location: right</code>, <code>toc-depth: 3</code>). Screen readers and keyboard users can jump directly to any section.</li>
+<li><strong>Page navigation and back-to-top.</strong> Previous/next links and a back-to-top control are enabled (<code>page-navigation: true</code>, <code>back-to-top-navigation: true</code>).</li>
+<li><strong>Accessible code blocks.</strong> Code blocks include a copy button and wrap rather than horizontally scroll (<code>code-copy: true</code>, <code>code-overflow: wrap</code>). Wrapping helps low-vision users at high zoom levels and reduces the need for horizontal scrolling.</li>
+<li><strong>Built on the <code>cosmo</code> Bootstrap theme.</strong> Quarto’s <code>cosmo</code> theme provides semantic landmarks (<code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>), keyboard-operable navbar dropdowns, and standard Bootstrap focus rings out of the box.</li>
+</ul>
+</section>
+<section id="color-and-contrast" class="level2">
+<h2 class="anchored" data-anchor-id="color-and-contrast">Color and Contrast</h2>
+<p>The custom theme is layered on top of <code>cosmo</code> in <code>theme.scss</code> using UW–Madison brand colors. Contrast ratios for the primary combinations:</p>
+<ul>
+<li><strong>Body text</strong> is <code>#282728</code> (near-black) on <code>#FFFFFF</code> white. Contrast ratio is roughly 16:1 — well above WCAG AAA for normal text.</li>
+<li><strong>Headings (H1, H2)</strong> are also rendered in <code>#282728</code> on white. Same ratio as body text.</li>
+<li><strong>Subheadings (H3)</strong> are <code>#9B0000</code> (dark Badger Red) on white. Contrast ratio is roughly 7.4:1 — meets WCAG AAA for normal text.</li>
+<li><strong>Navbar</strong> is white text on <code>#C5050C</code> (Badger Red). Contrast ratio is roughly 5.4:1 — meets WCAG AA for normal text.</li>
+<li><strong>Body links</strong> are <code>#0479A8</code> (UW anchor blue) on white. Contrast ratio is roughly 5.0:1 — meets WCAG AA for normal text.</li>
+<li><strong>Inline code</strong> is <code>#9B0000</code> on a <code>#F4F4F4</code> light-grey background. Contrast ratio is roughly 6.9:1 — meets WCAG AA for normal text and large text.</li>
+</ul>
+</section>
+<section id="authoring-conventions" class="level2">
+<h2 class="anchored" data-anchor-id="authoring-conventions">Authoring Conventions</h2>
+<p>The following conventions are applied consistently across the topic pages and the landing page. They are part of the site, not just guidance for future authors.</p>
+<ul>
+<li><strong>Single H1 per page.</strong> Each page’s H1 is set in YAML front matter (<code>title:</code>); H2 and H3 headings are nested below, never skipping levels.</li>
+<li><strong>Real lists, real tables.</strong> Bulleted lists use Markdown <code>-</code>/<code>*</code> syntax (rendered as <code>&lt;ul&gt;&lt;li&gt;</code>), and the conference schedule on the landing page is a real Markdown table (rendered as a semantic <code>&lt;table&gt;</code>). Custom <code>▸</code> bullets in the lesson outlines are CSS pseudo-elements layered on top of an underlying <code>&lt;ul&gt;</code>, so screen readers still announce them as a list.</li>
+<li><strong>Native Quarto callouts.</strong> Every callout on the site uses one of Quarto’s built-in classes: <code>.callout-note</code>, <code>.callout-tip</code>, <code>.callout-warning</code>, or <code>.callout-important</code>. Quarto renders these with appropriate ARIA roles, icons, and visible labels. The site does not define custom callout classes.</li>
+<li><strong>Long alt text on images.</strong> Images include descriptive Markdown alt text <em>and</em> a <code>fig-alt</code> attribute. See <code>topics/github.qmd</code> for an example: a workflow infographic carries a multi-sentence alt text plus a <code>fig-alt=</code> summary.</li>
+<li><strong>Long-description pattern for complex figures.</strong> When an image is too information-dense for an alt attribute alone, it is followed by a collapsible <code>::: {.callout-note collapse="true"}</code> containing a structured long description. This pattern keeps the visual layout uncluttered while making the figure’s content available to screen readers and to anyone who wants the detail. The Git workflow figure on <code>topics/github.qmd</code> is the reference implementation.</li>
+<li><strong>Descriptive link text.</strong> Links use the visible link text to describe the destination (for example, <code>[Site Provenance](provenance.qmd)</code>) rather than bare URLs or <code>click here</code> phrasing.</li>
+<li><strong>Plain-text math in code blocks.</strong> Code blocks are tagged with their language (<code>bash</code>, <code>sql</code>, <code>python</code>, <code>r</code>) so that syntax highlighting carries through the accessibility tree as plain text.</li>
+</ul>
+</section>
+<section id="reporting-issues" class="level2">
+<h2 class="anchored" data-anchor-id="reporting-issues">Reporting Issues</h2>
+<p>If you encounter an accessibility barrier on this site, please submit an issue via GitHub (or contact the site creator, Dr.&nbsp;Adam Ross Nelson).</p>
+<p>When reporting, the most useful information is:</p>
+<ul>
+<li>The page URL where you encountered the barrier.</li>
+<li>Your browser, operating system, and assistive technology (and versions, if you have them).</li>
+<li>A short description of what you expected to happen versus what actually happened.</li>
+</ul>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li>UW–Madison Center for User Experience — Accessibility: <a href="https://cue.wisc.edu/accessibility/" class="uri">https://cue.wisc.edu/accessibility/</a></li>
+<li>WebAIM (Web Accessibility In Mind): <a href="https://webaim.org/" class="uri">https://webaim.org/</a></li>
+<li>WCAG 2.1 quick reference: <a href="https://www.w3.org/WAI/WCAG21/quickref/" class="uri">https://www.w3.org/WAI/WCAG21/quickref/</a></li>
+</ul>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/adamrossnelson\.github\.io\/dshb-mock-micro\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Dr.&nbsp;Adam Ross Nelson · DSHB Professional Development Conference</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
