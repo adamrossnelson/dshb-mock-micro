@@ -1,0 +1,49 @@
+---
+title: "Maintainer Guide"
+---
+
+This site is a small Quarto website (a micro site). Its development philosophy is intentionally simple, and it is captured in two principles. It's lifespan is short (possibly only a few months).
+
+## Principle 1 — Quarto Native First
+
+Reach for Quarto's built-in features before reaching for a customization.
+
+- Use native callouts (`.callout-note`, `.callout-tip`, `.callout-warning`, `.callout-important`) rather than hand-styled `<div>` blocks.
+- Use Markdown for tables, lists, headings, and links rather than HTML or custom classes.
+- Use the `cosmo` theme's defaults for navigation, the right-side table of contents, the back-to-top control, and the page footer rather than overriding them.
+- Use front-matter YAML (`title:`, `subtitle:`, `author:`) for page metadata rather than rendering it inline in the page body.
+- Use Quarto's `include` shortcode to share content across pages rather than duplicating it.
+
+Every time the site uses a Quarto built-in, the maintainer inherits the work of the Quarto team — accessibility, browser compatibility, theme handling, and version-to-version consistency.
+
+## Principle 2 — Customize Only When Justified
+
+Custom CSS, SCSS, and HTML add features. They also add risk. Each custom rule is a thing that might break on a future Quarto release, behave unexpectedly with assistive technology, or confuse the next person who reads the source.
+
+The customizations that remain in this site are limited to:
+
+- UW–Madison brand colors expressed as Bootstrap variable overrides in `theme.scss`.
+- Decorative borders (red headings, gold navbar accent, footer line, code-block accent) layered on top of native Quarto components.
+- Two small content-level classes — `.session-meta` for the metadata line at the top of each topic page, and `.outline-block` for the lesson outlines.
+
+Anything beyond this list should be reconsidered before it is added, and should be removed if it stops earning its keep.
+
+## Why This Matters
+
+There are two reasons the site is built this way.
+
+**Predictability and reduced testing burden.** When the site uses Quarto defaults, the site's behavior *is* Quarto's behavior. The Quarto team has already tested it across browsers, screen readers, zoom levels, and operating systems. Customizations replace that pre-tested behavior with behavior that is the maintainer's responsibility to test. Fewer customizations means fewer surprises and a smaller test surface.
+
+**This site is itself a teaching artifact.** Students in the course read this source to learn how a real Quarto website is put together. If the source were full of clever overrides and bespoke shortcodes, students would learn clever overrides and bespoke shortcodes. Because the source is plain and idiomatic, students learn plain and idiomatic Quarto — which is exactly what we are trying to teach.
+
+## A Useful Default Question
+
+When considering any change, ask:
+
+> Is there already a Quarto feature that does this?
+
+If yes, use it. If no, ask:
+
+> Will future maintainers (and students reading the source) understand this customization at a glance?
+
+If not, reconsider.

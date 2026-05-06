@@ -1,0 +1,45 @@
+## Suggested 70-Minute Lesson Outline
+
+::: {.outline-block}
+
+- **0 – 10 min — Intro.** Why this tool matters for behavioral data science,
+  what your peers will be able to do by the end of the session, and a 60-second
+  preview of the demo.
+- **10 – 25 min — Live demo.** You at the front, narrating clicks and
+  commands. Show one complete success path from a clean state. Don't try to
+  cover edge cases yet.
+- **25 – 55 min — Hands-on.** Peers do the demo themselves on their own
+  machines. You and your group circulate to help. This is where most of the
+  real learning happens — protect this time.
+- **55 – 65 min — Troubleshooting and gotchas.** Surface the things that
+  tripped you up during your own learning. What error messages should peers
+  expect, and what do they actually mean? OS-specific differences? Auth
+  problems?
+- **65 – 70 min — Wrap.** Where to go next, one or two stretch challenges,
+  pointers to the official documentation, and a Q&A buffer.
+
+:::
+
+::: {.callout-tip}
+## Rehearse the timing
+
+Run through the lesson with your group at least once before the real session.
+Most first-time presenters underestimate the live-demo portion and overestimate
+how much hands-on time they actually have. Cut content rather than rush.
+:::
+
+## On Using the Official Documentation (Not GenAI) as Your Primary Tutor
+
+For this assignment, treat the tool creator's official documentation as your
+primary teacher. There is a strong temptation to ask Claude, ChatGPT, or
+another generative AI to "just explain it to me." 
+
+Relying on GenAI in this way during the earliest stages of adopting a new tool is a mistake. Learn from the documentation first, and then use GenAI to help you understand specific parts of the documentation or to clarify confusing concepts.
+
+Here is why:
+
+- **Docs are the authoritative source.** GenAI tools paraphrase, summarize, and occasionally hallucinate. The official documentation is what the tool's authors actually wrote about how the tool actually behaves.
+- **Reading docs *is* the skill we're teaching.** The whole premise of this conference is that successful long-term scientists are the ones who can pick up a new tool from its documentation. If you outsource that to an AI, you miss the practice rep.
+- **You'll be a better teacher.** When you've read the source material carefully, you can answer the questions your peers ask in the hands-on portion. When you've only skimmed an AI summary, you can't.
+
+Suggestion: When getting started out, use GenAI as a sidekick (to debug a specific error, to explain a single unfamiliar term). Do not use it as your tutor of first resort.

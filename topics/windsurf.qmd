@@ -1,0 +1,92 @@
+---
+title: "Installing Windsurf and Getting Started with Agentic Coding"
+subtitle: "DSHB Professional Development Conference — June 24, 2026"
+---
+
+::: {.session-meta}
+Session 1 · June 24, 2026 · 2:00 – 3:10 pm
+:::
+
+::: {.callout-important}
+## Step One: Read, Re-read, and Read Again
+
+Before you do anything else, read the starter instructions on this page in
+their entirety. Then read them again. Then a third time. The single most
+common failure mode for groups in this assignment is skimming the starter
+material once, getting stuck at minute 20, and then having to backtrack.
+Twenty minutes of careful reading at the start saves an hour of frustration
+later.
+:::
+
+## What You're Teaching
+
+Windsurf is an agentic IDE built on top of VS Code. "Agentic" means the
+editor can take multi-step actions on your behalf — reading files, running
+commands, editing code across a project — based on natural-language
+instructions, and then return the result for you to review. Your peers will
+leave this session able to install Windsurf, configure it for a real project,
+and run their first agentic task.
+
+## Mini Quick-Start
+
+Your group's job is to walk through this entire flow yourselves before you
+teach it. Plan on at least one multi-hour solo session per group member, plus
+a group rehearsal.
+
+### 1. Install Windsurf
+
+Download Windsurf from the official site and install it on your operating
+system. Pay attention to the system requirements — older machines may need
+the lighter-weight build.
+
+- Official site: <https://windsurf.com/>
+- Confirm your install by opening Windsurf, signing in, and creating an empty
+  project.
+
+### 2. Open a Real Project
+
+Clone a small public repository (one of your own from earlier coursework
+works well) and open it in Windsurf. The agentic features feel abstract on a
+blank project — they shine when there's actual code to reason about.
+
+### 3. Run Your First Agentic Task
+
+Try one of these as your first prompt:
+
+- "Read the README and tell me what this project does."
+- "Add a docstring to every function in `analysis.R` (or `analysis.py`)."
+- "Find any places where I'm hard-coding file paths and refactor them to use
+  a config variable."
+
+Watch what the agent proposes *before* accepting any changes. The ability to
+inspect, accept, or reject diffs is the core skill.
+
+### 4. Tour the Three Modes
+
+Windsurf has more than one way to invoke the agent (chat, in-line edits,
+multi-file actions). Get comfortable switching between them. Your demo should
+show at least two.
+
+## Suggested Resources
+
+- **Official docs:** <https://docs.windsurf.com/>
+- **Quick-start tutorial:** linked from the Windsurf homepage; the
+  "First-time user" walkthrough is the best place to start.
+- **Anthropic / Claude resources:** Windsurf integrates with Claude models;
+  some peers may already have API keys from earlier in the program.
+
+{{< include _outline-template.qmd >}}
+
+## Topic-Specific Demo Tips
+
+- **As you set Windsurf up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction.** Designate a member of your team to centrally collect sign-up issues, model-selection confusion, prompts that didn't go where peers expected, and any IDE-specific quirks across Mac and Windows. Then write them up into a one-page "troubleshooting guide" you can share with the others in class on the day of via the course chat platforms.
+- **Use a "team teaching" approach.** To make this lesson successful, every single member of your team will need to be confident installing Windsurf, signing in, opening a project, writing a basic prompt, reading the proposed diff, and accepting or rejecting the agent's suggestion. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.
+- **Have a fallback project ready.** If the demo project has issues on the
+  classroom Wi-Fi, you want a small local project you can pivot to without
+  losing momentum.
+- **Pre-stage your prompts.** Live-typing prompts during a demo invites
+  typos and dead air. Write your three or four demo prompts in advance and
+  paste them in.
+- **Show a rejection.** Don't just show prompts that work. Show one where
+  the agent proposes something wrong, and demonstrate how you push back. This
+  is one of the most valuable things peers can learn.

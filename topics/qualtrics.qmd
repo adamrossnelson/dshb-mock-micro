@@ -1,0 +1,116 @@
+---
+title: "Creating a Qualtrics Account and Setting Up Your First Survey"
+subtitle: "DSHB Professional Development Conference — July 1, 2026"
+---
+
+::: {.session-meta}
+Session 6 · July 1, 2026 · 3:20 – 4:30 pm
+:::
+
+::: {.callout-important}
+## Step One: Read, Re-read, and Read Again
+
+Before you do anything else, read the starter instructions on this page in
+their entirety. Then read them again. Then a third time. The single most
+common failure mode for groups in this assignment is skimming the starter
+material once, getting stuck at minute 20, and then having to backtrack.
+Twenty minutes of careful reading at the start saves an hour of frustration
+later.
+:::
+
+## What You're Teaching
+
+Qualtrics is a survey platform that behavioral scientists are likely to
+encounter in academic research, in industry user-research teams, and in
+many capstone partner organizations. Your peers will leave this session
+having created a Qualtrics account, built a short survey covering the major
+question types, and previewed the participant-facing experience.
+
+To create your own account visit: [UW-Madison's Qualtrics Instance](https://survey.wisc.edu/).
+
+Read more about how and why UW–Madison provides Qualtrics access to students through the campus license at the above link. Be sure to read over the rules associated with using Qualtrics. Have peers sign in through the institutional path, not the public Qualtrics sign-up.
+
+## Mini Quick-Start
+
+Use this mini quick start to get yourself started. You can also use this mini quick start as a reference as you plan out your own presentation.
+
+### 1. Account Setup
+
+UW–Madison campus access:
+
+- Sign in at <https://survey.wisc.edu/>
+- Use your NetID and password.
+- The first sign-in provisions an account; this can take a minute.
+
+If anyone hits an error during sign-in, the campus IT page for Qualtrics is
+the right escalation path:
+<https://kb.wisc.edu/70075>
+
+### 2. Create a Blank Survey
+
+From the Qualtrics dashboard:
+
+1. Click **Create new project**.
+2. Choose **Survey** → **From scratch** → **Blank survey project**.
+3. Give it a name like "DSHB Demo Survey."
+
+### 3. Tour of Question Types
+
+Aim for your demonstration to use each of the following question types:
+
+- **Multiple Choice** — single-answer and multi-answer.
+- **Text Entry** — short text and essay-length text.
+- **Matrix Table** — Likert-style scales, the workhorse of attitude research.
+- **Slider** — for continuous responses.
+- **Rank Order** — for preference data.
+- **Constant Sum** — for budget-allocation tasks.
+
+For each, show:
+
+- How to create it.
+- The most common formatting options.
+- A common pitfall (e.g., forgetting to force a response on a critical item, or letting a Likert scale default to "1–5" when "Strongly disagree to Strongly agree" labels are clearer).
+
+### 4. Survey Flow Basics (Optional Add-On If Time Allows)
+
+Briefly demonstrate:
+
+- Adding a second block.
+- Randomizing question order within a block.
+- Adding a simple branch ("if participant answers X, show Y").
+
+### 5. Preview the Survey
+
+The **Preview** button shows what a participant sees. This is the moment peers realize that the editor view and the participant view look very different. The takeaway is you have to test, test, test, and re-test, and then test each survey some more before deploying it.
+
+### 6. Distribute
+
+Show how to generate an anonymous link under **Distributions**. Give that response like to others in the class via the class chat platform. Have everyone respond to the survey. And also show how to download the data as a CSV file and open it in a spreadsheet program.
+
+## Suggested Resources
+
+- **Qualtrics Support — Survey Basics:**
+  <https://www.qualtrics.com/support/survey-platform/survey-module/survey-module-overview/>
+- **UW–Madison KB Qualtrics article:**
+  <https://kb.wisc.edu/70075>
+
+{{< include _outline-template.qmd >}}
+
+## Topic-Specific Demo Tips
+
+- **As you set Qualtrics up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction.** Designate a member of your team to centrally collect campus sign-in failures, "where is X in the menu?" questions, mix-ups between question types, and confusion between the Survey Flow editor and the question editor. Then write them up into a one-page "troubleshooting guide" you can share with the others in class on the day of via the course chat platforms.
+- **Use a "team teaching" approach.** To make this lesson successful, every single member of your team will need to be confident signing in to the campus Qualtrics, building a question of each major type (multiple choice, matrix, text entry), setting simple display logic, previewing the survey, and finding the distribution settings. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.
+- **Confirm everyone can sign in before the live demo.** If three peers
+  can't sign in to the campus Qualtrics, you'll lose them for the whole
+  session. Send a "please sign in to <https://uwmadison.qualtrics.com/> by
+  the start of class" email or Slack message the day before.
+- **Build a half-finished demo survey in advance.** Walk peers through
+  *adding to* a partially built survey, rather than starting from a blank
+  one. They see the destination clearly that way.
+- **Pick a behaviorally interesting topic for the demo survey.** "What
+  factors influence your morning coffee choice?" is more engaging than
+  "Demo Survey #1."
+- **Address ethics briefly.** Qualtrics is a tool that produces
+  participant-facing research instruments. Even in a demo, modeling good
+  practices around consent language and data minimization is worth the 60
+  seconds.

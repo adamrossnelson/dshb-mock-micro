@@ -1,0 +1,83 @@
+/*-- scss:defaults --*/
+
+// UW-Madison brand colors
+// Reference: https://brand.wisc.edu/web/colors/
+$uw-red:        #C5050C;  // Badger Red (primary)
+$uw-red-dark:   #9B0000;  // Darker Badger Red for hover states
+$uw-cream:      #F7F7F7;  // Off-white background
+$uw-anchor:     #0479A8;  // Anchor link blue
+$uw-link-hover: #DA9100;  // Madison gold for hover
+
+$uw-gray-darkest: #282728;
+$uw-gray-dark:    #494949;
+$uw-gray-medium:  #646569;
+$uw-gray-light:   #ADADAD;
+$uw-gray-faint:   #DADFE1;
+
+// Bootstrap variable overrides
+$primary:    $uw-red;
+$secondary:  $uw-gray-medium;
+$success:    #2E7D32;
+$info:       $uw-anchor;
+$warning:    $uw-link-hover;
+$danger:     $uw-red-dark;
+$light:      $uw-cream;
+$dark:       $uw-gray-darkest;
+
+$body-bg:    #FFFFFF;
+$body-color: $uw-gray-darkest;
+
+$link-color:        $uw-anchor;
+$link-hover-color:  $uw-red;
+
+$font-family-sans-serif: "Verlag", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headings-font-family:   "Verlag", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headings-font-weight:   700;
+$headings-color:         $uw-gray-darkest;
+
+$navbar-bg:     $uw-red;
+$navbar-fg:     #FFFFFF;
+$navbar-hl:     $uw-link-hover;
+
+$code-color:        $uw-red-dark;
+$code-bg:           #F4F4F4;
+
+/*-- scss:rules --*/
+
+// Navbar polish
+.navbar {
+  border-bottom: 4px solid $uw-link-hover;
+}
+
+.navbar-brand,
+.navbar .nav-link {
+  color: #FFFFFF !important;
+  font-weight: 600;
+}
+
+.dropdown-menu {
+  border-top: 3px solid $uw-link-hover;
+  border-radius: 0;
+}
+
+// Headings
+h1, h2 {
+  border-bottom: 2px solid $uw-red;
+  padding-bottom: 0.3em;
+  margin-top: 1.2em;
+}
+
+h3 {
+  color: $uw-red-dark;
+  margin-top: 1em;
+}
+
+// Footer polish
+.nav-footer {
+  border-top: 3px solid $uw-red;
+}
+
+// Code blocks
+pre.sourceCode {
+  border-left: 3px solid $uw-red;
+}

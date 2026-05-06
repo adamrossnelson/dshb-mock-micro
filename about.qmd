@@ -1,0 +1,12 @@
+---
+title: "About This Microsite"
+---
+
+The **DSHB Professional Development Conference** micro site is a small Quarto website built by Dr. Adam Ross Nelson for the summer 2026 *Tools for Large Scale Data Science* course in the UW–Madison Master of Science in Psychology: Data Science in Human Behavior program.
+
+It serves two purposes:
+
+1. A **reference site** for students participating in the mock conference — the schedule, the topic pages, and the presentation guidance for each session.
+2. A **demonstration artifact** for students learning Quarto, GitHub Pages, and the practice of building small public sites.
+
+For more detail, see the [Site Provenance](provenance.qmd), [Maintainer Guide](maintainer-guide.qmd), and [Accessibility Features](accessibility.qmd) pages.

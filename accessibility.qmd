@@ -1,0 +1,56 @@
+---
+title: "Accessibility Features"
+---
+
+This page documents what is in place to support assistive technology and accessible reading. This site aims to be usable by everyone, including people who use screen readers, keyboard navigation, voice input, screen magnification, captions, or other assistive technologies.
+
+## Configured Site-Wide Features
+
+The following features are turned on in `_quarto.yml` and apply to every page on the site. They are observable in the rendered HTML.
+
+- **External link indicators.** External links are flagged with a visible icon and open in a new window (`link-external-icon: true`, `link-external-newwindow: true`). This gives sighted and screen-reader users advance notice that a link will leave the site.
+- **Section anchors.** Every heading exposes a permalink anchor (`anchor-sections: true`). Useful for sharing precise pointers and for keyboard users navigating long pages.
+- **Right-side table of contents.** Each page renders a navigable table of contents to depth 3 (`toc: true`, `toc-location: right`, `toc-depth: 3`). Screen readers and keyboard users can jump directly to any section.
+- **Page navigation and back-to-top.** Previous/next links and a back-to-top control are enabled (`page-navigation: true`, `back-to-top-navigation: true`).
+- **Accessible code blocks.** Code blocks include a copy button and wrap rather than horizontally scroll (`code-copy: true`, `code-overflow: wrap`). Wrapping helps low-vision users at high zoom levels and reduces the need for horizontal scrolling.
+- **Built on the `cosmo` Bootstrap theme.** Quarto's `cosmo` theme provides semantic landmarks (`<nav>`, `<main>`, `<footer>`), keyboard-operable navbar dropdowns, and standard Bootstrap focus rings out of the box.
+
+## Color and Contrast
+
+The custom theme is layered on top of `cosmo` in `theme.scss` using UW–Madison brand colors. Contrast ratios for the primary combinations:
+
+- **Body text** is `#282728` (near-black) on `#FFFFFF` white. Contrast ratio is roughly 16:1 — well above WCAG AAA for normal text.
+- **Headings (H1, H2)** are also rendered in `#282728` on white. Same ratio as body text.
+- **Subheadings (H3)** are `#9B0000` (dark Badger Red) on white. Contrast ratio is roughly 7.4:1 — meets WCAG AAA for normal text.
+- **Navbar** is white text on `#C5050C` (Badger Red). Contrast ratio is roughly 5.4:1 — meets WCAG AA for normal text.
+- **Body links** are `#0479A8` (UW anchor blue) on white. Contrast ratio is roughly 5.0:1 — meets WCAG AA for normal text.
+- **Inline code** is `#9B0000` on a `#F4F4F4` light-grey background. Contrast ratio is roughly 6.9:1 — meets WCAG AA for normal text and large text.
+
+## Authoring Conventions
+
+The following conventions are applied consistently across the topic pages and the landing page. They are part of the site, not just guidance for future authors.
+
+- **Single H1 per page.** Each page's H1 is set in YAML front matter (`title:`); H2 and H3 headings are nested below, never skipping levels.
+- **Real lists, real tables.** Bulleted lists use Markdown `-`/`*` syntax (rendered as `<ul><li>`), and the conference schedule on the landing page is a real Markdown table (rendered as a semantic `<table>`). Custom `▸` bullets in the lesson outlines are CSS pseudo-elements layered on top of an underlying `<ul>`, so screen readers still announce them as a list.
+- **Native Quarto callouts.** Every callout on the site uses one of Quarto's built-in classes: `.callout-note`, `.callout-tip`, `.callout-warning`, or `.callout-important`. Quarto renders these with appropriate ARIA roles, icons, and visible labels. The site does not define custom callout classes.
+- **Long alt text on images.** Images include descriptive Markdown alt text *and* a `fig-alt` attribute. See `topics/github.qmd` for an example: a workflow infographic carries a multi-sentence alt text plus a `fig-alt=` summary.
+- **Long-description pattern for complex figures.** When an image is too information-dense for an alt attribute alone, it is followed by a collapsible `::: {.callout-note collapse="true"}` containing a structured long description. This pattern keeps the visual layout uncluttered while making the figure's content available to screen readers and to anyone who wants the detail. The Git workflow figure on `topics/github.qmd` is the reference implementation.
+- **Descriptive link text.** Links use the visible link text to describe the destination (for example, `[Site Provenance](provenance.qmd)`) rather than bare URLs or `click here` phrasing.
+- **Plain-text math in code blocks.** Code blocks are tagged with their language (`bash`, `sql`, `python`, `r`) so that syntax highlighting carries through the accessibility tree as plain text.
+
+## Reporting Issues
+
+If you encounter an accessibility barrier on this site, please submit an issue via GitHub (or contact the site creator, Dr. Adam Ross Nelson).
+
+When reporting, the most useful information is:
+
+- The page URL where you encountered the barrier.
+- Your browser, operating system, and assistive technology (and versions, if you have them).
+- A short description of what you expected to happen versus what actually happened.
+
+## Resources
+
+- UW–Madison Center for User Experience — Accessibility:
+  <https://cue.wisc.edu/accessibility/>
+- WebAIM (Web Accessibility In Mind): <https://webaim.org/>
+- WCAG 2.1 quick reference: <https://www.w3.org/WAI/WCAG21/quickref/>

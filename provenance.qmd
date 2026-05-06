@@ -1,0 +1,36 @@
+---
+title: "Site Provenance"
+---
+
+This site the *DSHB Professional Development Conference micro site* was co-created with extensive assistance from generative AI. The two tools used were Claude Co-Work (Anthropic's chat-based collaboration interface) and Windsurf IDE (an AI-native code editor with an embedded agent). The site is small, short-lived, and intended both as a reference for students in the *Tools for Large Scale Data Science* course at UW–Madison and as a demonstration artifact for students learning Quarto.
+
+## How AI Contributed
+
+The collaboration is best described using the nine-level framework introduced in [*Who Wrote That: Describing Gen AI Writing Contributions*](https://adamrossnelson.github.io/integsci375-public/readings/who_wrote_that.html).
+
+### Highly Repetative Components - Level 3: AI as Simulated Interpreter
+
+Several highly repetative components, once drafted, were then duplicated across pages of the site. Generative AI's agentic capabilities for example simplified the process of ensuring each page followed a standard set of headings and sub-headings. Also simplified by Gen AI's agentic abilities were the process of copying specific dates and times from a human written schedle to each page of the site. The site's navigation structure, the topic-page templates, and the overall layout of the supporting pages were also generated primarily through AI prompting and agentic work. The human author provided prompts, reviewed outputs, and made adjustments, but the AI handled the bulk of the structural and formatting work.
+
+### Much of the Site — Level 5: Simulated Colleague
+
+Most of this site sits at **Level 5 (Simulated Colleague)** on that scale. The human author and the AI worked side by side, with both contributing ideas and substantial passages of text. The human set intent, voice, scope, examples, and pedagogical framing. The AI proposed structures, drafted variations, surfaced patterns across pages, and helped reshape rough ideas into prose. By the end of an editing session, individual sentences often bear the fingerprints of both sides.
+
+This describes the bulk of the topic-page content, the per-page framing sections, the *Topic-Specific Demo Tips* lists, and the rewrites of supporting pages such as [Accessibility Features](accessibility.qmd) and the [Maintainer Guide](maintainer-guide.qmd).
+
+### Some Components — Level 6: Simulated Expert
+
+Select components also sit at **Level 6 (Simulated Expert)**. At this level the AI produced an early draft drawing on knowledge encoded during model training, and the human's job was to verify, edit for accuracy, and adapt for fit-for-purpose.
+
+For example the [Accessibility Features](accessibility.qmd) page, and the structured long alt-text on fuguers were primarily drafted by GenAI. For these components the human author read the AI's draft against authoritative sources, removed material that conflicted with professional judgment, and takes responsibility for further updates that may be required later.
+
+## What Is Not AI-Generated
+
+Portions of the site is purely human-authored:
+
+- The course schedule, the topic selection, and the in-class consultation assignments.
+- The pedagogical framing and the mocked hypothetical "conference" itself.
+ 
+## Why This Page Exists
+
+Generative AI tools are a core part of this course's subject matter (for example, the topic pages on [Windsurf](topics/windsurf.qmd) and on [Ollama](topics/ollama.qmd)). It would be inconsistent to teach with these tools while obscuring the role they played in producing the teaching materials themselves. This page makes the provenance explicit.

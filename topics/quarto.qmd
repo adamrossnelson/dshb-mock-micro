@@ -1,0 +1,119 @@
+---
+title: "Using Quarto to Create a Simple Document (Resume) + Publishing to GitHub Pages"
+subtitle: "DSHB Professional Development Conference — July 1, 2026"
+---
+
+::: {.session-meta}
+Session 5 · July 1, 2026 · 2:00 – 3:10 pm
+:::
+
+::: {.callout-important}
+## Step One: Read, Re-read, and Read Again
+
+Before you do anything else, read the starter instructions on this page in
+their entirety. Then read them again. Then a third time. The single most
+common failure mode for groups in this assignment is skimming the starter
+material once, getting stuck at minute 20, and then having to backtrack.
+Twenty minutes of careful reading at the start saves an hour of frustration
+later.
+:::
+
+## What You're Teaching
+
+Quarto is a scientific publishing system that compiles plain-text source files into HTML, PDF, Word, slides, websites, and more all from one source. Your peers will leave this session having authored a personal resume in Quarto and published it to a free, public URL using GitHub Pages.
+
+For your presentation topic you have a meaningful deliverable. Every student leaves with something they can actually use on the job market. That makes this one of the more intrinsically motivating sessions in the conference.
+
+## Mini Quick-Start
+
+### 1. Install Quarto
+
+- Official install: <https://quarto.org/docs/get-started/>
+- Confirm install: Open a terminal and run `quarto --version`.
+
+You'll also want a Quarto-aware editor. This is an opportunity to build on ealier sessions in the mini conference sequence. As you get started with Quarto yourself and as you plan your presentation to others, reference the [Installing Windsurf and Getting Started with Agentic Coding](windsurf.qmd) session.
+
+### 2. Author a Simple Resume
+
+Create a new file `resume.qmd`:
+
+```markdown
+---
+title: "Your Name"
+subtitle: "Behavioral Data Scientist"
+format: html
+---
+
+## Contact
+
+- Email: you@example.com
+- LinkedIn: linkedin.com/in/yourname
+
+## Education
+
+**M.S. Psychology: Data Science in Human Behavior**
+University of Wisconsin–Madison, 2026
+
+## Experience
+
+...
+```
+
+Render with `quarto render resume.qmd`.
+
+### 3. Make It a Quarto Website
+
+A single-page resume is fine for a demo, but the GitHub Pages step is
+cleanest when the project is set up as a Quarto website:
+
+```bash
+quarto create-project my-resume --type website
+cd my-resume
+```
+
+This gives you a `_quarto.yml`, an `index.qmd`, and a structure ready to
+publish.
+
+### 4. Publish to GitHub Pages
+
+This is the magic step. From inside the project directory, after pushing to
+a GitHub repo:
+
+```bash
+quarto publish gh-pages
+```
+
+That single command builds the site, pushes the rendered output to the
+`gh-pages` branch of the repo, and configures GitHub Pages to serve it. The
+URL will be `https://yourusername.github.io/repo-name/`.
+
+You'll need to have authenticated to GitHub already (the GitHub session on
+June 25 covered this).
+
+### 5. Iterate
+
+Demonstrate how the agentic IDE can create a website from an existing resume (PDF or Word document). Demonstrate this workflow which in gist starts a new folder in a save non-cloud location, then uses the agentic IDE to create the website, while the user on their own tests locally before publishing to GitHub Pages.
+
+1. Create a new folder in a save non-cloud location, place a resume (PDF or Word document) in that folder (use the CLI to move the file there).
+2. Use the agentic IDE to create the website (Hint: In your group I'll want to devise a model prompt that the class can use on their own site and don't forget to discuss this model prompt with your instructor during the instructor consultations)
+3. Tests locally before publishing to GitHub Pages
+
+## Suggested Resources
+
+- **Quarto getting started:** <https://quarto.org/docs/get-started/.html>
+- **Using A Test Editor:** <https://quarto.org/docs/get-started/hello/text-editor.html>
+- **Quarto template gallery:** Several published as a starting point — <https://quarto.org/docs/gallery/>
+- **GitHub Pages publishing:** <https://quarto.org/docs/publishing/github-pages.html>
+- **Markdown reference:** <https://quarto.org/docs/authoring/markdown-basics.html>
+
+{{< include _outline-template.qmd >}}
+
+## Topic-Specific Demo Tips
+
+- **As you set Quarto up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction.** Designate a member of your team to centrally collect installation issues across Mac and Windows, YAML indentation errors, TinyTeX/LaTeX hiccups for PDF rendering, and `quarto publish gh-pages` authentication problems. Then write them up into a one-page "troubleshooting guide" you can share with the others in class on the day of via the course chat platforms.
+- **Use a "team teaching" approach.** To make this lesson successful, every single member of your team will need to be confident installing Quarto, rendering a `.qmd` to both HTML and PDF, editing a YAML header without breaking it, and publishing a site with `quarto publish gh-pages`. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.
+- **Refer back to previous lessons on Git and GitHub.** Start with [Refresher on Branching, Cloning, Editing, Committing, Pushing, and Submitting a Pull Request on GitHub](github.qmd) and also consdier [The GitHub Confident Quizes Sandbox](https://github.com/adamrossnelson/confident_quizes) that has helpful references.
+- **Have a finished resume to show.** Start the presentatino with the end in mind. . . Don't try to author one live from scratch. Show your finished, polished resume up top so peers know what they're aiming for, then walk back to the source.
+- **Pre-create the GitHub repo step.** Repo creation, the first commit, and the first push are all things peers can do during the hands-on portion. Save your demo time for the Quarto authoring and the `quarto publish gh-pages` magic.
+- **Show two output formats.** Quarto's superpower is one-source-many- outputs. Render the same `resume.qmd` to both HTML and PDF in the demo. This is the "wow" moment.
+- **Peers may not finish in 30 minutes.** Authoring a real resume takes longer than the hands-on slot. Frame the goal as "get a one-page draft rendering and published" (they can polish content on their own time).

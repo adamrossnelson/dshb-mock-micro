@@ -1,0 +1,168 @@
+---
+title: "Simple Exploratory Data Analysis with SQL"
+subtitle: "DSHB Professional Development Conference — June 25, 2026"
+---
+
+::: {.session-meta}
+Session 3 · June 25, 2026 · 2:00 – 3:10 pm
+:::
+
+::: {.callout-important}
+## Step One: Read, Re-read, and Read Again
+
+Before you do anything else, read the starter instructions on this page in
+their entirety. Then read them again. Then a third time. The single most
+common failure mode for groups in this assignment is skimming the starter
+material once, getting stuck at minute 20, and then having to backtrack.
+Twenty minutes of careful reading at the start saves an hour of frustration
+later.
+:::
+
+## What You're Teaching
+
+SQL is the language of databases. Many capstone partners this program places students with will have data in SQL somewhere such as a Postgres warehouse, a Snowflake instance, or a SQLite file embedded in an app. Your peers will leave this session able to connect to a database, write `SELECT` queries with filters and aggregates, and use SQL for the kind of exploratory work they'd normally do in dplyr or pandas.
+
+The angle for this session is exploratory data analysis, not database administration. Focus on questions a behavioral data scientist would actually ask of a dataset (counts, distributions, group comparisons, simple summaries).
+
+::: {.callout-tip}
+## Suggestion: Use Existing Resources
+
+You do not need to invent a demo from scratch. You can build your sandbox and session around [adamrossnelson/sql-sandbox](https://github.com/adamrossnelson/sql-sandbox) which is a ready-made SQLite learning environment with curated lessons. You and your peers can literally clone the repo, run a single Python script, and start working through the same exercises live in class. Every code block in the sections below maps to a lesson file in that repository.
+:::
+
+## Mini Quick-Start
+
+### 1. Clone and Build the Sandbox
+
+The sandbox is a SQLite database (`sandbox.db`) populated by a Python script. There is no server to run, no cloud account to set up. Anyone with Python and Git can be querying in minutes.
+
+```bash
+# Clone the repo
+git clone https://github.com/adamrossnelson/sql-sandbox.git
+cd sql-sandbox
+
+# Build the SQLite database from the included Python script
+python build-sandbox.py
+
+# Drop into the SQLite CLI
+sqlite3 sandbox.db
+```
+
+Once inside SQLite, turn on column headers and aligned output before you start querying — the default output is much harder to read:
+
+```
+.headers on
+.mode column
+.tables       -- list available tables
+.schema mpg   -- inspect a table's columns
+.quit         -- exit back to the terminal
+```
+
+If anything ever gets messy, `python reset-sandbox.py` puts the database back to its original state.
+
+### 2. Know the Three Datasets
+
+The sandbox ships with three classic Seaborn datasets — small enough to reason about, rich enough for real EDA practice:
+
+- **`mpg`** — car fuel efficiency (1970–1982). Columns include `name`, `mpg`, `cylinders`, `displacement`, `horsepower`, `weight`, `model_year`, `origin`. Good for trends, group-bys, and string work on the `name` column.
+- **`tips`** — restaurant tipping behavior. Columns include `total_bill`, `tip`, `sex`, `smoker`, `day`, `time`, `size`. Good for ratios, day-of-week effects, and group comparisons.
+- **`penguins`** — Palmer Station penguin measurements. Columns include `species`, `island`, `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`, `sex`. Good for cross-tabs and species-level summaries.
+
+### 3. Core Demo Part 1 — Aggregate Functions
+
+Walk peers through **[`10100-AggFunctions-Base.md`](https://github.com/adamrossnelson/sql-sandbox/blob/main/10100-AggFunctions-Base.md)**. This lesson introduces the five aggregate functions every analyst needs — `SUM`, `COUNT`, `AVG`, `MIN`, `MAX` — and shows each one both on its own *and* combined with `GROUP BY`.
+
+Frame each example as the same question students would ask in pandas or dplyr, then show the SQL. For example:
+
+```sql
+-- pandas: df['total_bill'].sum()
+SELECT SUM(total_bill) FROM tips;
+
+-- pandas: df.groupby('species').size()
+SELECT species, COUNT(*) FROM penguins GROUP BY species;
+
+-- pandas: df.groupby('day')['total_bill'].mean()
+SELECT day, AVG(total_bill) AS avg_bill FROM tips GROUP BY day;
+```
+
+If peers get stuck, the matching **[`10100-AggFunctions-Solution.md`](https://github.com/adamrossnelson/sql-sandbox/blob/main/10100-AggFunctions-Solution.md)** has worked answers for every prompt.
+
+### 4. Core Demo Part 2 — Exploratory Data Analysis
+
+Then move to **[`10100-EDALessons-Base.md`](https://github.com/adamrossnelson/sql-sandbox/blob/main/10100-EDALessons-Base.md)**. This lesson is structured exactly the way a behavioral data scientist actually works: each task is described first as a Pandas snippet (the analysis your peers already know how to do) and then asks them to translate it into SQL.
+
+The eight exercises walk through:
+
+1. Overall vehicle statistics across the `mpg` table.
+2. Statistics broken down by `origin` (USA, Europe, Japan).
+3. Yearly trends in weight, horsepower, and MPG.
+4. Year-by-origin cross-tabulations.
+5. Tips as a proportion of the total bill.
+6. Penguin species × sex cross-tabulation.
+7. Penguin island × sex cross-tabulation.
+8. Three-way species × island × sex cross-tabulation.
+
+This is the heart of the session. The cross-tabulation exercises in particular reinforce that `GROUP BY` plus `COUNT(*)` is SQL's answer to `pd.crosstab`.
+
+The companion **[`10100-EDALessons-Solution.md`](https://github.com/adamrossnelson/sql-sandbox/blob/main/10100-EDALessons-Solution.md)** is the safety net — keep it open in another tab while you demo.
+
+### 5. Connect From Python or R
+
+Once peers have the SQL working in the CLI, show them the bridge most analysts will actually use day-to-day: running the same SQL from inside a Python or R script against the very same `sandbox.db` file.
+
+```python
+import sqlite3
+con = sqlite3.connect("sandbox.db")
+df = con.execute(
+    "SELECT species, COUNT(*) AS n FROM penguins GROUP BY species"
+).fetchall()
+con.close()
+```
+
+```r
+library(DBI)
+library(RSQLite)
+con <- dbConnect(SQLite(), "sandbox.db")
+df  <- dbGetQuery(con, "SELECT species, COUNT(*) AS n FROM penguins GROUP BY species")
+dbDisconnect(con)
+```
+
+The point: the SQL you just learned is portable. The same `SELECT` statement runs in the CLI, in Python, in R, and (with minor dialect tweaks) in Postgres or Snowflake at a future job.
+
+## Independent Practice: String Lessons
+
+::: {.callout-important}
+## Strongly Encouraged: Work Through the String Lessons On Your Own
+
+Real-world data is messy text more often than it is clean numbers. Before your capstone you should also work through **[`10200-StringLessons-Base.md`](https://github.com/adamrossnelson/sql-sandbox/blob/main/10200-StringLessons-Base.md)** in the sandbox. It covers the string-handling skills you will *definitely* need:
+
+- Extracting parts of a string (e.g., the manufacturer from a car name) with `SUBSTR` and `INSTR`.
+- Case standardization with `UPPER`, `LOWER`, and title-case patterns.
+- Pattern matching with `LIKE` (case-insensitive in SQLite) and `GLOB`.
+- Finding numeric tokens inside text fields.
+- Concatenation with `||` to build composite descriptions.
+- Cleaning whitespace and standardizing formats with `TRIM` and `REPLACE`.
+- Length-based bucketing using `CASE` and `LENGTH`.
+
+The companion **[`10200-StringLessons-Solution.md`](https://github.com/adamrossnelson/sql-sandbox/blob/main/10200-StringLessons-Solution.md)** has the worked answers. We will not cover this material in class, but it is fair game for your capstone work and for any analytics interview.
+:::
+
+## Suggested Resources
+
+- **The sandbox itself:** <https://github.com/adamrossnelson/sql-sandbox>
+- **Sandbox glossary:** <https://github.com/adamrossnelson/sql-sandbox/blob/main/glossary.md>
+- **SQLite documentation (the dialect the sandbox uses):** <https://sqlite.org/docs.html>
+- **Mode SQL tutorial (still excellent for EDA framing):** <https://mode.com/sql-tutorial>
+- **SQLBolt interactive lessons:** <https://sqlbolt.com/>
+
+{{< include _outline-template.qmd >}}
+
+## Topic-Specific Demo Tips
+
+- **As you set the SQL Sandbox up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction.** Designate a member of your team to centrally collect Git/Python install issues, `sqlite3 not found` errors (especially on Windows), forgotten `.headers on` confusion, and the common SQL errors peers will hit (missing `GROUP BY`, typo'd table or column names). Then write them up into a one-page "troubleshooting guide" you can share with the others in class on the day of via the course chat platforms.
+- **Use a "team teaching" approach.** To make this lesson successful, every single member of your team will need to be confident cloning the sandbox, running `python build-sandbox.py`, opening `sqlite3 sandbox.db`, listing tables, and writing the basic aggregate queries from `10100-AggFunctions-Base.md`. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.
+- **Have peers clone and build the sandbox before class.** The whole setup is `git clone … && cd sql-sandbox && python build-sandbox.py`. Send the link the day before so classroom Wi-Fi isn't the bottleneck. The first 10 minutes of session time should be a quick check that everyone has `sandbox.db` and can run `.tables`.
+- **Pick four or five questions in advance.** The Base lessons already give you a curated sequence. Don't free-style SQL live; pace through specific exercises from `10100-AggFunctions-Base.md` and `10100-EDALessons-Base.md` and let peers race ahead between prompts.
+- **Show one query that fails.** Real SQL involves typos, missing tables, ambiguous column names. Forget a `GROUP BY`, misspell `penguins` as `pengiun`, or query a column that doesn't exist — then walk peers through reading the error message. This is one of the most useful five minutes of the session.
+- **Pair the SQL with the pandas equivalent.** The lesson files already do this. Lean into it: peers who already know pandas pick up SQL much faster when you say "this is just `groupby` with different syntax."
+- **Don't peek at the Solution files until peers have tried.** Resist the urge to flip to `*-Solution.md` immediately. The struggle of writing `GROUP BY` for the first time is the lesson.

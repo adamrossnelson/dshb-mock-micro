@@ -1,0 +1,192 @@
+---
+title: "Command Line Interface + File System As a Tool"
+subtitle: "DSHB Professional Development Conference — Mini-Crash Lesson Notes"
+---
+
+::: {.session-meta}
+Mini-crash lesson · ~20–30 minutes · Drop in wherever a foundational primer is needed
+:::
+
+::: {.callout-important}
+## Step One: Read, Re-read, and Read Again
+
+Before you do anything else, read the starter instructions on this page in their entirety. Then read them again. Then a third time. The single most common failure mode for groups in this assignment is skimming the starter material once, getting stuck at minute 20, and then having to backtrack. Twenty minutes of careful reading at the start saves an hour of frustration later.
+:::
+
+## What You're Teaching
+
+The command line interface (CLI) and the file system are not "extra" topics for behavioral data scientists. They are the foundation that almost every other tool in this conference sits on top of. Git is run from the CLI. Quarto is run from the CLI. The SQL sandbox is built and entered from the CLI. Ollama is pulled and run from the CLI. If your peers are uncomfortable in a terminal, every other lesson gets harder.
+
+Your peers will leave this mini-crash lesson able to open a terminal on their own machine, understand where they "are" in the file system, navigate to a folder, list and inspect its contents, create and remove files and folders, view and search file contents, and chain commands together with pipes and redirection. That is enough to unblock every other tool in the program.
+
+This lesson is *not* a full Unix course. It is a deliberate, small set of commands chosen because they are the ones your peers will actually need this summer.
+
+::: {.callout-tip}
+## Why a "mini-crash" lesson?
+
+Unlike the other topic sessions in this conference, this one is short. The goal is not mastery — it is removing the fear of the black window with the blinking cursor. If peers leave able to `cd` into a folder, list its contents, and read an error message, you have succeeded.
+:::
+
+## Mini Quick-Start
+
+### 1. Open a Terminal
+
+The terminal is just an application. Every modern OS ships with one.
+
+- **macOS:** open *Terminal.app* (Spotlight → "Terminal"). The default shell is `zsh`.
+- **Windows:** the recommended option for this program is **Git Bash** (installed alongside Git in the GitHub session). PowerShell also works, but commands diverge from what your Mac peers will see. Stick to Git Bash so the lesson is portable.
+- **Linux:** open the *Terminal* application your distribution provides. The default shell is usually `bash`.
+
+Confirm everyone has *something* open with a prompt before moving on. The prompt typically ends in `$` (Mac/Linux/Git Bash) or `>` (PowerShell).
+
+### 2. Where Am I? `pwd` and `ls`
+
+The two questions every CLI session starts with: *where am I?* and *what is here?*
+
+```bash
+pwd          # print working directory (the absolute path you are currently in)
+ls           # list files and folders in the current directory
+ls -l        # long listing — shows size, modification date, permissions
+ls -la       # long listing including hidden files (those that start with .)
+```
+
+Demo this in a folder that has a few visible files *and* a hidden file (e.g., a `.gitignore`). Peers should see that hidden files exist and that `ls` does not show them by default.
+
+### 3. Move Around with `cd`
+
+`cd` ("change directory") is how you move through the file system.
+
+```bash
+cd Documents          # move into the Documents folder (relative path)
+cd ..                 # go up one level
+cd ~                  # go to your home directory
+cd /                  # go to the root of the file system
+cd -                  # go back to the previous directory
+cd /full/path/here    # absolute path — works from anywhere
+```
+
+Take a moment here to explain **absolute vs. relative paths**:
+
+- An *absolute* path starts at the root (`/` on Mac/Linux, e.g., `C:/Users/...` on Windows). It works no matter where you are.
+- A *relative* path is interpreted from your current directory. `Documents` only means something if you are in your home folder.
+
+This is the single most common source of "file not found" errors peers will hit in every other session this summer.
+
+### 4. Make, Move, Copy, and Remove Files
+
+```bash
+mkdir my-project           # make a new directory
+cd my-project
+touch notes.txt            # create an empty file
+cp notes.txt notes-copy.txt  # copy
+mv notes-copy.txt backup.txt # rename / move
+rm backup.txt              # remove a file
+cd ..
+rm -r my-project           # remove a directory and everything in it
+```
+
+::: {.callout-warning}
+## `rm` is permanent
+
+There is no Trash / Recycle Bin for files removed with `rm`. They are gone. Demonstrate this honestly so peers respect the command. Especially warn against `rm -rf /` and `rm -rf ~` — these are the canonical "do not paste random commands from the internet" examples.
+:::
+
+### 5. Read and Search File Content
+
+Often you do not want to open a file in an editor — you just want to glance at it from the CLI.
+
+```bash
+cat notes.txt          # print the whole file to the screen
+head notes.txt         # first 10 lines
+head -n 3 notes.txt    # first 3 lines
+tail notes.txt         # last 10 lines
+tail -f notes.txt      # follow a file as it grows (great for log files)
+less notes.txt         # scrollable pager — press q to quit
+wc -l notes.txt        # count lines in the file
+```
+
+For finding things inside files:
+
+```bash
+grep "TODO" notes.txt           # find lines containing "TODO"
+grep -i "todo" notes.txt        # case-insensitive
+grep -r "TODO" .                # search recursively from the current directory
+```
+
+::: {.callout-note}
+## Stuck in `less` or `vim`?
+
+If a peer accidentally lands in `less`, the exit key is `q`. If they accidentally land in `vim`, the exit sequence is `Esc` then `:q!` then `Enter`. Write these on the board before the demo. Every cohort produces at least one "I can't get out" moment.
+:::
+
+### 6. Pipes and Redirection
+
+This is the moment the CLI starts to feel like a *tool* rather than a chore. Pipes (`|`) send the output of one command into the input of the next. Redirection (`>` and `>>`) sends output to a file.
+
+```bash
+ls -l | wc -l                       # how many things are in this folder?
+ls -la | grep "^d"                  # only directories (lines starting with d)
+cat notes.txt | grep "TODO" | wc -l # how many TODOs are in notes.txt?
+
+echo "Hello" > greeting.txt         # write Hello to greeting.txt (overwrite)
+echo "Again" >> greeting.txt        # append "Again" to greeting.txt
+```
+
+Show one composed example end-to-end. The "aha" moment is realizing you just built a tiny analysis pipeline with three commands and a pipe.
+
+### 7. Quality-of-Life Shortcuts
+
+These are not technically about the file system, but they are what makes the CLI bearable. Demo them explicitly.
+
+- **Tab completion.** Start typing `cd Doc` and press `Tab` — the shell completes to `Documents/`. This alone makes the CLI feel friendlier.
+- **Arrow-up.** Recall previous commands. Most CLI work is editing the previous command, not typing a new one.
+- **`Ctrl+C`.** Cancel a running command. Critical when something hangs.
+- **`Ctrl+L` or `clear`.** Clear the screen.
+- **`history`.** See your recent commands.
+
+## Suggested Resources
+
+- **Software Carpentry — The Unix Shell (the canonical free tutorial):** <https://swcarpentry.github.io/shell-novice/>
+- **ExplainShell (paste any command, get a plain-English breakdown):** <https://explainshell.com/>
+- **Apple's Terminal User Guide:** <https://support.apple.com/guide/terminal/welcome/mac>
+- **Git Bash for Windows (download with Git):** <https://gitforwindows.org/>
+- **MDN — Introduction to the command line:** <https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line>
+
+## Suggested Mini-Crash Outline
+
+::: {.outline-block}
+
+- **0 – 3 min — Why this matters.** Show one thing peers already wanted to do (clone a repo, run `quarto render`, build the SQL sandbox) and point out that all of it happens at this prompt. The CLI is not optional.
+- **3 – 13 min — Live demo.** Walk through steps 1 through 6 above on your own machine, projected. Move briskly. Do not stop for edge cases. The goal is exposure, not depth.
+- **13 – 23 min — Hands-on.** Peers replicate the same sequence on their own laptops. Have a small starter folder ready (a couple of text files, a hidden `.gitignore`) so they have something to `ls`, `cat`, and `grep` on. Your team circulates.
+- **23 – 28 min — Pipes and the "aha" moment.** Walk through one composed pipe end-to-end (e.g., `ls -la | grep ".txt" | wc -l`). This is the part peers will remember.
+- **28 – 30 min — Wrap.** One stretch challenge ("count how many `.md` files are in this repo"), the resources list above, and a Q&A buffer.
+
+:::
+
+::: {.callout-tip}
+## Rehearse on both Mac and Windows
+
+If your team has a mix of OSes, rehearse the demo on each. The vast majority of commands behave identically in `zsh` (Mac) and Git Bash (Windows), but a few subtleties (path separators, `clear` vs `cls`) will surface only when you are typing live in front of an audience.
+:::
+
+## On Using the Official Documentation (Not GenAI) as Your Primary Tutor
+
+For this lesson, treat the manual pages (`man ls`, `man grep`, `man cd`) and the Software Carpentry shell tutorial as your primary teachers. There is a strong temptation to ask Claude or ChatGPT to "just explain `grep` to me." Resist it for the first pass.
+
+Here is why:
+
+- **`man` pages are authoritative.** They are written by the people who wrote the tools. GenAI tools paraphrase them, sometimes incorrectly.
+- **Reading docs *is* the skill we're teaching.** A behavioral data scientist who can read a `man` page can teach themselves any new CLI tool for the rest of their career.
+- **You will be a better teacher.** When you have read `man ls` carefully, you can answer the questions peers will ask in the hands-on portion.
+
+Suggestion: when getting started, use GenAI as a sidekick (to debug a specific error, to explain a single confusing flag). Do not use it as your tutor of first resort.
+
+## Topic-Specific Demo Tips
+
+- **As you set the CLI up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction.** Designate a member of your team to centrally collect things like wrong-directory "file not found" errors, peers getting stuck in `less` or `vim`, accidental `rm` regrets, Mac vs. Windows divergences, and confusion between absolute and relative paths. Then write them up into a one-page "troubleshooting guide" you can share with the others in class on the day of via the course chat platforms.
+- **Use a "team teaching" approach.** To make this lesson successful, every single member of your team will need to be confident with `pwd`, `ls`, `cd`, `mkdir`, `touch`, `cp`, `mv`, `rm`, `cat`, `head`, `tail`, `grep`, and at least one composed pipe. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.
+- **Prepare a sandbox folder in advance.** Have peers download (or have you distribute) a small starter folder with a handful of text files, a subdirectory, and a hidden file. Trying to demo `ls`, `grep`, and `wc -l` on an empty home directory is dispiriting.
+- **Type slowly and narrate every keystroke.** Many peers have never watched someone use a CLI in real time. What feels obvious to you (the `$` prompt, pressing Enter, the cursor moving) is genuinely new for some. Slow down.
+- **Show one command that fails, on purpose.** Try to `cd` into a folder that does not exist, or `cat` a file you misspelled. Then read the error message together. "No such file or directory" is the most common error in the CLI, and recognizing it is half the battle.
+- **Resist the urge to teach more.** Peers do not need `awk`, `sed`, `xargs`, `chmod`, or shell scripting today. They need to feel that the terminal is no longer scary. Stop when they are not scared.

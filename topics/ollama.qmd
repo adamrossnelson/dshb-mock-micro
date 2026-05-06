@@ -1,0 +1,90 @@
+---
+title: "Installing and Running a Local LLM with Ollama"
+subtitle: "DSHB Professional Development Conference — June 24, 2026"
+---
+
+::: {.session-meta}
+Session 2 · June 24, 2026 · 3:20 – 4:30 pm
+:::
+
+::: {.callout-important}
+## Step One: Read, Re-read, and Read Again
+
+Before you do anything else, read the starter instructions on this page in their entirety. Then read them again. Then a third time. The single most common failure mode for groups in this assignment is skimming the starter material once, getting stuck at minute 20, and then having to backtrack. Twenty minutes of careful reading at the start saves an hour of frustration later.
+:::
+
+## What You're Teaching
+
+Ollama is a tool that lets you download and run large language models on your own computer (no API keys, no per-token costs, no data leaving your machine). Your peers will leave this session able to install Ollama, pull a model, and have their first conversation with it from the command line and from a script.
+
+This matters for behavioral data scientists because some research data (interview transcripts, clinical notes, identifiable survey responses) cannot be sent to a third-party API for ethical or regulatory reasons. Local models are how you do LLM-assisted analysis on that kind of data.
+
+## Mini Quick-Start
+
+### 1. Check Your Hardware
+
+Ollama runs models locally, which means your machine's RAM and (for some models) GPU determine what you can actually run. A laptop with 16 GB of RAM can comfortably run small-to-mid-size models; 8 GB is workable but tight.
+
+- Check your RAM before you install (this affects which models you should recommend in the demo).
+- Macs with Apple Silicon are particularly well-suited. Windows and Linux also work.
+
+### 2. Install Ollama
+
+Download from the official site and run the installer for your OS.
+
+- Official site: <https://ollama.com/>
+- Confirm install: open a terminal and run `ollama --version`.
+
+### 3. Pull Your First Model
+
+Models are pulled by name. Start small.
+
+```bash
+ollama pull llama3.2:1b
+ollama run llama3.2:1b
+```
+
+The first command downloads the model (this can take several minutes on classroom Wi-Fi — plan accordingly). The second drops you into an interactive chat.
+
+Reminder: To interact in the terminal with the model first use the command `ollama run <model_name>`. Then at the `>>>` prompt, type your message and press Enter. To exit use `/bye`.
+
+### 4. Try a Larger Model
+
+Once the small model works, try a mid-size one to feel the difference in both quality and speed.
+
+```bash
+ollama pull llama3.2:3b
+ollama run llama3.2:3b
+```
+
+Reminder: To interact in the terminal with the model first use the command `ollama run <model_name>`. Then at the `>>>` prompt, type your message and press Enter. To exit use `/bye`.
+
+### 5. Call Ollama From a Script
+
+Ollama exposes a local HTTP API on port 11434. Call it from Python or R to show your peers how to integrate a local model into a real analysis script. In a Jupyter notebook demonstrate the following.
+
+```python
+import requests
+
+response = requests.post(
+    "http://localhost:11434/api/generate",
+    json={"model": "llama3.2:3b", "prompt": "Summarize this transcript: ...", "stream": False}
+)
+print(response.json()["response"])
+```
+
+## Suggested Resources
+
+- **Official docs:** <https://github.com/ollama/ollama/blob/main/README.md>
+- **Model library:** <https://ollama.com/library>
+- **API reference:** <https://github.com/ollama/ollama/blob/main/docs/api.md>
+
+{{< include _outline-template.qmd >}}
+
+## Topic-Specific Demo Tips
+
+- **As you set Ollama up for yourself keep track of common mistakes, errors, misunderstandings, and points of friction.** Desingate a member of your team to centrally collect common mistakes, errors, misunderstandings, and points of friction and then also write them up into a one page "trouble shooting guide" that you can share with the others in class on the day of via the course chat platforms.
+- **Use a "team teaching" approach.** To make this lesson successful every single member of your team will need to be confident installing, setting up, running, testing, and exeucting LLM calls using Ollama. The members of your team will need to circlate through the room helping other students. There will be many stumbling blocks.
+- **Download your model the day before class.** Models are big files. Doing this ahead of time means you won't be stuck waiting on a slow internet connection while everyone watches.
+- **Have one good question ready to ask the model.** Something simple like "Summarize this paragraph" or "What are three reasons people might skip a survey question?" A prepared example beats freestyling.
+- **It's okay if the model is slow.** Local models run on your laptop, not a giant server. A short pause before the answer is normal — narrate what's happening so peers aren't confused.

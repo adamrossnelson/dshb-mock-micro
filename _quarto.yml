@@ -1,0 +1,64 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "DSHB Pro Dev Conference"
+  description: "DSHB Professional Development Conference Micro Site Summer 2026"
+  site-url: ""
+  page-navigation: true
+  back-to-top-navigation: true
+  navbar:
+    background: primary
+    pinned: true
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "June 24"
+        menu:
+          - text: "Installing Windsurf and Getting Started with Agentic Coding"
+            href: topics/windsurf.qmd
+          - text: "Installing and Running a Local LLM with Ollama"
+            href: topics/ollama.qmd
+      - text: "June 25"
+        menu:
+          - text: "Simple Exploratory Data Analysis with SQL"
+            href: topics/sql.qmd
+          - text: "GitHub Refresher (Branching, Pull Requests, and More)"
+            href: topics/github.qmd
+      - text: "July 1"
+        menu:
+          - text: "Using Quarto to Create a Simple Document"
+            href: topics/quarto.qmd
+          - text: "Creating a Qualtrics Account and First Survey"
+            href: topics/qualtrics.qmd
+      - text: "About"
+        menu:
+          - text: "About This Microsite"
+            href: about.qmd
+          - text: "Site Provenance"
+            href: provenance.qmd
+          - text: "Maintainer Guide"
+            href: maintainer-guide.qmd
+          - text: "Accessibility Features"
+            href: accessibility.qmd
+  page-footer:
+    background: light
+    left: "© 2026 Dr. Adam Ross Nelson · DSHB Professional Development Conference"
+    right: "Built with [Quarto](https://quarto.org/)"
+
+format:
+  html:
+    theme:
+      light: [cosmo, theme.scss]
+    css: styles.css
+    toc: true
+    toc-location: right
+    toc-depth: 3
+    code-copy: true
+    code-overflow: wrap
+    link-external-newwindow: true
+    link-external-icon: true
+    anchor-sections: true
+
+author: "Dr. Adam Ross Nelson"

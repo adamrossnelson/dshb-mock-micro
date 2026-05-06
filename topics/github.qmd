@@ -1,0 +1,167 @@
+---
+title: "Refresher on Branching, Cloning, Editing, Committing, Pushing, and Submitting a Pull Request on GitHub"
+subtitle: "DSHB Professional Development Conference — June 25, 2026"
+---
+
+::: {.session-meta}
+Session 4 · June 25, 2026 · 3:20 – 4:30 pm
+:::
+
+::: {.callout-important}
+## Step One: Read, Re-read, and Read Again
+
+Before you do anything else, read the starter instructions on this page in their entirety. Then read them again. Then a third time. The single most common failure mode for groups in this assignment is skimming the starter material once, getting stuck at minute 20, and then having to backtrack. Twenty minutes of careful reading at the start saves an hour of frustration later.
+:::
+
+## What You're Teaching
+
+As you may already know Git is the version-control system; GitHub is the collaboration platform built around it. You and your peers have probably touched both before, but for many this session is a chance to fill in the gaps that come from learning Git piecemeal. This session can help reinforce and solidify the previous lessons and exposure to Git and GitHub.
+
+For this lesson you can refer back to previous lessons on Git and GitHub. Specifically [The GitHub Confident Quizes Sandbox](https://github.com/adamrossnelson/confident_quizes) has helpful references. By the end of the session, your peers should be able to branch a repo, clone the branch, make changes, commit the changes, push the branch, and open a pull request against the main branch.
+
+## Mini Quick-Start
+
+### 0. Make sure Git is installed, GitHub CLI is installed, and that `gh auth login` works
+
+Sort this out before the session starts. Windows users recommended running in Git Bash so they match what macOS peers will run.
+
+**Check Git and `gh` installation:**
+
+```bash
+git --version
+gh --version
+```
+
+**If Not Installed, Install Git and `gh`:**
+
+- **macOS** (via [Homebrew](https://brew.sh)): `brew install git gh`
+- **Windows** (via `winget`): `winget install --id Git.Git -e` and `winget install --id GitHub.cli`
+
+**Verify and authenticate:**
+
+```bash
+gh auth login    # choose GitHub.com → HTTPS → login with web browser
+gh auth status   # should show a green check and your username
+```
+
+If `gh auth status` errors, fix it before moving on because nothing below will work without it.
+
+### 1. Decide on Your Demo Repo
+
+Don't demo against a class repo with real history. Instead use a sandbox repo your group creates specifically for this purpose. It should have:
+
+- A simple `README.md`.
+- One or two text or code files peers can edit.
+- An open invitation for peers to contribute (e.g., "Add your name and a favorite tool to this list").
+
+Hint: Consider asking an angentic IDE to help you create your sandbox repository.
+
+### 2. The Core Workflow
+
+Your demo should walk through this complete loop:
+
+First, on GitHub, fork the demo repo:
+
+1. Navigate to the demo repo in your browser.
+2. Click "Fork" (top right) to create a copy of the repository under your own GitHub account.
+
+Then, in your terminal, clone your fork and make your changes:
+
+```bash
+# Clone your fork (replace yourusername with your GitHub username)
+git clone https://github.com/yourusername/demo-repo.git
+cd demo-repo
+
+# Create a branch for your work
+git checkout -b add-my-name
+
+# Make your edit (open a file in any editor)
+# ... edit ...
+
+# Stage and commit your changes
+git add favorite-tools.md
+git commit -m "Add favorite tool from Maya"
+
+# Push the branch to your fork
+git push -u origin add-my-name
+```
+
+Finally, back on GitHub, open the pull request:
+
+1. Open your fork in the browser.
+2. Click "Compare & pull request."
+3. Write a short PR description.
+4. Submit the pull request against the original repo.
+
+### 3. The Conceptual Pieces Worth Pausing On
+
+Most students can copy the commands. The conceptual pieces that actually
+matter:
+
+- **What a branch is.** A pointer to a commit, not a "copy of the code."
+- **The three-stage model.** Working directory → staging area → commit. Show `git status` after each step.
+- **What a pull request is *for*.** It's a request for review and discussion before code joins the main branch — not just a way to push code to GitHub.
+- **What a merge conflict looks like.** Demonstrate one on purpose and show how to resolve it.
+
+### 4. Authentication
+
+This is where most demos die. GitHub no longer accepts password authentication for `git push`. Your peers will need one of the following:
+
+- `gh` CLI configured with `gh auth login` (Recommended)
+- A personal access token (PAT), or
+- SSH keys configured.
+
+Have them set this up *before* the hands-on portion. A 30-minute SSH-key detour kills the lesson.
+
+## Suggested Resources
+
+- **Creating GitHub accounts:** <https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github>
+- **GitHub's Video Sequence:** <https://www.youtube.com/watch?v=r8jQ9hVA2qs&list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f>
+- **A visual flow chart (simplified):** <https://github.com/adamrossnelson/confident/blob/main/images/gitworkflowexample.png>
+- **An example sandbox repository:** <https://github.com/adamrossnelson/confident_quizes>
+- **GitHub's own quickstart:** <https://docs.github.com/en/get-started>
+- **Pro Git book (free, the canonical reference):** <https://git-scm.com/book/en/v2>
+
+![Infographic titled "How To Make Maintainers Happy" showing a seven-step Git contribution workflow: (1) fork the main project repository on GitHub.com; (2) clone the forked repository to your local workspace; (3) make incremental, self-contained edits locally; (4) add, commit, and push the edits to the forked repository; (5) submit a pull request on GitHub.com; (6) the project manager or repo maintainer reviews the code and either sends feedback or, (7) if ready, merges the pull request. The left side shows a student named Ken (wearing a University of Wisconsin Madison shirt) thinking "My Turn To Submit The Pull Request!" and a brief background paragraph. The lower-right corner shows a smiling colleague saying "Great Work, Ken! Stay On It!"](https://raw.githubusercontent.com/adamrossnelson/confident/refs/heads/main/images/gitworkflowexample.png){fig-alt="Seven-step Git contribution workflow infographic: fork on GitHub, clone the fork locally, make edits, add/commit/push to the fork, submit a pull request, maintainer reviews and gives feedback or merges the pull request."}
+
+::: {.callout-note collapse="true"}
+## Detailed figure description (Additional accessibility)
+
+The figure is an infographic titled **"How To Make Maintainers Happy"** with a companion panel on the right titled **"Related Workflow."** It illustrates the end-to-end process a contributor follows when submitting a pull request to a project they do not own.
+
+**Left panel — narrative setup:**
+
+A photograph shows a young man wearing glasses and a red "University of Wisconsin Madison" T-shirt, holding a laptop. A hand-drawn thought bubble next to him reads, *"My Turn To Submit The Pull Request!"* Beneath the photo, a short background paragraph explains: *"Ken's project manager has assigned him the role of submitting the next pull request. Here is the workflow he will follow."*
+
+**Right panel — the workflow flowchart:**
+
+Seven connected boxes describe the steps in order. Arrows trace the flow down the left column, across the bottom, and back up the right column:
+
+1. **On GitHub.com, fork the main project repository.** A screenshot-style "Fork 18.7k" button is shown.
+2. **In your local workspace, clone the forked repository.** Sub-text notes: *"Use Git CLI for this, or use an IDE's tools. Do NOT clone the main repo — clone your fork."*
+3. **Make edits in the local workspace.** Sub-text notes: *"Incremental and self-contained edits. One feature, or one self-contained edit, per pull request."*
+4. **Add, commit, and push the edits to the forked repository.** Sub-text notes: *"Ask a trusted colleague or advisor to review code and suggest edits."*
+5. **On GitHub.com, submit a pull request.** A "Pull requests 85" button is shown.
+6. **The project manager or repo maintainer reviews the code.** Sub-text notes: *"If not ready, the manager or maintainer sends feedback"* — and the contributor loops back to step 3 to revise.
+7. **If ready for merge, the manager or maintainer merges the pull request.** A green "Merge pull request" button is shown.
+
+**Bottom-right corner:**
+
+A second photograph shows a smiling colleague with curly hair, holding a tablet, with the encouraging caption: *"Great Work, Ken! Stay On It!"*
+
+**Key takeaways from the figure:**
+
+- The contributor never pushes directly to the main project repository; everything goes through their personal fork.
+- Pull requests are a *review and discussion* mechanism, not just a delivery mechanism — feedback loops back into more local edits.
+- Only the maintainer merges; the contributor's job ends at "submit the pull request."
+:::
+
+{{< include _outline-template.qmd >}}
+
+## Topic-Specific Demo Tips
+
+- **As you set Git and GitHub up for yourselves, keep track of common mistakes, errors, misunderstandings, and points of friction.** Designate a member of your team to centrally collect authentication errors, merge-conflict messages, "I'm stuck in vim" moments, and any Mac vs. Windows differences. Then write them up into a one-page "troubleshooting guide" you can share with the others in class on the day of via the course chat platforms.
+- **Use a "team teaching" approach.** To make this lesson successful, every single member of your team will need to be confident running `gh auth login`, cloning a repo, branching, committing, pushing, opening a pull request, and resolving a basic merge conflict. The members of your team will need to circulate through the room helping other students. There will be many stumbling blocks.
+- **Audit auth setup at the start.** Spend the first 5 minutes of hands-on time checking that everyone can `git push` a trivial change. If three people can't, the rest of the session is downhill.
+- **Lean into the code-review angle.** This session naturally folds in *reading other people's code* and *code review* — when you walk through opening a PR, talk about how to review one. What does a useful review comment look like?
+- **Show the GitHub web UI alongside the command line.** Some peers will prefer the GUI; others will prefer the CLI. Both are valid; both will keep showing up in their careers.
