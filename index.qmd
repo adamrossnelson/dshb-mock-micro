@@ -28,36 +28,39 @@ Group members for each session: see class handouts.
 
 ### June 17, 2026 — Welcome + Course Orientation
 
-- **2:00 – 2:50 pm** — Re-introductions. Course overview. Explanation of the
-  professional development conference format for the first 2.5 weeks of the
-  course. An activity designed to help students identify their own strengths in
-  presenting to or educating others about complex topics.
+- **2:00 – 2:50 pm** — Re-introductions. Course overview. Explanation of the professional development conference format for the first 2.5 weeks of the course. An activity designed to help students identify their own strengths in presenting to or educating others about complex topics.
 - **2:50 – 3:00 pm** — Break
-- **3:00 – 3:50 pm** — Demonstration mini-crash lesson on the [Command Line
-  Interface + File System As a Tool](topics/cli.qmd)
-- **4:00 – 4:20 pm** — Detailed discussion of the six topics, group
-  assignments, and presentation schedule ahead.
-- **4:20 – 5:00 pm** — Instructor consultation with the *Installing Windsurf*
-  group. Other groups work together. Stay together in classroom.
+- **3:00 – 3:50 pm** — Demonstration mini-crash lesson on the [Command Line Interface + File System As a Tool](topics/cli.qmd)
+- **4:00 – 4:20 pm** — Detailed discussion of the six topics, group assignments, and presentation schedule ahead.
+- **4:20 – 5:00 pm** — Instructor consultation with the *Installing Windsurf and getting started with agentic coding* group. Other groups work together. Stay together in classroom.
 
 ### June 18, 2026 — Continued Instructor Consultations + Small Group Planning Time
 
-- **2:00 – 2:40 pm** — Instructor consultation with the *Installing and
-  running a local LLM with Ollama* group.
-- **2:40 – 3:20 pm** — Instructor consultation with the *Simple exploratory
-  data analysis with SQL* group.
-- **3:20 – 4:00 pm** — Instructor consultation with the *Branching, cloning,
-  editing, committing, pushing, and submitting a pull request on GitHub* group.
-- **4:00 – 4:40 pm** — Instructor consultation with the *Quarto + GitHub
-  Pages* group.
-- **4:40 – 5:20 pm** — Instructor consultation with the *Qualtrics account,
-  first survey, plus a tour of question types* group.\*
+- **2:00 – 2:40 pm** — Instructor consultation with the *Installing and running a local LLM with Ollama* group.
+- **2:40 – 3:20 pm** — Instructor consultation with the *Simple exploratory data analysis with SQL* group.
+- **3:20 – 4:00 pm** — Instructor consultation with the *Refresher on branching, cloning, editing, committing, pushing, and submitting a pull request on GitHub* group.
+- **4:00 – 4:40 pm** — Instructor consultation with the *Using Quarto to create a simple document (resume) + publishing to GitHub Pages* group.
+- **4:40 – 5:20 pm** — Instructor consultation with the *Creating a Qualtrics account and setting up your first survey + tour of question types* group.\*
+
+During class other groups work together during their non-consultation slots. Stay together
+in the classroom.
 
 \* Students in this last group are welcome to arrive at 2:40 pm to compensate
 for staying later.
 
-Other groups work together during their non-consultation slots. Stay together
-in the classroom.
+## Out-Of-Class Instructor Consultation Schedule
+
+### June 23, 2026 (For June 24th and June 25th)
+
+- 4:00pm June 23 — Instructor consultation with the *Installing and running a local LLM with Ollama* group.
+- 5:00pm June 23 - Instructor consultation with the *Installing and running a local LLM with Ollama* group.
+- 6:00pm June 23 - Instructor consultation with the *Simple Exploratory Data Analysis with SQL* group.
+- 7:00pm June 23 - Instructor consultation with the *Refresger on branching, cloning, editing, committing, pushing, and submitting a pull request on GitHub* group.
+
+### June 30, 2026 (For July 1st)
+
+- 4:00pm June 30 - Instructor consultation with the *Quarto + GitHub Pages* group.
+- 5:00pm June 30 - Instructor consultation with the *Creating a Qualtrics account and setting up your first survey + tour of question types* group.
 
 ## Quick Links
 
