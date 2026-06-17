@@ -75,20 +75,20 @@ This is the single most common source of "file not found" errors peers will hit 
 ### 4. Make, Move, Copy, and Remove Files
 
 ```bash
-mkdir my-project           # make a new directory
+mkdir my-project             # make new directory
 cd my-project
-touch notes.txt            # create an empty file
+touch notes.txt              # create empty file
 cp notes.txt notes-copy.txt  # copy
 mv notes-copy.txt backup.txt # rename / move
-rm backup.txt              # remove a file
+rm backup.txt                # remove file
 cd ..
-rm -r my-project           # remove a directory and everything in it
+rm -r my-project             # remove directory and everything in it
 ```
 
 ::: {.callout-warning}
 ## `rm` is permanent
 
-There is no Trash / Recycle Bin for files removed with `rm`. They are gone. Demonstrate this honestly so peers respect the command. Especially warn against `rm -rf /` and `rm -rf ~` — these are the canonical "do not paste random commands from the internet" examples.
+There is no Trash / Recycle Bin for files removed with `rm`. They are gone. Demonstrate this honestly so peers respect the command. Especially warn against `rm -rf /` and `rm -rf ~` ... These are the canonical "do not paste random commands from the internet" examples.
 :::
 
 ### 5. Read and Search File Content
@@ -96,7 +96,7 @@ There is no Trash / Recycle Bin for files removed with `rm`. They are gone. Demo
 Often you do not want to open a file in an editor — you just want to glance at it from the CLI.
 
 ```bash
-cat notes.txt          # print the whole file to the screen
+cat notes.txt          # print whole file to screen
 head notes.txt         # first 10 lines
 head -n 3 notes.txt    # first 3 lines
 tail notes.txt         # last 10 lines
@@ -119,11 +119,36 @@ grep -r "TODO" .                # search recursively from the current directory
 If a peer accidentally lands in `less`, the exit key is `q`. If they accidentally land in `vim`, the exit sequence is `Esc` then `:q!` then `Enter`. Write these on the board before the demo. Every cohort produces at least one "I can't get out" moment.
 :::
 
-### 6. Pipes and Redirection
+### 6. Get Files From Remote Sources
+
+There are commands that work to get files from online. In MacOS generally use `curl` or `wget`. In Windows generally use `curl` or `Invoke-WebRequest`.
+
+**Windows Examples**
+
+```powershell
+Invoke-WebRequest -Uri "https://example.com/file.csv" -OutFile "file.csv"
+```
+
+**MacOS Examples**
+
+```bash
+curl -O https://example.com/file.csv
+wget https://example.com/file.csv
+```
+
+For example, to get the restaurant tips data from Seaborn use:
+
+```bash
+curl -O https://raw.githubusercontent.com/mwaskom/seaborn-data/refs/heads/master/tips.csv
+```
+
+### 7. Pipes and Redirection
 
 This is the moment the CLI starts to feel like a *tool* rather than a chore. Pipes (`|`) send the output of one command into the input of the next. Redirection (`>` and `>>`) sends output to a file.
 
 ```bash
+ls *.csv                            # list all CSV files in the current directory
+wc -l *.csv                         # count rows in each CSV file
 ls -l | wc -l                       # how many things are in this folder?
 ls -la | grep "^d"                  # only directories (lines starting with d)
 cat notes.txt | grep "TODO" | wc -l # how many TODOs are in notes.txt?
@@ -134,7 +159,7 @@ echo "Again" >> greeting.txt        # append "Again" to greeting.txt
 
 Show one composed example end-to-end. The "aha" moment is realizing you just built a tiny analysis pipeline with three commands and a pipe.
 
-### 7. Quality-of-Life Shortcuts
+### 8. Quality-of-Life Shortcuts
 
 These are not technically about the file system, but they are what makes the CLI bearable. Demo them explicitly.
 
