@@ -218,8 +218,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#move-around-with-cd" id="toc-move-around-with-cd" class="nav-link" data-scroll-target="#move-around-with-cd">3. Move Around with <code>cd</code></a></li>
   <li><a href="#make-move-copy-and-remove-files" id="toc-make-move-copy-and-remove-files" class="nav-link" data-scroll-target="#make-move-copy-and-remove-files">4. Make, Move, Copy, and Remove Files</a></li>
   <li><a href="#read-and-search-file-content" id="toc-read-and-search-file-content" class="nav-link" data-scroll-target="#read-and-search-file-content">5. Read and Search File Content</a></li>
-  <li><a href="#pipes-and-redirection" id="toc-pipes-and-redirection" class="nav-link" data-scroll-target="#pipes-and-redirection">6. Pipes and Redirection</a></li>
-  <li><a href="#quality-of-life-shortcuts" id="toc-quality-of-life-shortcuts" class="nav-link" data-scroll-target="#quality-of-life-shortcuts">7. Quality-of-Life Shortcuts</a></li>
+  <li><a href="#get-files-from-remote-sources" id="toc-get-files-from-remote-sources" class="nav-link" data-scroll-target="#get-files-from-remote-sources">6. Get Files From Remote Sources</a></li>
+  <li><a href="#pipes-and-redirection" id="toc-pipes-and-redirection" class="nav-link" data-scroll-target="#pipes-and-redirection">7. Pipes and Redirection</a></li>
+  <li><a href="#quality-of-life-shortcuts" id="toc-quality-of-life-shortcuts" class="nav-link" data-scroll-target="#quality-of-life-shortcuts">8. Quality-of-Life Shortcuts</a></li>
   </ul></li>
   <li><a href="#suggested-resources" id="toc-suggested-resources" class="nav-link" data-scroll-target="#suggested-resources">Suggested Resources</a></li>
   <li><a href="#suggested-mini-crash-outline" id="toc-suggested-mini-crash-outline" class="nav-link" data-scroll-target="#suggested-mini-crash-outline">Suggested Mini-Crash Outline</a></li>
@@ -331,14 +332,14 @@ Why a “mini-crash” lesson?
 </section>
 <section id="make-move-copy-and-remove-files" class="level3">
 <h3 class="anchored" data-anchor-id="make-move-copy-and-remove-files">4. Make, Move, Copy, and Remove Files</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> my-project           <span class="co"># make a new directory</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> my-project             <span class="co"># make new directory</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-project</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> notes.txt            <span class="co"># create an empty file</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> notes.txt              <span class="co"># create empty file</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> notes.txt notes-copy.txt  <span class="co"># copy</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> notes-copy.txt backup.txt <span class="co"># rename / move</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> backup.txt              <span class="co"># remove a file</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> backup.txt                <span class="co"># remove file</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> my-project           <span class="co"># remove a directory and everything in it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> my-project             <span class="co"># remove directory and everything in it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -349,14 +350,14 @@ Why a “mini-crash” lesson?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There is no Trash / Recycle Bin for files removed with <code>rm</code>. They are gone. Demonstrate this honestly so peers respect the command. Especially warn against <code>rm -rf /</code> and <code>rm -rf ~</code> — these are the canonical “do not paste random commands from the internet” examples.</p>
+<p>There is no Trash / Recycle Bin for files removed with <code>rm</code>. They are gone. Demonstrate this honestly so peers respect the command. Especially warn against <code>rm -rf /</code> and <code>rm -rf ~</code> … These are the canonical “do not paste random commands from the internet” examples.</p>
 </div>
 </div>
 </section>
 <section id="read-and-search-file-content" class="level3">
 <h3 class="anchored" data-anchor-id="read-and-search-file-content">5. Read and Search File Content</h3>
 <p>Often you do not want to open a file in an editor — you just want to glance at it from the CLI.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> notes.txt          <span class="co"># print the whole file to the screen</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> notes.txt          <span class="co"># print whole file to screen</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> notes.txt         <span class="co"># first 10 lines</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 3 notes.txt    <span class="co"># first 3 lines</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> notes.txt         <span class="co"># last 10 lines</span></span>
@@ -381,19 +382,32 @@ Stuck in <code>less</code> or <code>vim</code>?
 </div>
 </div>
 </section>
+<section id="get-files-from-remote-sources" class="level3">
+<h3 class="anchored" data-anchor-id="get-files-from-remote-sources">6. Get Files From Remote Sources</h3>
+<p>There are commands that work to get files from online. In MacOS generally use <code>curl</code> or <code>wget</code>. In Windows generally use <code>curl</code> or <code>Invoke-WebRequest</code>.</p>
+<p><strong>Windows Examples</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">"https://example.com/file.csv"</span> <span class="op">-</span>OutFile <span class="st">"file.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>MacOS Examples</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://example.com/file.csv</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://example.com/file.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For example, to get the restaurant tips data from Seaborn use:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://raw.githubusercontent.com/mwaskom/seaborn-data/refs/heads/master/tips.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="pipes-and-redirection" class="level3">
-<h3 class="anchored" data-anchor-id="pipes-and-redirection">6. Pipes and Redirection</h3>
+<h3 class="anchored" data-anchor-id="pipes-and-redirection">7. Pipes and Redirection</h3>
 <p>This is the moment the CLI starts to feel like a <em>tool</em> rather than a chore. Pipes (<code>|</code>) send the output of one command into the input of the next. Redirection (<code>&gt;</code> and <code>&gt;&gt;</code>) sends output to a file.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span>                       <span class="co"># how many things are in this folder?</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"^d"</span>                  <span class="co"># only directories (lines starting with d)</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> notes.txt <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"TODO"</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span> <span class="co"># how many TODOs are in notes.txt?</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Hello"</span> <span class="op">&gt;</span> greeting.txt         <span class="co"># write Hello to greeting.txt (overwrite)</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Again"</span> <span class="op">&gt;&gt;</span> greeting.txt        <span class="co"># append "Again" to greeting.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.csv                            <span class="co"># list all CSV files in the current directory</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> <span class="pp">*</span>.csv                         <span class="co"># count rows in each CSV file</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span>                       <span class="co"># how many things are in this folder?</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"^d"</span>                  <span class="co"># only directories (lines starting with d)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> notes.txt <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"TODO"</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span> <span class="co"># how many TODOs are in notes.txt?</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Hello"</span> <span class="op">&gt;</span> greeting.txt         <span class="co"># write Hello to greeting.txt (overwrite)</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Again"</span> <span class="op">&gt;&gt;</span> greeting.txt        <span class="co"># append "Again" to greeting.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Show one composed example end-to-end. The “aha” moment is realizing you just built a tiny analysis pipeline with three commands and a pipe.</p>
 </section>
 <section id="quality-of-life-shortcuts" class="level3">
-<h3 class="anchored" data-anchor-id="quality-of-life-shortcuts">7. Quality-of-Life Shortcuts</h3>
+<h3 class="anchored" data-anchor-id="quality-of-life-shortcuts">8. Quality-of-Life Shortcuts</h3>
 <p>These are not technically about the file system, but they are what makes the CLI bearable. Demo them explicitly.</p>
 <ul>
 <li><strong>Tab completion.</strong> Start typing <code>cd Doc</code> and press <code>Tab</code> — the shell completes to <code>Documents/</code>. This alone makes the CLI feel friendlier.</li>
