@@ -184,6 +184,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#run-your-first-agentic-task" id="toc-run-your-first-agentic-task" class="nav-link" data-scroll-target="#run-your-first-agentic-task">3. Run Your First Agentic Task</a></li>
   <li><a href="#tour-the-three-modes" id="toc-tour-the-three-modes" class="nav-link" data-scroll-target="#tour-the-three-modes">4. Tour the Three Modes</a></li>
   </ul></li>
+  <li><a href="#suggested-lecture-notes" id="toc-suggested-lecture-notes" class="nav-link" data-scroll-target="#suggested-lecture-notes">Suggested Lecture Notes</a></li>
   <li><a href="#suggested-resources" id="toc-suggested-resources" class="nav-link" data-scroll-target="#suggested-resources">Suggested Resources</a></li>
   <li><a href="#suggested-70-minute-lesson-outline" id="toc-suggested-70-minute-lesson-outline" class="nav-link" data-scroll-target="#suggested-70-minute-lesson-outline">Suggested 70-Minute Lesson Outline</a></li>
   <li><a href="#on-using-the-official-documentation-not-genai-as-your-primary-tutor" id="toc-on-using-the-official-documentation-not-genai-as-your-primary-tutor" class="nav-link" data-scroll-target="#on-using-the-official-documentation-not-genai-as-your-primary-tutor">On Using the Official Documentation (Not GenAI) as Your Primary Tutor</a></li>
@@ -270,12 +271,35 @@ Step One: Read, Re-read, and Read Again
 <p>Windsurf has more than one way to invoke the agent (chat, in-line edits, multi-file actions). Get comfortable switching between them. Your demo should show at least two.</p>
 </section>
 </section>
+<section id="suggested-lecture-notes" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-lecture-notes">Suggested Lecture Notes</h2>
+<p>(Note: This subsection created as a demonstration)</p>
+<ul>
+<li><strong>Define agentic coding clearly.</strong> An agentic IDE does not just autocomplete the next few tokens. It plans multi-step actions, calls tools to read files and run commands, edits across a project, and surfaces the result as a reviewable diff. The unit of work is a task, not a keystroke.</li>
+<li><strong>Contrast with traditional autocomplete.</strong> Copilot-style autocomplete predicts what comes next at the cursor. An agent decides which files to open, what to change, what to test, and then asks you to approve. Make sure peers leave understanding that this is a category difference, not a feature upgrade.</li>
+<li><strong>Place Windsurf in the broader landscape.</strong> Windsurf is built on the open-source VS Code core, so the editor UX, keybindings, and extension marketplace will feel familiar to anyone who has used VS Code. Cascade (the embedded agent) is the differentiator. Other tools in this category include Cursor, Cline, and the Claude Code CLI.</li>
+<li><strong>Walk through the agent loop in plain English.</strong> Read context → propose a plan → call tools (search, edit, run a command) → present a diff → human accepts, rejects, or revises. Every step is interruptible. Drawing this loop on the board once is worth ten minutes of demo.</li>
+<li><strong>“Human in the loop” is the work, not a formality.</strong> Agents hallucinate file paths, invent function names, and over-edit. Reviewing the diff <em>is</em> the engineering. If your peers walk away clicking “accept all” on every proposal, the lesson has failed.</li>
+<li><strong>Scope the context.</strong> Agents work better on small, well-scoped project folders than on sprawling monorepos. Opening a focused project beats dragging in your entire <code>~/Projects</code> directory. Encourage peers to start from a clean folder for their first attempts.</li>
+<li><strong>Prompt specificity beats prompt cleverness.</strong> “Clean this up” produces sprawling unreviewable diffs. “Rename <code>df1</code> to <code>responses</code> in <code>analysis.py</code> and update all references” produces a diff a human can actually evaluate. Specific in, specific out.</li>
+<li><strong>Cost and latency are real.</strong> Each agent turn calls a frontier model. Long unattended runs are expensive and hard to audit after the fact. Build the habit of checking the agent’s work between turns rather than chaining ten requests and walking away.</li>
+<li><strong>Privacy and data handling.</strong> Anything in your open files may be sent to a model provider. Do not paste credentials, API keys, PHI, or unredacted human-subjects data into the editor. For a behavioral data science program this matters more than usual. Flag it explicitly.</li>
+<li><strong>Reproducibility tradeoff.</strong> Agentic edits are stochastic. The same prompt run twice can produce different diffs. Commit early, commit often, and treat the agent’s output like a pull request from a collaborator you trust but verify.</li>
+<li><strong>Three invocation surfaces, three blast radii.</strong> The chat panel is for conversation and exploration. Inline edit is for surgical changes at the cursor. Full agent mode is for cross-project, multi-file tasks. Match the surface to the size of the task. Do not reach for the biggest hammer by default.</li>
+<li><strong>Memories and rules earn their keep.</strong> Windsurf supports per-project rules and persistent memories. Use them to encode conventions like “snake_case for variables” or “tests live in <code>tests/</code>” so the agent stops asking and stops drifting. This is one of the highest-leverage features and the most often skipped.</li>
+<li><strong>Watch what tools the agent invokes.</strong> When it proposes a shell command, read it before approving. Pay special attention to anything destructive (<code>rm</code>, <code>git reset --hard</code>, <code>pip install</code>, anything that touches a database). The convenience of “just approve” is exactly how accidents happen.</li>
+<li><strong>Git is the safety net.</strong> Branch before a big agentic task. Let the agent work. Review the diff. Commit or <code>git restore</code> accordingly. Do not run a thirty-step agent loop directly on <code>main</code>. This habit alone prevents most of the “the AI broke my project” stories.</li>
+<li><strong>The transferable skill is reading diffs critically.</strong> Tools come and go. Windsurf may not be the dominant agentic IDE in two years. The discipline of recognizing when the agent is wrong, pushing back, and accepting only the parts that are correct is the skill that survives the next tool change. Frame the whole session around that point.</li>
+</ul>
+</section>
 <section id="suggested-resources" class="level2">
 <h2 class="anchored" data-anchor-id="suggested-resources">Suggested Resources</h2>
 <ul>
 <li><strong>Official docs:</strong> <a href="https://docs.windsurf.com/" class="uri">https://docs.windsurf.com/</a></li>
 <li><strong>Quick-start tutorial:</strong> linked from the Windsurf homepage; the “First-time user” walkthrough is the best place to start.</li>
 <li><strong>Anthropic / Claude resources:</strong> Windsurf integrates with Claude models; some peers may already have API keys from earlier in the program.</li>
+<li><strong>Windsurf community:</strong> <a href="https://windsurf.com/community" class="uri">https://windsurf.com/community</a></li>
+<li><strong>Windsurf blog:</strong> <a href="https://windsurf.com/blog" class="uri">https://windsurf.com/blog</a></li>
 </ul>
 </section>
 <section id="suggested-70-minute-lesson-outline" class="level2">
