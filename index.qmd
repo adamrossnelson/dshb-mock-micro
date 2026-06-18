@@ -4,7 +4,7 @@ subtitle: "Tools for Large Scale Data Science"
 author: "Dr. Adam Ross Nelson"
 ---
 
-## Welcome
+## Welcome To The Site
 
 Tools come and go. Scientists who will be successful long term in their career are those who can learn tools quickly and independently on their own. Over five days (about 2.5 weeks of this course) students will first work in small groups to learn a new tool and also plan a mini-crash lesson on that tool for peers in class. The first two days of class will be devoted mostly to work time where students can collaborate on learning their assigned tool and plan a 70-minute mini-crash lesson on the dates and times indicated below.
 
